@@ -1,0 +1,16 @@
+services:
+  # Backend API Web Service
+  - type: web
+    name: health-faq-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python -m src.ingestion.run"
+    startCommand: "uvicorn src.api.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: LLM_PROVIDER
+        value: mock
+      - key: GEMINI_API_KEY
+        sync: false
