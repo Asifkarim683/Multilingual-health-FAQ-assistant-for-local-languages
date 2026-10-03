@@ -19,6 +19,9 @@ All content is strictly sourced from verified public health authorities (WHO, Mo
 | `SRC-07` | Dietary Guidelines for Indians & Anemia Prevention | ICMR - National Institute of Nutrition (NIN) | English, Hindi | Nutrition, iron deficiency anemia, dietary diversity | Guidelines | [ICMR-NIN](https://www.nin.res.in/) | Public Educational Guidance |
 | `SRC-08` | Diarrhoeal Disease, Dehydration & Oral Rehydration Salts (ORS) | WHO & National Health Mission (NHM Odisha) | English, Odia, Hindi | Diarrhea, ORS preparation, Zinc, Water sanitation | Factsheet & SOP | [NHM Odisha](http://www.nrhmorissa.gov.in/) | State Public Health Open Circulars |
 | `SRC-09` | Seasonal Flu & Fever: Home Management and Red Flag Symptoms | MoHFW Integrated Disease Surveillance Programme (IDSP) | English, Hindi | Seasonal Influenza, Fever care, danger signs | Health Advisory | [IDSP MoHFW](https://idsp.mohfw.gov.in/) | Public Advisory Notice |
+| `SRC-BN` (01-09) | West Bengal Public Health FAQs & Disease Protocols | Department of Health & Family Welfare, Govt. of West Bengal & WHO | Bengali | Dengue, Diarrhea/ORS, Diabetes, Hypertension, UIP, ANC, Anemia, Flu | Health Advisories & SOPs | [WB Health](https://www.wbhealth.gov.in/) | State Government Open Public Health Domain |
+| `SRC-TE` (01-09) | Telangana & Andhra Pradesh Public Health Portals | Commissioner of Health & Family Welfare (Telangana & AP) | Telugu | Vector diseases, ORS, Diabetes, BP, Immunization, Maternal Care, Nutrition, Heatwave | Circulars & FAQs | [Health Telangana](https://health.telangana.gov.in/) | State Public Health Open Domain |
+| `SRC-TA` (01-09) | Tamil Nadu Public Health Department Guidelines | Directorate of Public Health & Preventive Medicine, Govt. of Tamil Nadu | Tamil | Dengue, ORS, Diabetes, Hypertension, Universal Immunization, ANC, Anemia, Heatwave | Guidelines & Posters | [TN Health](https://www.tnhealth.tn.gov.in/) | State Government Open Health Portal |
 
 ---
 

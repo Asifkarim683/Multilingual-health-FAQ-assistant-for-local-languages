@@ -500,3 +500,11 @@ Red Flag Symptoms Requiring Immediate Medical Attention:
 """
     }
 ]
+
+# Onboarded Languages: Bengali (bn), Telugu (te), Tamil (ta)
+try:
+    from .sources_expansion import EXPANDED_HEALTH_DOCUMENTS
+    OFFICIAL_HEALTH_DOCUMENTS.extend(EXPANDED_HEALTH_DOCUMENTS)
+except ImportError:
+    pass
+

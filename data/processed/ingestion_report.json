@@ -1,20 +1,27 @@
 {
-  "total_documents": 24,
-  "total_chunks": 57,
+  "total_documents": 48,
+  "total_chunks": 143,
   "chunks_per_language": {
     "en": 10,
     "hi": 24,
-    "or": 23
+    "or": 23,
+    "bn": 27,
+    "te": 28,
+    "ta": 31
   },
   "chunks_per_topic": {
-    "Vector-borne diseases": 7,
-    "Diabetes basics and lifestyle": 6,
+    "Vector-borne diseases": 19,
+    "Diabetes basics and lifestyle": 18,
     "Hypertension basics and lifestyle": 7,
     "Child immunization schedule": 8,
     "Maternal health and pregnancy care basics": 7,
-    "Nutrition and anemia": 7,
+    "Nutrition and anemia": 17,
     "Hygiene, water safety, diarrhea and ORS": 8,
-    "Seasonal illnesses (flu, fever when to seek care)": 7
+    "Seasonal illnesses (flu, fever when to seek care)": 17,
+    "Hygiene and ORS": 12,
+    "Hypertension basics and management": 10,
+    "Immunization schedule basics": 9,
+    "Maternal care basics (ANC, nutrition, danger signs)": 11
   },
   "coverage_by_language_and_topic": {
     "en": {
@@ -46,6 +53,36 @@
       "Nutrition and anemia": 3,
       "Hygiene, water safety, diarrhea and ORS": 3,
       "Seasonal illnesses (flu, fever when to seek care)": 3
+    },
+    "bn": {
+      "Vector-borne diseases": 4,
+      "Hygiene and ORS": 4,
+      "Diabetes basics and lifestyle": 4,
+      "Hypertension basics and management": 3,
+      "Immunization schedule basics": 3,
+      "Maternal care basics (ANC, nutrition, danger signs)": 3,
+      "Nutrition and anemia": 3,
+      "Seasonal illnesses (flu, fever when to seek care)": 3
+    },
+    "te": {
+      "Vector-borne diseases": 4,
+      "Hygiene and ORS": 4,
+      "Diabetes basics and lifestyle": 4,
+      "Hypertension basics and management": 3,
+      "Immunization schedule basics": 3,
+      "Maternal care basics (ANC, nutrition, danger signs)": 4,
+      "Nutrition and anemia": 3,
+      "Seasonal illnesses (flu, fever when to seek care)": 3
+    },
+    "ta": {
+      "Vector-borne diseases": 4,
+      "Hygiene and ORS": 4,
+      "Diabetes basics and lifestyle": 4,
+      "Hypertension basics and management": 4,
+      "Immunization schedule basics": 3,
+      "Maternal care basics (ANC, nutrition, danger signs)": 4,
+      "Nutrition and anemia": 4,
+      "Seasonal illnesses (flu, fever when to seek care)": 4
     }
   }
 }
