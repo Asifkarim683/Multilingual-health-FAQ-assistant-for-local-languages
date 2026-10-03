@@ -15,9 +15,9 @@ CROSS_LINGUAL_HEALTH_SYNONYMS = {
     "dengue": ["dengue", "डेंगू", "ଡେଙ୍ଗୁ", "aedes", "mosquito", "मच्छर", "ମଶା", "platelet"],
     "malaria": ["malaria", "मलेरिया", "ମ୍ୟାଲେରିଆ", "mosquito", "fever", "बुखार", "ଜ୍ୱର"],
     # Diabetes
-    "diabetes": ["diabetes", "मधुमेह", "ମଧୁମେହ", "sugar", "शर्करा", "ଶର୍କରା", "glucose", "insulin", "इंसुलिन"],
+    "diabetes": ["diabetes", "डायबिटीज", "ଡାଇବେଟିସ୍", "मधुमेह", "ମଧୁମେହ", "sugar", "शुगर", "ଶୁଗାର", "शर्करा", "ଶର୍କରା", "glucose", "insulin", "इंसुलिन"],
     # Hypertension / BP
-    "hypertension": ["hypertension", "blood pressure", "रक्तचाप", "ରକ୍ତଚାପ", "हाई बीपी", "ହାଇ ବିପି", "salt", "नमक", "ଲୁଣ"],
+    "hypertension": ["hypertension", "blood pressure", "ब्लड प्रेशर", "ବ୍ଲଡ ପ୍ରେସର", "रक्तचाप", "ରକ୍ତଚାପ", "हाई बीपी", "ହାଇ ବିପି", "salt", "नमक", "ଲୁଣ"],
     # Immunization
     "vaccine": ["vaccine", "immunization", "टीका", "टीकाकरण", "ଟିକା", "ଟୀକାକରଣ", "bcg", "polio", "पोलियो", "ପୋଲିଓ", "pentavalent", "पेंटावेलेंट", "ପେଣ୍ଟାଭାଲେଣ୍ଟ", "schedule"],
     # Maternal
