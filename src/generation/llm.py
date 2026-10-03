@@ -119,10 +119,15 @@ class MockLLMProvider(LLMProvider):
                 break
 
         if not target_sentences:
-            # Fallback to first passage lines
+            # Fallback to localized health guidance if passages were cross-lingual
             first_p = passages[0]
-            target_sentences = [l.strip() for l in first_p[4].strip().split("\n") if l.strip()][:2]
             cited_passages = [first_p[0]]
+            if target_lang == "hi":
+                target_sentences = ["सत्यापित सार्वजनिक स्वास्थ्य दिशा-निर्देशों के अनुसार उपयुक्त सावधानी और उपचार नियमों का पालन करें।"]
+            elif target_lang == "or":
+                target_sentences = ["ସତ୍ୟାପିତ ସାର୍ବଜନୀନ ସ୍ୱାସ୍ଥ୍ୟ ନିୟମ ଅନୁସାରେ ଉପଯୁକ୍ତ ସତର୍କତା ଓ ଡାକ୍ତରୀ ପରାମର୍ଶ ପାଳନ କରନ୍ତୁ।"]
+            else:
+                target_sentences = [l.strip() for l in first_p[4].strip().split("\n") if l.strip()][:2]
 
         citation_str = " ".join([f"[{cp}]" for cp in cited_passages]) or "[1]"
         body = " ".join(target_sentences[:3])
