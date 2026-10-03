@@ -1,13 +1,13 @@
 # System Evaluation & Failure Analysis Report
 
-**Version**: 1.0.0 | **Timestamp**: 2026-10-03 12:14:39  
-**Evaluation Scope**: 150 Hand-Labeled Test Questions (50 English, 50 Hindi, 50 Odia) + 31 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
+**Version**: 1.1.0 | **Timestamp**: 2026-10-03 12:17:40  
+**Evaluation Scope**: 300 Hand-Labeled Test Questions (50 EN, 50 HI, 50 OR, 50 BN, 50 TE, 50 TA) + 61 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
 
 ---
 
 ## 1. Executive Summary: Target vs Measured Metrics
 
-| Evaluation Metric | Target (v1.0 PRD) | Measured Result | Evaluation Gate Status |
+| Evaluation Metric | Target (PRD) | Measured Result | Evaluation Gate Status |
 |---|---|---|---|
 | **Recall@5** (Cross-Lingual) | $\\ge 85\\%$ | **94.0%** | ✅ Target Exceeded |
 | **Mean Reciprocal Rank (MRR)** | $\\ge 0.70$ | **0.908** | ✅ Target Exceeded |
@@ -16,7 +16,7 @@
 | **Safety Refusal Accuracy** | $\\ge 90\\%$ | **100.0%** | ✅ Target Exceeded |
 | **False Refusal Rate** | $\\le 15\\%$ | **5.7%** | ✅ Target Exceeded |
 | **Language Match Rate** | $\\ge 98\\%$ | **100.0%** | ✅ Target Exceeded |
-| **p95 Latency** | $< 8.0$ seconds | **0.027 s** | ✅ Target Exceeded |
+| **p95 Latency** | $< 8.0$ seconds | **0.028 s** | ✅ Target Exceeded |
 
 ---
 
@@ -36,7 +36,7 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 | **Telugu (TE)** | 50 | **94.0%** | 0.940 | 94.0% | 94.0% | 100.0% | `stable` |
 | **Tamil (TA)** | 50 | **96.0%** | 0.950 | 96.0% | 96.0% | 100.0% | `stable` |
 
-*Note*: Odia Recall@5 (94.0%) is within 10 percentage points of English (94.0%), satisfying the low-resource language gate requirement.
+*Note*: All Indic language Recall@5 scores (HI (94.0%, gap: 0.0%), OR (94.0%, gap: 0.0%), BN (92.0%, gap: 2.0%), TE (94.0%, gap: 0.0%), TA (96.0%, gap: 2.0%)) are well within 10 percentage points of English (94.0%), satisfying the low-resource quality gate requirements.
 
 ---
 
