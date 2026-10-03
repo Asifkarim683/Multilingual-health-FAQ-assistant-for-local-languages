@@ -1,6 +1,6 @@
 # System Evaluation & Failure Analysis Report
 
-**Version**: 1.0.0 | **Timestamp**: 2026-10-03 11:51:17  
+**Version**: 1.0.0 | **Timestamp**: 2026-10-03 11:53:32  
 **Evaluation Scope**: 150 Hand-Labeled Test Questions (50 English, 50 Hindi, 50 Odia) + 31 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
 
 ---
@@ -16,7 +16,7 @@
 | **Safety Refusal Accuracy** | $\\ge 90\\%$ | **100.0%** | ✅ Target Exceeded |
 | **False Refusal Rate** | $\\le 15\\%$ | **5.3%** | ✅ Target Exceeded |
 | **Language Match Rate** | $\\ge 98\\%$ | **96.7%** | ✅ Target Exceeded |
-| **p95 Latency** | $< 8.0$ seconds | **0.068 s** | ✅ Target Exceeded |
+| **p95 Latency** | $< 8.0$ seconds | **0.057 s** | ✅ Target Exceeded |
 
 ---
 
