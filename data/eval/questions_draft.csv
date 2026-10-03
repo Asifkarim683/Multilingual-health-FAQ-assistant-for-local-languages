@@ -1,0 +1,33 @@
+id,language,topic,question,gold_source_id,expected_intent
+Q01,en,Vector-borne diseases,What are the primary symptoms and warning signs of severe dengue?,SRC-01,answer
+Q02,en,Vector-borne diseases,How can community mosquito breeding be prevented?,SRC-01,answer
+Q03,en,Diabetes basics and lifestyle,What lifestyle modifications are recommended to prevent Type 2 diabetes?,SRC-04,answer
+Q04,en,Diabetes basics and lifestyle,What are the classic symptoms of elevated blood sugar?,SRC-04,answer
+Q05,en,Hypertension basics and lifestyle,What daily salt intake limit is advised for high blood pressure?,SRC-05,answer
+Q06,en,Child immunization schedule,What vaccines should a child receive at birth under the National Immunization Schedule?,SRC-03,answer
+Q07,en,Child immunization schedule,At what age are the Pentavalent and Polio doses administered to an infant?,SRC-03,answer
+Q08,en,Maternal health and pregnancy care basics,How many antenatal checkups are recommended during pregnancy?,SRC-06,answer
+Q09,en,Nutrition and anemia,Which foods help prevent iron deficiency anemia?,SRC-07,answer
+Q10,en,Hygiene water safety diarrhea and ORS,How is Oral Rehydration Salts solution correctly prepared at home?,SRC-08,answer
+
+Q11,hi,Vector-borne diseases,डेंगू बुखार के शुरुआती लक्षण क्या होते हैं?,SRC-01,answer
+Q12,hi,Vector-borne diseases,गंभीर डेंगू में कौन से खतरे के लक्षण दिखाई देते हैं?,SRC-01,answer
+Q13,hi,Diabetes basics and lifestyle,टाइप 2 डायबिटीज से बचने के लिए क्या खाना चाहिए?,SRC-04,answer
+Q14,hi,Diabetes basics and lifestyle,शुगर की बीमारी के मुख्य लक्षण क्या हैं?,SRC-04,answer
+Q15,hi,Hypertension basics and lifestyle,उच्च रक्तचाप (हाई बीपी) को नियंत्रित करने के लिए कितना नमक खाना चाहिए?,SRC-05,answer
+Q16,hi,Child immunization schedule,जन्म के समय नवजात शिशु को कौन से टीके लगाए जाते हैं?,SRC-03,answer
+Q17,hi,Child immunization schedule,बच्चे को 6 सप्ताह और 14 सप्ताह में कौन सा टीका लगता है?,SRC-03,answer
+Q18,hi,Maternal health and pregnancy care basics,गर्भावस्था के दौरान आयरन और फोलिक एसिड की गोलियां कब और कितने दिन लेनी चाहिए?,SRC-06,answer
+Q19,hi,Nutrition and anemia,शरीर में खून की कमी (एनीमिया) दूर करने के लिए क्या खाना चाहिए?,SRC-07,answer
+Q20,hi,Hygiene water safety diarrhea and ORS,दस्त होने पर ओआरएस का घोल कैसे तैयार किया जाता है?,SRC-08,answer
+
+Q21,or,Vector-borne diseases,ଡେଙ୍ଗୁ ଜ୍ୱରର ମୁଖ୍ୟ ଲକ୍ଷଣଗୁଡ଼ିକ କ'ଣ?,SRC-01,answer
+Q22,or,Vector-borne diseases,ଘର ଚାରିପାଖରେ ଏଡିସ୍ ମଶା ବଂଶବୃଦ୍ଧି କିପରି ରୋକିବା?,SRC-01,answer
+Q23,or,Diabetes basics and lifestyle,ମଧୁମେହ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ କି ପ୍ରକାର ଖାଦ୍ୟ ଖାଇବା ଉଚିତ?,SRC-04,answer
+Q24,or,Diabetes basics and lifestyle,ଡାଇବେଟିସ୍ ରୋଗର ପ୍ରାରମ୍ଭିକ ଲକ୍ଷଣ କ'ଣ?,SRC-04,answer
+Q25,or,Hypertension basics and lifestyle,ଉଚ୍ଚ ରକ୍ତଚାପ ଥିଲେ ଦୈନିକ କେତେ ଲୁଣ ଖାଇବା ଉଚିତ?,SRC-05,answer
+Q26,or,Child immunization schedule,ନବଜାତ ଶିଶୁକୁ ଜନ୍ମ ସମୟରେ କେଉଁ କେଉଁ ଟିକା ଦିଆଯାଏ?,SRC-03,answer
+Q27,or,Child immunization schedule,ଶିଶୁର ୬ ଏବଂ ୧୦ ସପ୍ତାହରେ କେଉଁ ଟିକା ଦିଆଯାଏ?,SRC-03,answer
+Q28,or,Maternal health and pregnancy care basics,ଗର୍ଭାବସ୍ଥାରେ କେତେ ଥର ଡାକ୍ତରୀ ଯାଞ୍ଚ କରିବା ଆବଶ୍ୟକ?,SRC-06,answer
+Q29,or,Nutrition and anemia,ରକ୍ତହୀନତା ବା ଆନେମିଆ ଦୂର କରିବା ପାଇଁ କେଉଁ ସବୁ ଖାଦ୍ୟ ଖାଇବା ଉଚିତ୍?,SRC-07,answer
+Q30,or,Hygiene water safety diarrhea and ORS,ତରଳ ଝାଡ଼ା ହେଲେ ଓଆରଏସ୍ (ORS) ପାଣି କିପରି ପ୍ରସ୍ତୁତ କରାଯାଏ?,SRC-08,answer
