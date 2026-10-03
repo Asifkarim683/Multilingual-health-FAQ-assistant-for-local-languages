@@ -21,18 +21,20 @@ const FALLBACK_LANGUAGES = [
     native_name: 'English',
     status: 'stable',
     example_questions: [
-      'What are the early warning signs of dengue?',
-      'How do I prepare ORS solution for diarrhea at home?',
-      'What vaccines are given to an infant at birth?',
-      'What daily lifestyle habits help manage high blood pressure?'
+      'What are the early warning signs and symptoms of dengue?',
+      'How should Oral Rehydration Solution (ORS) be prepared for diarrhea?',
+      'What is the recommended immunization schedule for an infant\'s first 6 months?',
+      'What dietary and lifestyle habits help control high blood pressure?'
     ],
     ui_strings: {
       title: 'Multilingual Health FAQ Assistant',
       tagline: 'Reliable, source-grounded health information in Indian local languages',
-      placeholder: 'Ask a health question in English...',
+      placeholder: 'Ask a health question (e.g. dengue symptoms, fever, ORS, vaccines)...',
       ask_button: 'Ask Question',
       sources_heading: 'Verified Sources & Citations',
-      disclaimer_label: 'Medical Disclaimer'
+      disclaimer_label: 'Medical Disclaimer',
+      status_stable: 'Verified',
+      status_experimental: 'Experimental'
     }
   },
   {
@@ -42,9 +44,9 @@ const FALLBACK_LANGUAGES = [
     status: 'stable',
     example_questions: [
       'डेंगू बुखार के मुख्य लक्षण क्या हैं और इससे कैसे बचें?',
-      'दस्त होने पर ओआरएस (ORS) का घोल कैसे बनाएं?',
-      'शिशु के जन्म के समय कौन-से टीके लगाए जाते हैं?',
-      'उच्च रक्तचाप (हाई बीपी) को नियंत्रित करने के लिए क्या खाएं?'
+      'दस्त और उल्टी होने पर ओआरएस (ORS) का घोल कैसे बनाएं?',
+      'शिशु के जन्म के पहले 6 महीनों में कौन-से टीके लगवाने चाहिए?',
+      'उच्च रक्तचाप (हाई बीपी) को नियंत्रित करने के लिए क्या खाना चाहिए?'
     ],
     ui_strings: {
       title: 'बहुभाषी स्वास्थ्य प्रश्नोत्तरी सहायक',
@@ -52,7 +54,9 @@ const FALLBACK_LANGUAGES = [
       placeholder: 'स्वास्थ्य संबंधी प्रश्न पूछें (उदा. डेंगू, ओआरएस, टीकाकरण)...',
       ask_button: 'प्रश्न पूछें',
       sources_heading: 'सत्यापित स्रोत एवं संदर्भ',
-      disclaimer_label: 'चिकित्सीय अस्वीकरण'
+      disclaimer_label: 'चिकित्सीय अस्वीकरण',
+      status_stable: 'सत्यापित',
+      status_experimental: 'प्रायोगिक'
     }
   },
   {
@@ -61,9 +65,9 @@ const FALLBACK_LANGUAGES = [
     native_name: 'ଓଡ଼ିଆ',
     status: 'stable',
     example_questions: [
-      'ଡେଙ୍ଗୁ ଜ୍ୱରର ପ୍ରମୁଖ ଲକ୍ଷଣଗୁଡ଼ିକ କ\'ଣ ଏବଂ କିପରି ରକ୍ଷା ପାଇବା?',
+      'ଡେଙ୍ଗୁ ଜ୍ୱରର ପ୍ରମୁଖ ଲକ୍ଷଣଗୁଡ଼ିକ କ\'ଣ ଏବଂ ଏଥିରୁ କିପରି ରକ୍ଷା ପାଇବା?',
       'ତରଳ ଝାଡ଼ା ହେଲେ ଓଆରଏସ୍ (ORS) ଦ୍ରବଣ କିପରି ପ୍ରସ୍ତୁତ କରାଯାଏ?',
-      'ନବଜାତ ଶିଶୁକୁ ଜନ୍ମ ସମୟରେ କେଉଁ ଟିକା ଦିଆଯାଏ?',
+      'ନବଜାତ ଶିଶୁ ପାଇଁ ପ୍ରଥମ ୬ ମାସ ମଧ୍ୟରେ କେଉଁ ଟିକା ଦିଆଯାଏ?',
       'ଉଚ୍ଚ ରକ୍ତଚାପ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ କି ପ୍ରକାର ଖାଦ୍ୟ ଖାଇବା ଉଚିତ?'
     ],
     ui_strings: {
@@ -72,7 +76,75 @@ const FALLBACK_LANGUAGES = [
       placeholder: 'ଓଡ଼ିଆରେ ନିଜର ସ୍ୱାସ୍ଥ୍ୟ ପ୍ରଶ୍ନ ପଚାରନ୍ତୁ...',
       ask_button: 'ପ୍ରଶ୍ନ ପଠାନ୍ତୁ',
       sources_heading: 'ସତ୍ୟାପିତ ଉତ୍ସ ଏବଂ ପ୍ରମାଣ',
-      disclaimer_label: 'ଚିକିତ୍ସା ସମ୍ବନ୍ଧୀୟ ସତର୍କତା'
+      disclaimer_label: 'ଚିକିତ୍ସା ସମ୍ବନ୍ଧୀୟ ସତର୍କତା',
+      status_stable: 'ପରୀକ୍ଷିତ (Verified)',
+      status_experimental: 'ପରୀକ୍ଷାମୂଳକ (Experimental)'
+    }
+  },
+  {
+    code: 'bn',
+    name: 'Bengali',
+    native_name: 'বাংলা',
+    status: 'experimental',
+    example_questions: [
+      'ডেঙ্গু জ্বরের প্রধান লক্ষণগুলি কি কি এবং কীভাবে প্রতিরোধ করবেন?',
+      'ডায়রিয়া হলে ওআরএস (ORS) কীভাবে তৈরি করবেন?',
+      'শিশুর জন্মের সময় এবং প্রথম ৬ মাসে কোন টিকা দেওয়া হয়?',
+      'উচ্চ রক্তচাপ বা ডায়াবেটিস নিয়ন্ত্রণে কী ধরনের খাবার খাওয়া উচিত?'
+    ],
+    ui_strings: {
+      title: 'বহুভাষিক স্বাস্থ্য FAQ সহকারী',
+      tagline: 'যাচাইকৃত জনস্বাস্থ্য উৎস থেকে নির্ভরযোগ্য তথ্য',
+      placeholder: 'স্বাস্থ্য সম্পর্কিত প্রশ্ন জিজ্ঞাসা করুন...',
+      ask_button: 'প্রশ্ন পাঠান',
+      sources_heading: 'যাচাইকৃত উৎস',
+      disclaimer_label: 'চিকিৎসা সংক্রান্ত দাবিত্যাগ',
+      status_stable: 'যাচাইকৃত',
+      status_experimental: 'পরীক্ষামূলক (Experimental)'
+    }
+  },
+  {
+    code: 'te',
+    name: 'Telugu',
+    native_name: 'తెలుగు',
+    status: 'experimental',
+    example_questions: [
+      'డెంగ్యూ జ్వరం ముఖ్య లక్షణాలు ఏమిటి మరియు నివారణ చర్యలు?',
+      'అతిసార సమయంలో ఇంట్లోనే ORS ద్రావణం ఎలా తయారు చేయాలి?',
+      'నవజాత శిశువుకు పుట్టినప్పుడు మరియు మొదటి 6 నెలల్లో ఏ టీకాలు వేయాలి?',
+      'అధిక రక్తపోటు మరియు మధుమేహం నియంత్రణకు ఎటువంటి ఆహారం తీసుకోవాలి?'
+    ],
+    ui_strings: {
+      title: 'బహుభాషా ఆరోగ్య FAQ సహాయకుడు',
+      tagline: 'ధృవీకరించబడిన ప్రజారోగ్య వనరుల నుండి సమాచారం',
+      placeholder: 'మీ ఆరోగ్య ప్రశ్నను అడగండి...',
+      ask_button: 'ప్రశ్న పంపండి',
+      sources_heading: 'ధృవీకరించబడిన వనరులు',
+      disclaimer_label: 'వైద్య నిరాకరణ',
+      status_stable: 'ధృవీకరించబడింది',
+      status_experimental: 'ప్రయోగాత్మక (Experimental)'
+    }
+  },
+  {
+    code: 'ta',
+    name: 'Tamil',
+    native_name: 'தமிழ்',
+    status: 'experimental',
+    example_questions: [
+      'டெங்கு காய்ச்சலின் முக்கிய அறிகுறிகள் என்ன மற்றும் தடுப்பு முறைகள்?',
+      'வயிற்றுப்போக்கின் போது வீட்டிலேயே ORS கரைசலை எவ்வாறு தயாரிப்பது?',
+      'குழந்தை பிறந்தவுடன் மற்றும் முதல் 6 மாதங்களில் போட வேண்டிய தடுப்பூசிகள் எவை?',
+      'உயர் இரத்த அழுத்தம் மற்றும் சர்க்கரை நோயைக் கட்டுப்படுத்த என்ன சாப்பிட வேண்டும்?'
+    ],
+    ui_strings: {
+      title: 'பன்மொழி சுகாதார FAQ உதவியாளர்',
+      tagline: 'நம்பகமான பொது சுகாதார ஆதாரங்கள்',
+      placeholder: 'சுகாதாரம் தொடர்பான கேள்விகளைக் கேளுங்கள்...',
+      ask_button: 'கேள்வி கேட்க',
+      sources_heading: 'சரிபார்க்கப்பட்ட ஆதாரங்கள்',
+      disclaimer_label: 'மருத்துவ மறுப்பு',
+      status_stable: 'சரிபார்க்கப்பட்டது',
+      status_experimental: 'பரிசோதனை (Experimental)'
     }
   }
 ];
@@ -82,6 +154,7 @@ export default function App() {
   const [currentLang, setCurrentLang] = useState('en');
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
+  const [switchingLang, setSwitchingLang] = useState(false);
   const [messages, setMessages] = useState([]);
   const [feedbackSent, setFeedbackSent] = useState({});
   const messagesEndRef = useRef(null);
@@ -107,9 +180,118 @@ export default function App() {
   const activeLangConfig = languages.find((l) => l.code === currentLang) || languages[0];
   const ui = activeLangConfig.ui_strings || {};
 
+  // Handle seamless language switching with automatic re-translation/re-generation
+  const handleLanguageChange = async (newLang) => {
+    if (newLang === currentLang && messages.length > 0) return;
+    setCurrentLang(newLang);
+
+    const targetLangConfig = languages.find((l) => l.code === newLang) || languages[0];
+
+    // If query input contains an example question, translate the input box too
+    if (query.trim()) {
+      for (const langObj of languages) {
+        const idx = (langObj.example_questions || []).findIndex(
+          (eq) => eq.trim().toLowerCase() === query.trim().toLowerCase()
+        );
+        if (idx !== -1 && targetLangConfig.example_questions && targetLangConfig.example_questions[idx]) {
+          setQuery(targetLangConfig.example_questions[idx]);
+          break;
+        }
+      }
+    }
+
+    // If no conversation messages yet, just update the language state
+    if (messages.length === 0) return;
+
+    // Find the latest user question in chat history
+    const userMessages = messages.filter((m) => m.sender === 'user');
+    if (userMessages.length === 0) return;
+
+    const lastUserMsg = userMessages[userMessages.length - 1];
+    let questionToSend = lastUserMsg.text;
+
+    // Check if this user question was one of the curated example questions in ANY language
+    let matchedExampleIdx = -1;
+    for (const langObj of languages) {
+      const idx = (langObj.example_questions || []).findIndex(
+        (eq) => eq.trim().toLowerCase() === lastUserMsg.text.trim().toLowerCase()
+      );
+      if (idx !== -1) {
+        matchedExampleIdx = idx;
+        break;
+      }
+    }
+
+    if (
+      matchedExampleIdx !== -1 &&
+      targetLangConfig.example_questions &&
+      targetLangConfig.example_questions[matchedExampleIdx]
+    ) {
+      questionToSend = targetLangConfig.example_questions[matchedExampleIdx];
+    }
+
+    // Update the user question bubble in chat to the target language
+    setMessages((prev) => {
+      const next = [...prev];
+      for (let i = next.length - 1; i >= 0; i--) {
+        if (next[i].sender === 'user') {
+          next[i] = {
+            ...next[i],
+            text: questionToSend,
+            language: newLang,
+          };
+          break;
+        }
+      }
+      return next;
+    });
+
+    setSwitchingLang(true);
+
+    try {
+      const response = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question: questionToSend,
+          language: newLang,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to retrieve answer in desired language');
+      }
+
+      const data = await response.json();
+      setMessages((prev) => {
+        const next = [...prev];
+        for (let i = next.length - 1; i >= 0; i--) {
+          if (next[i].sender === 'assistant') {
+            next[i] = {
+              id: data.request_id || Date.now().toString(),
+              sender: 'assistant',
+              text: data.answer,
+              status: data.status,
+              citations: data.citations || [],
+              disclaimer: data.disclaimer,
+              language: data.language,
+              is_experimental: data.is_experimental,
+            };
+            break;
+          }
+        }
+        return next;
+      });
+    } catch (err) {
+      console.error('Error switching language:', err);
+    } finally {
+      setSwitchingLang(false);
+    }
+  };
+
   const handleSend = async (questionText = query) => {
     const textToSend = questionText.trim();
-    if (!textToSend || loading) return;
+    if (!textToSend || loading || switchingLang) return;
 
     const userMessage = {
       id: Date.now().toString(),
@@ -211,8 +393,9 @@ export default function App() {
               <Globe className="w-4 h-4 text-slate-500 ml-1.5 mr-1" />
               <select
                 value={currentLang}
-                onChange={(e) => setCurrentLang(e.target.value)}
-                className="bg-transparent text-xs sm:text-sm font-medium text-slate-700 outline-none pr-2 py-0.5 cursor-pointer"
+                disabled={loading || switchingLang}
+                onChange={(e) => handleLanguageChange(e.target.value)}
+                className="bg-transparent text-xs sm:text-sm font-medium text-slate-700 outline-none pr-2 py-0.5 cursor-pointer disabled:opacity-50"
               >
                 {languages.map((l) => (
                   <option key={l.code} value={l.code}>
@@ -376,9 +559,34 @@ export default function App() {
                         </div>
                       )}
 
+                      {/* Quick Language Switcher Bar on Answer */}
+                      <div className="mt-3.5 pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+                        <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
+                          <Globe className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                          <span className="text-[11px] font-medium text-slate-500">Read in:</span>
+                          <div className="flex flex-wrap gap-1">
+                            {languages.map((l) => (
+                              <button
+                                key={l.code}
+                                type="button"
+                                disabled={switchingLang || loading}
+                                onClick={() => handleLanguageChange(l.code)}
+                                className={`px-2 py-0.5 rounded-md text-xs transition-all cursor-pointer ${
+                                  currentLang === l.code
+                                    ? 'bg-teal-600 text-white font-semibold shadow-xs'
+                                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'
+                                }`}
+                              >
+                                {l.native_name}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
                       {/* Medical Disclaimer */}
                       {msg.disclaimer && (
-                        <div className="mt-4 pt-3 border-t border-slate-100 flex items-start gap-1.5 text-[11px] text-slate-500 leading-normal">
+                        <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-start gap-1.5 text-[11px] text-slate-500 leading-normal">
                           <Info className="w-3.5 h-3.5 text-slate-400 mt-0.5 flex-shrink-0" />
                           <span>{msg.disclaimer}</span>
                         </div>
@@ -428,11 +636,13 @@ export default function App() {
           ))}
 
           {/* Loading indicator */}
-          {loading && (
+          {(loading || switchingLang) && (
             <div className="flex items-center gap-2 p-4 bg-white border border-slate-200 rounded-2xl max-w-xs shadow-sm">
               <RefreshCw className="w-4 h-4 text-teal-600 animate-spin" />
               <span className="text-xs text-slate-600 font-medium">
-                Searching verified health sources...
+                {switchingLang
+                  ? `Switching to ${activeLangConfig.native_name || activeLangConfig.name}...`
+                  : 'Searching verified health sources...'}
               </span>
             </div>
           )}

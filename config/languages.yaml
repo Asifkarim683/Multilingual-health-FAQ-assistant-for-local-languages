@@ -30,7 +30,7 @@ languages:
     ui_strings:
       title: "Multilingual Health FAQ Assistant"
       tagline: "Grounded health information from verified public health authorities"
-      placeholder: "Ask a health question in English, Hindi, or Odia..."
+      placeholder: "Ask a health question (e.g. dengue symptoms, fever, ORS, vaccines)..."
       ask_button: "Send Question"
       sources_heading: "Verified Sources & Citations"
       disclaimer_label: "Medical Disclaimer"
