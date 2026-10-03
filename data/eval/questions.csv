@@ -1,0 +1,151 @@
+id,language,topic,question,gold_source_id,reference_answer_summary,split
+Q_EN_01,en,Vector-borne diseases,What are the common symptoms of dengue fever?,SRC-01,"High fever, severe headache, retro-orbital eye pain, joint and muscle aches, rash, nausea.",test
+Q_EN_02,en,Vector-borne diseases,What are the critical warning signs of severe dengue?,SRC-01,"Severe abdominal pain, persistent vomiting, mucosal bleeding, fatigue, restlessness, fluid accumulation.",test
+Q_EN_03,en,Vector-borne diseases,Which mosquito species transmits dengue and when does it bite?,SRC-01,"Aedes mosquitoes, primarily Aedes aegypti, which predominantly bite during daytime.",val
+Q_EN_04,en,Vector-borne diseases,Where do dengue mosquitoes breed?,SRC-01,"In clean stagnant water containers such as coolers, discarded tires, flower pots, and plastic tanks.",test
+Q_EN_05,en,Vector-borne diseases,How can community mosquito breeding be prevented at home?,SRC-01,"Weekly emptying and drying of water containers (Dry Day practice), covering tanks, using larvicides.",test
+Q_EN_06,en,Vector-borne diseases,What personal protection measures protect against mosquito bites?,SRC-01,"Wearing full-sleeved protective clothing, using mosquito nets, and applying insect repellent.",val
+Q_EN_07,en,Diabetes basics and lifestyle,What are the main causes and risk factors of Type 2 diabetes?,SRC-04,"Insulin resistance, physical inactivity, obesity, excess body weight, and unhealthy diet.",test
+Q_EN_08,en,Diabetes basics and lifestyle,What are the classic symptoms of high blood sugar?,SRC-04,"Excessive thirst, frequent urination, unexplained weight loss, constant hunger, fatigue, blurred vision.",test
+Q_EN_09,en,Diabetes basics and lifestyle,What dietary habits are advised to prevent or control diabetes?,SRC-04,"Diet rich in fiber, whole grains, lentils, fresh vegetables, avoiding refined sugars and sweet beverages.",test
+Q_EN_10,en,Diabetes basics and lifestyle,How much exercise is recommended per week for diabetes management?,SRC-04,At least 30 minutes of moderate-intensity physical activity (brisk walking) 5 days a week.,val
+Q_EN_11,en,Diabetes basics and lifestyle,Why is regular blood glucose testing important?,SRC-04,To monitor glycemic control and detect diabetic complications early before organ damage.,test
+Q_EN_12,en,Diabetes basics and lifestyle,Does avoiding tobacco help people with diabetes?,SRC-04,"Yes, stopping tobacco use reduces cardiovascular risk and kidney damage associated with diabetes.",test
+Q_EN_13,en,Hypertension basics and lifestyle,What blood pressure level defines hypertension?,SRC-05,Systolic blood pressure >= 140 mmHg or diastolic >= 90 mmHg on repeated readings.,test
+Q_EN_14,en,Hypertension basics and lifestyle,Why is high blood pressure called a silent killer?,SRC-05,Because it often causes no noticeable symptoms until severe damage to the heart or brain occurs.,test
+Q_EN_15,en,Hypertension basics and lifestyle,What is the recommended daily limit for dietary salt intake?,SRC-05,Less than 5 grams of salt per day (less than one level teaspoon).,test
+Q_EN_16,en,Hypertension basics and lifestyle,What symptoms can occur in severe hypertension?,SRC-05,"Early morning headaches, nosebleeds, palpitations, blurred vision, dizziness, chest tightness.",val
+Q_EN_17,en,Hypertension basics and lifestyle,What lifestyle changes reduce high blood pressure naturally?,SRC-05,"Reducing salt, following the DASH diet, 150 minutes of aerobic exercise weekly, maintaining healthy weight.",test
+Q_EN_18,en,Hypertension basics and lifestyle,Which processed foods should hypertensive patients avoid?,SRC-05,"Pickles, papads, salted snacks, packaged chips, and canned foods high in sodium.",test
+Q_EN_19,en,Child immunization schedule,What vaccines are administered to a newborn baby at birth?,SRC-03,"BCG, Oral Polio Vaccine (OPV-0 birth dose), and Hepatitis B birth dose within 24 hours.",test
+Q_EN_20,en,Child immunization schedule,Which vaccines are scheduled for an infant at 6 weeks of age?,SRC-03,"Pentavalent-1, OPV-1, Rotavirus-1, fractional IPV-1, and Pneumococcal Conjugate Vaccine (PCV-1).",test
+Q_EN_21,en,Child immunization schedule,What diseases does the Pentavalent vaccine protect against?,SRC-03,"Diphtheria, Pertussis (whooping cough), Tetanus, Hepatitis B, and Haemophilus influenzae type b.",val
+Q_EN_22,en,Child immunization schedule,When should the Measles-Rubella (MR) vaccine be given to children?,SRC-03,First dose at 9-12 months and second dose at 16-24 months.,test
+Q_EN_23,en,Child immunization schedule,At what age is the DPT booster dose given under UIP?,SRC-03,First booster at 16-24 months and second booster at 5-6 years of age.,test
+Q_EN_24,en,Child immunization schedule,Where can families access free government vaccines in India?,SRC-03,"At government Primary Health Centers (PHCs), sub-centers, and Anganwadi centers on VHND days.",val
+Q_EN_25,en,Maternal health and pregnancy care basics,How many antenatal checkups (ANC) are recommended during pregnancy?,SRC-06,"At least 4 visits: 1st in 1st trimester, 2nd at 14-26 weeks, 3rd at 28-34 weeks, 4th at 36 weeks.",test
+Q_EN_26,en,Maternal health and pregnancy care basics,When should Iron and Folic Acid (IFA) tablets be started in pregnancy?,SRC-06,"From the 4th month (second trimester), taken daily for at least 180 days.",test
+Q_EN_27,en,Maternal health and pregnancy care basics,What Td vaccination schedule is recommended for pregnant women?,SRC-06,Two doses of Td vaccine given 4 weeks apart during pregnancy.,test
+Q_EN_28,en,Maternal health and pregnancy care basics,What are the danger signs in pregnancy requiring emergency hospitalization?,SRC-06,"Vaginal bleeding, severe headache with blurred vision, convulsions, high fever, severe abdominal pain.",val
+Q_EN_29,en,Maternal health and pregnancy care basics,Can iron and calcium tablets be taken at the same time?,SRC-06,"No, iron and calcium must be taken separately because calcium interferes with iron absorption.",test
+Q_EN_30,en,Maternal health and pregnancy care basics,What is the Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)?,SRC-06,A government program providing free comprehensive doctor checkups to pregnant women on the 9th of every month.,test
+Q_EN_31,en,Nutrition and anemia,What is the leading cause of anemia in India?,SRC-07,Iron deficiency due to inadequate dietary intake and poor bioavailability of iron.,test
+Q_EN_32,en,Nutrition and anemia,What are the common symptoms of iron deficiency anemia?,SRC-07,"Fatigue, weakness, pale conjunctiva, shortness of breath, dizziness, cold extremities, brittle nails.",test
+Q_EN_33,en,Nutrition and anemia,Which plant foods are rich in dietary iron?,SRC-07,"Green leafy vegetables (spinach, drumstick leaves), pulses, lentils, jaggery, sesame seeds.",test
+Q_EN_34,en,Nutrition and anemia,How does Vitamin C help with anemia?,SRC-07,Vitamin C strongly enhances the absorption of non-heme iron from plant-based foods.,val
+Q_EN_35,en,Nutrition and anemia,Why should tea or coffee be avoided with meals?,SRC-07,Tannins and polyphenols in tea and coffee bind dietary iron and drastically reduce absorption.,test
+Q_EN_36,en,Nutrition and anemia,Why is biannual deworming recommended under Anemia Mukt Bharat?,SRC-07,To eliminate intestinal worms (helminths) that cause chronic microscopic gastrointestinal blood loss.,test
+Q_EN_37,en,"Hygiene, water safety, diarrhea and ORS",How is Oral Rehydration Salts (ORS) solution prepared correctly?,SRC-08,Dissolve entire ORS packet in exactly 1 liter of clean boiled and cooled drinking water.,test
+Q_EN_38,en,"Hygiene, water safety, diarrhea and ORS",How long can prepared ORS solution be safely kept?,SRC-08,Maximum 24 hours covered; discard any leftover solution after 24 hours.,test
+Q_EN_39,en,"Hygiene, water safety, diarrhea and ORS",Should ORS be mixed into milk or juice?,SRC-08,"No, ORS powder must only be dissolved in plain clean water to maintain precise electrolyte osmolarity.",val
+Q_EN_40,en,"Hygiene, water safety, diarrhea and ORS",Why is zinc supplementation given during child diarrhea?,SRC-08,"Zinc given for 14 continuous days reduces episode duration, severity, and prevents recurrence for months.",test
+Q_EN_41,en,"Hygiene, water safety, diarrhea and ORS",What are the danger signs of severe dehydration in diarrhea?,SRC-08,"Sunken eyes, lethargy, skin pinch going back very slowly, inability to drink, extreme thirst.",test
+Q_EN_42,en,"Hygiene, water safety, diarrhea and ORS",What water purification methods make drinking water safe?,SRC-08,"Boiling rolling water for at least 1 minute, chlorination, or using certified filtration devices.",val
+Q_EN_43,en,"Seasonal illnesses (flu, fever when to seek care)",What are the common symptoms of seasonal influenza (flu)?,SRC-09,"Abrupt high fever, dry cough, headache, sore throat, runny nose, and severe muscle and body aches.",test
+Q_EN_44,en,"Seasonal illnesses (flu, fever when to seek care)",How should seasonal viral fever be cared for at home?,SRC-09,"Rest, adequate oral fluids, nutritious diet, respiratory hygiene, and fever monitoring.",test
+Q_EN_45,en,"Seasonal illnesses (flu, fever when to seek care)",Why are antibiotics ineffective against the flu?,SRC-09,"Because flu is caused by influenza viruses, and antibiotics only kill bacteria.",val
+Q_EN_46,en,"Seasonal illnesses (flu, fever when to seek care)",What red flag symptoms in flu warrant immediate emergency care?,SRC-09,"Difficulty breathing, chest pain, bluish lips, sudden confusion, or high fever lasting over 3 days.",test
+Q_EN_47,en,"Seasonal illnesses (flu, fever when to seek care)",What respiratory hygiene etiquette prevents the spread of flu?,SRC-09,"Covering coughs and sneezes with a tissue or elbow, washing hands with soap, and staying home when sick.",test
+Q_EN_48,en,"Seasonal illnesses (flu, fever when to seek care)",Who is at higher risk for severe seasonal flu complications?,SRC-09,"The elderly, pregnant women, young children, and individuals with chronic respiratory or cardiac conditions.",val
+Q_EN_49,en,"Seasonal illnesses (flu, fever when to seek care)",When should an adult with fever seek a doctor immediately?,SRC-09,"When accompanied by stiff neck, shortness of breath, confusion, rash, or persistent vomiting.",test
+Q_EN_50,en,"Seasonal illnesses (flu, fever when to seek care)",How does hydration help during fever and viral illness?,SRC-09,"Replenishes fluids lost through sweating, keeps airways moist, and prevents dehydration.",test
+Q_HI_01,hi,Vector-borne diseases,डेंगू बुखार के मुख्य लक्षण क्या होते हैं?,SRC-01,"तेज बुखार, सिरदर्द, आंखों के पीछे दर्द, जोड़ों और मांसपेशियों में दर्द, त्वचा पर लाल दाने।",test
+Q_HI_02,hi,Vector-borne diseases,डेंगू में कौन से खतरे के लक्षण दिखने पर तुरंत अस्पताल जाना चाहिए?,SRC-01,"पेट में तेज दर्द, बार-बार उल्टी, मसूड़ों या नाक से खून बहना, बेचैनी और सांस में तकलीफ।",test
+Q_HI_03,hi,Vector-borne diseases,डेंगू फैलाने वाला मच्छर कब काटता है?,SRC-01,एडीज मच्छर आमतौर पर दिन के समय काटता है।,val
+Q_HI_04,hi,Vector-borne diseases,डेंगू का मच्छर किस प्रकार के पानी में पनपता है?,SRC-01,"कूलर, टंकी, गमले और पुराने टायरों में जमा साफ व ठहरे हुए पानी में।",test
+Q_HI_05,hi,Vector-borne diseases,घर में मच्छरों की रोकथाम के लिए 'ड्राय डे' का क्या मतलब है?,SRC-01,"सप्ताह में एक दिन पानी के सभी बर्तनों, कूलर और टंकियों को खाली करके सुखाना।",test
+Q_HI_06,hi,Vector-borne diseases,मच्छर के काटने से बचने के लिए क्या उपाय करने चाहिए?,SRC-01,"पूरी आस्तीन के कपड़े पहनें, मच्छरदानी लगाएं और मॉस्किटो रिपेलेंट का उपयोग करें।",val
+Q_HI_07,hi,Diabetes basics and lifestyle,टाइप 2 डायबिटीज होने के मुख्य कारण क्या हैं?,SRC-04,"मोटापा, शारीरिक निष्क्रियता, अस्वस्थ खानपान और इंसुलिन प्रतिरोध।",test
+Q_HI_08,hi,Diabetes basics and lifestyle,डायबिटीज (शुगर की बीमारी) के शुरुआती लक्षण क्या हैं?,SRC-04,"बार-बार पेशाब आना, अधिक प्यास और भूख लगना, अकारण वजन कम होना, थकान, धुंधला दिखना।",test
+Q_HI_09,hi,Diabetes basics and lifestyle,मधुमेह के मरीज को खाने में किन चीजों से परहेज करना चाहिए?,SRC-04,"चीनी, मिठाई, मीठे पेय, मैदा, तली-भुनी चीजें और वसायुक्त भोजन।",test
+Q_HI_10,hi,Diabetes basics and lifestyle,शुगर को नियंत्रित करने के लिए प्रतिदिन कितना व्यायाम करना चाहिए?,SRC-04,प्रतिदिन कम से कम 30 से 45 मिनट तेज चाल से टहलना या योग करना।,val
+Q_HI_11,hi,Diabetes basics and lifestyle,डायबिटीज में रेशेदार (फाइबर) भोजन खाने का क्या लाभ है?,SRC-04,फाइबर भोजन के पाचन को धीमा करता है जिससे रक्त में शर्करा का स्तर अचानक नहीं बढ़ता।,test
+Q_HI_12,hi,Diabetes basics and lifestyle,मधुमेह के रोगी के लिए पैरों की देखभाल क्यों जरूरी है?,SRC-04,क्योंकि घाव देर से भरते हैं और संक्रमण का खतरा रहता है।,test
+Q_HI_13,hi,Hypertension basics and lifestyle,हाई ब्लड प्रेशर (उच्च रक्तचाप) का सामान्य स्तर क्या माना जाता है?,SRC-05,लगातार 140/90 mmHg या इससे अधिक रक्तचाप होना उच्च रक्तचाप माना जाता है।,test
+Q_HI_14,hi,Hypertension basics and lifestyle,हाई बीपी को साइलेंट किलर क्यों कहा जाता है?,SRC-05,क्योंकि इसके कोई स्पष्ट लक्षण नहीं दिखते लेकिन यह चुपचाप हृदय और गुर्दों को नुकसान पहुंचाता है।,test
+Q_HI_15,hi,Hypertension basics and lifestyle,उच्च रक्तचाप वाले व्यक्ति को रोजाना कितना नमक खाना चाहिए?,SRC-05,प्रतिदिन 5 ग्राम (एक छोटे चम्मच) से कम नमक खाना चाहिए।,test
+Q_HI_16,hi,Hypertension basics and lifestyle,रक्तचाप बढ़ने पर कौन से लक्षण महसूस हो सकते हैं?,SRC-05,"सिर में भारीपन, चक्कर आना, घबराहट, सीने में बेचैनी, नाक से खून आना।",val
+Q_HI_17,hi,Hypertension basics and lifestyle,रक्तचाप कम करने के लिए कौन से खाद्य पदार्थ खाने चाहिए?,SRC-05,"हरी सब्जियां, ताजे फल, कम वसा वाले दुग्ध उत्पाद, साबुत अनाज और सलाद।",test
+Q_HI_18,hi,Hypertension basics and lifestyle,तंबाकू और सिगरेट छोड़ने से बीपी पर क्या असर पड़ता है?,SRC-05,धमनियों पर दबाव कम होता है और हार्ट अटैक व स्ट्रोक का खतरा घटता है।,test
+Q_HI_19,hi,Child immunization schedule,नवजात शिशु को जन्म के तुरंत बाद कौन से टीके लगते हैं?,SRC-03,"बीसीजी (BCG), पोलियो जीरो खुराक (OPV-0), और हेपेटाइटिस बी जन्म खुराक।",test
+Q_HI_20,hi,Child immunization schedule,बच्चे को 6 हफ्ते की उम्र में कौन से टीके दिए जाते हैं?,SRC-03,"पेंटावेलेंट-1, पोलियो-1 (OPV-1), रोटावायरस-1, fIPV-1 और पीसीवी-1 (PCV-1)।",test
+Q_HI_21,hi,Child immunization schedule,पेंटावेलेंट टीका किन 5 बीमारियों से सुरक्षा देता है?,SRC-03,"गलघोंटू, काली खांसी, टिटनेस, हेपेटाइटिस बी और हिब (निमोनिया व दिमागी बुखार)।",val
+Q_HI_22,hi,Child immunization schedule,खसरा-रूबेला (MR) का पहला टीका किस उम्र में लगता है?,SRC-03,9 से 12 महीने की उम्र में एमआर का पहला टीका लगता है।,test
+Q_HI_23,hi,Child immunization schedule,डीपीटी बूस्टर टीका बच्चे को कब लगाया जाता है?,SRC-03,पहला बूस्टर 16 से 24 महीने में और दूसरा बूस्टर 5 से 6 वर्ष की उम्र में।,test
+Q_HI_24,hi,Child immunization schedule,सरकारी टीकाकरण कार्यक्रम में टीके कहां उपलब्ध होते हैं?,SRC-03,"प्राथमिक स्वास्थ्य केंद्र (PHC), आंगनवाड़ी केंद्रों और उपकेंद्रों पर निःशुल्क।",val
+Q_HI_25,hi,Maternal health and pregnancy care basics,गर्भावस्था में कम से कम कितनी बार प्रसवपूर्व जांच (ANC) करानी चाहिए?,SRC-06,"कम से कम 4 बार जांचें: पहले 3 महीने, 14-26 हफ्ते, 28-34 हफ्ते, और 36 हफ्ते पर।",test
+Q_HI_26,hi,Maternal health and pregnancy care basics,गर्भवती महिला को आयरन और फोलिक एसिड (IFA) की कितनी गोलियां खानी चाहिए?,SRC-06,चौथे महीने से प्रतिदिन 1 लाल गोली कम से कम 180 दिनों तक।,test
+Q_HI_27,hi,Maternal health and pregnancy care basics,गर्भावस्था में टीडी (Td) का टीका कब और कितनी बार लगाया जाता है?,SRC-06,4 सप्ताह के अंतर पर टीडी के 2 टीके लगाए जाते हैं।,test
+Q_HI_28,hi,Maternal health and pregnancy care basics,गर्भावस्था में खतरे के प्रमुख लक्षण क्या हैं?,SRC-06,"रक्तस्राव, तेज सिरदर्द, धुंधला दिखना, चेहरे-हाथों पर सूजन, पेट में असहनीय दर्द, तेज बुखार।",val
+Q_HI_29,hi,Maternal health and pregnancy care basics,आयरन और कैल्शियम की गोली एक साथ क्यों नहीं खानी चाहिए?,SRC-06,"क्योंकि कैल्शियम आयरन के अवशोषण को रोकता है, इसलिए इन्हें अलग-अलग समय पर लेना चाहिए।",test
+Q_HI_30,hi,Maternal health and pregnancy care basics,प्रधानमंत्री सुरक्षित मातृत्व अभियान (PMSMA) क्या है?,SRC-06,हर महीने की 9 तारीख को सरकारी अस्पतालों में गर्भवती महिलाओं की विशेषज्ञ डॉक्टरों द्वारा मुफ्त जांच।,test
+Q_HI_31,hi,Nutrition and anemia,एनीमिया (खून की कमी) का सबसे प्रमुख कारण क्या है?,SRC-07,आहार में आयरन और पोषक तत्वों की कमी तथा आंतों में कीड़े होना।,test
+Q_HI_32,hi,Nutrition and anemia,खून की कमी होने पर क्या लक्षण महसूस होते हैं?,SRC-07,"थकान, कमजोरी, त्वचा व आंखों का पीलापन, सांस फूलना, चक्कर आना, नाखूनों का टूटना।",test
+Q_HI_33,hi,Nutrition and anemia,आयरन बढ़ाने के लिए कौन से शाकाहारी खाद्य पदार्थ खाने चाहिए?,SRC-07,"पालक, मेथी, सहजन की पत्तियां, दालें, चना, गुड़, काले तिल और अंकुरित अनाज।",test
+Q_HI_34,hi,Nutrition and anemia,भोजन के साथ खट्टे फल (विटामिन सी) खाने से क्या लाभ होता है?,SRC-07,विटामिन सी शरीर में भोजन से आयरन के अवशोषण को कई गुना बढ़ा देता है।,val
+Q_HI_35,hi,Nutrition and anemia,खाना खाने के तुरंत बाद चाय या कॉफी पीने से क्या नुकसान है?,SRC-07,चाय और कॉफी में मौजूद टैनिन शरीर को भोजन का आयरन सोखने से रोकते हैं।,test
+Q_HI_36,hi,Nutrition and anemia,पेट के कीड़े मारने की दवा (एल्बेंडाजोल) साल में कितनी बार लेनी चाहिए?,SRC-07,एनीमिया मुक्त भारत के तहत साल में 2 बार (हर 6 महीने में) एल्बेंडाजोल लेनी चाहिए।,test
+Q_HI_37,hi,"Hygiene, water safety, diarrhea and ORS",ओआरएस (ORS) का घोल बनाने की सही विधि क्या है?,SRC-08,"हाथ धोकर, पूरा 1 पैकेट ओआरएस 1 लीटर उबले और ठंडे किए हुए साफ पानी में अच्छी तरह घोलें।",test
+Q_HI_38,hi,"Hygiene, water safety, diarrhea and ORS",बना हुआ ओआरएस घोल कितने घंटे तक इस्तेमाल किया जा सकता है?,SRC-08,"बना हुआ घोल ढककर रखें और केवल 24 घंटे तक ही पिएं, उसके बाद नया घोल बनाएं।",test
+Q_HI_39,hi,"Hygiene, water safety, diarrhea and ORS",क्या ओआरएस को दूध या चाय में मिलाया जा सकता है?,SRC-08,"नहीं, ओआरएस केवल सादे साफ पानी में ही मिलाना चाहिए।",val
+Q_HI_40,hi,"Hygiene, water safety, diarrhea and ORS",दस्त होने पर बच्चे को जिंक की गोली कितने दिनों तक देनी चाहिए?,SRC-08,लगातार 14 दिनों तक जिंक की खुराक देनी चाहिए ताकि दस्त जल्दी रुके और दोबारा न हो।,test
+Q_HI_41,hi,"Hygiene, water safety, diarrhea and ORS",बच्चों में गंभीर निर्जलीकरण (डिहाइड्रेशन) के क्या लक्षण हैं?,SRC-08,"आंखें अंदर धंसना, अत्यधिक प्यास, त्वचा चुटकी काटने पर धीरे लौटना, बच्चा बहुत सुस्त या बेहोश होना।",test
+Q_HI_42,hi,"Hygiene, water safety, diarrhea and ORS",पीने के पानी को शुद्ध करने के सबसे आसान तरीके क्या हैं?,SRC-08,पानी को कम से कम 1 मिनट तक खौलाकर उबालना या क्लोरीन की गोली डालना।,val
+Q_HI_43,hi,"Seasonal illnesses (flu, fever when to seek care)",मौसमी फ्लू (इन्फ्लूएंजा) के मुख्य लक्षण क्या होते हैं?,SRC-09,"अचानक तेज बुखार, सूखी खांसी, गले में खराश, सिरदर्द, बदन दर्द, नाक बहना और अत्यधिक कमजोरी।",test
+Q_HI_44,hi,"Seasonal illnesses (flu, fever when to seek care)",वायरल बुखार में घर पर क्या देखभाल करनी चाहिए?,SRC-09,"पर्याप्त आराम करें, खूब गुनगुने तरल पदार्थ (पानी, सूप) पिएं और भीड़भाड़ से बचें।",test
+Q_HI_45,hi,"Seasonal illnesses (flu, fever when to seek care)",वायरल बुखार में एंटीबायोटिक क्यों नहीं लेनी चाहिए?,SRC-09,क्योंकि फ्लू वायरस से होता है और एंटीबायोटिक दवाएं केवल बैक्टीरिया पर असर करती हैं।,val
+Q_HI_46,hi,"Seasonal illnesses (flu, fever when to seek care)",फ्लू में कौन से खतरे के लक्षण दिखने पर तुरंत डॉक्टर को दिखाना चाहिए?,SRC-09,"सांस लेने में कठिनाई, छाती में दर्द, 3 दिन से अधिक तेज बुखार रहना, होंठ या चेहरा नीला पड़ना।",test
+Q_HI_47,hi,"Seasonal illnesses (flu, fever when to seek care)",खांसी-जुकाम के संक्रमण को घर में फैलने से कैसे रोकें?,SRC-09,"खांसते समय मुंह ढकें, साबुन से बार-बार हाथ धोएं और मरीज से सुरक्षित दूरी रखें।",test
+Q_HI_48,hi,"Seasonal illnesses (flu, fever when to seek care)",मौसमी फ्लू किन लोगों के लिए अधिक खतरनाक हो सकता है?,SRC-09,"बुजुर्गों, गर्भवती महिलाओं, छोटे बच्चों और दमा या हृदय रोगियों के लिए।",val
+Q_HI_49,hi,"Seasonal illnesses (flu, fever when to seek care)",बुखार होने पर शरीर में पानी की कमी क्यों नहीं होने देनी चाहिए?,SRC-09,"पसीने से तरल पदार्थ बाहर निकलते हैं, पानी की कमी से कमजोरी और चक्कर आने लगते हैं।",test
+Q_HI_50,hi,"Seasonal illnesses (flu, fever when to seek care)",बुखार में आराम करना क्यों जरूरी है?,SRC-09,आराम करने से शरीर की रोग प्रतिरोधक क्षमता संक्रमण से लड़ने में मदद करती है।,test
+Q_OR_01,or,Vector-borne diseases,ଡେଙ୍ଗୁ ଜ୍ୱରର ପ୍ରମୁଖ ଲକ୍ଷଣଗୁଡ଼ିକ କ'ଣ?,SRC-01,"ପ୍ରବଳ ଜ୍ୱର, ମୁଣ୍ଡବିନ୍ଧା, ଆଖି ପଛପଟେ ଯନ୍ତ୍ରଣା, ଗଣ୍ଠି ଓ ମାଂସପେଶୀ ବିନ୍ଧା ଏବଂ ଲାଲ ଦାଗ।",test
+Q_OR_02,or,Vector-borne diseases,ଡେଙ୍ଗୁ ରୋଗରେ କେଉଁ ବିପଦପୂର୍ଣ୍ଣ ଲକ୍ଷଣ ଦେଖାଦେଲେ ତୁରନ୍ତ ଡାକ୍ତରଖାନା ଯିବା ଉଚିତ?,SRC-01,"ପ୍ରବଳ ପେଟ ଯନ୍ତ୍ରଣା, ଲଗାତାର ବାନ୍ତି, ନାକ କିମ୍ବା ମାଢ଼ିରୁ ରକ୍ତସ୍ରାବ ଏବଂ ନିଶ୍ୱାସ ନେବାରେ କଷ୍ଟ।",test
+Q_OR_03,or,Vector-borne diseases,ଡେଙ୍ଗୁ ବ୍ୟାପୁଥିବା ଏଡିସ୍ ମଶା କେତେବେଳେ କାମୁଡ଼େ?,SRC-01,ଏଡିସ୍ ମଶା ସାଧାରଣତଃ ଦିନବେଳା କାମୁଡ଼ିଥାଏ।,val
+Q_OR_04,or,Vector-borne diseases,ଡେଙ୍ଗୁ ମଶା କେଉଁଠାରେ ବଂଶବୃଦ୍ଧି କରେ?,SRC-01,"ଘର ଭିତରେ ବା ପାଖରେ ଥିବା ସଫା ଜମା ପାଣି, କୁଲର, ଫୁଲକୁଣ୍ଡ ଏବଂ ପୁରୁଣା ଟାୟାରରେ।",test
+Q_OR_05,or,Vector-borne diseases,ଘରେ ମଶା ବଂଶବୃଦ୍ଧି ରୋକିବା ପାଇଁ 'ଡ୍ରାଏ ଡେ' କିପରି ପାଳନ କରିବେ?,SRC-01,"ପ୍ରତି ସପ୍ତାହରେ ଗୋଟିଏ ଦିନ ସମସ୍ତ ପାଣି ପାତ୍ର, କୁଲର ଖାଲି କରି ଭଲଭାବେ ଶୁଖାଇବା।",test
+Q_OR_06,or,Vector-borne diseases,ମଶା କାମୁଡ଼ାରୁ ରକ୍ଷା ପାଇବା ପାଇଁ କି ପଦକ୍ଷେପ ନେବା ଉଚିତ୍?,SRC-01,ସମ୍ପୂର୍ଣ୍ଣ ଶରୀର ଘୋଡ଼ାଇ ହେଉଥିବା ପୋଷାକ ପିନ୍ଧନ୍ତୁ ଏବଂ ମଶାରୀ ବ୍ୟବହାର କରନ୍ତୁ।,val
+Q_OR_07,or,Diabetes basics and lifestyle,ଟାଇପ୍-୨ ମଧୁମେହ (ଡାଇବେଟିସ୍) ହେବାର ମୁଖ୍ୟ କାରଣ କ'ଣ?,SRC-04,"ଶାରୀରିକ ପରିଶ୍ରମର ଅଭାବ, ମୋଟାପଣ, ଅସ୍ୱାସ୍ଥ୍ୟକର ଖାଦ୍ୟାଭ୍ୟାସ ଏବଂ ଇନସୁଲିନ୍ ଅକ୍ଷମତା।",test
+Q_OR_08,or,Diabetes basics and lifestyle,ରକ୍ତରେ ଶର୍କରା ବୃଦ୍ଧି ପାଇଲେ କେଉଁ ସବୁ ଲକ୍ଷଣ ଦେଖାଦିଏ?,SRC-04,"ବାରମ୍ବାର ପରିସ୍ରା ଲାଗିବା, ଅତ୍ୟଧିକ ଶୋଷ ଏବଂ ଭୋକ, ଓଜନ ହଠାତ୍ କମିବା ଏବଂ ଦୁର୍ବଳତା।",test
+Q_OR_09,or,Diabetes basics and lifestyle,ମଧୁମେହ ରୋଗୀ କେଉଁ ସବୁ ଖାଦ୍ୟ ଖାଇବାରୁ ଦୂରେଇ ରହିବା ଉଚିତ?,SRC-04,"ଚିନି, ମିଠା, କୋଲ୍ଡ ଡ୍ରିଙ୍କ୍ସ, ମଇଦା ଏବଂ ଅତ୍ୟଧିକ ତେଲରେ ଛଣା ଖାଦ୍ୟ।",test
+Q_OR_10,or,Diabetes basics and lifestyle,ଶୁଗାର ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ ଦୈନିକ କେତେ ସମୟ ବ୍ୟାୟାମ କରିବା ଉଚିତ?,SRC-04,ପ୍ରତିଦିନ ଅତି କମରେ ୩୦ ରୁ ୪୫ ମିନିଟ୍ ଦ୍ରୁତ ପଦଯାତ୍ରା ବା ବ୍ୟାୟାମ।,val
+Q_OR_11,or,Diabetes basics and lifestyle,ମଧୁମେହ ରୋଗରେ ପାଦ ଯତ୍ନ ନେବା କାହିଁକି ଆବଶ୍ୟକ?,SRC-04,କ୍ଷତ ବା ଘାଆ ଶୀଘ୍ର ନ ଶୁଖିବା ଯୋଗୁଁ ଗୁରୁତର ସଂକ୍ରମଣର ଆଶଙ୍କା ଥାଏ।,test
+Q_OR_12,or,Diabetes basics and lifestyle,ଫାଇବର ବା ତନ୍ତୁ ଯୁକ୍ତ ଖାଦ୍ୟ ଡାଇବେଟିସ୍ ପାଇଁ କାହିଁକି ଉପକାରୀ?,SRC-04,ଏହା ରକ୍ତରେ ଶର୍କରାର ମାତ୍ରାକୁ ହଠାତ୍ ବଢ଼ିବାକୁ ଦିଏ ନାହିଁ।,test
+Q_OR_13,or,Hypertension basics and lifestyle,ରକ୍ତଚାପ କେତେ ରହିଲେ ଉଚ୍ଚ ରକ୍ତଚାପ (ହାଇପରଟେନସନ) କୁହାଯାଏ?,SRC-05,ରକ୍ତଚାପ ଲଗାତାର ୧୪୦/୯୦ mmHg ବା ତା’ଠାରୁ ଅଧିକ ରହିଲେ।,test
+Q_OR_14,or,Hypertension basics and lifestyle,ଉଚ୍ଚ ରକ୍ତଚାପକୁ କାହିଁକି 'ନୀରବ ଘାତକ' ବା ସାଇଲେଣ୍ଟ କିଲର କୁହାଯାଏ?,SRC-05,କାରଣ ଏହାର କୌଣସି ବାହ୍ୟ ଲକ୍ଷଣ ନ ଥାଇ ହୃଦଘାତ ବା ପକ୍ଷାଘାତ (ଷ୍ଟ୍ରୋକ୍) କରାଇପାରେ।,test
+Q_OR_15,or,Hypertension basics and lifestyle,ହାଇ ବିପି ନିୟନ୍ତ୍ରଣ ପାଇଁ ଦିନକୁ କେତେ ଲୁଣ ଖାଇବା ଉଚିତ୍?,SRC-05,ଦିନକୁ ୫ ଗ୍ରାମ (ଗୋଟିଏ ଛୋଟ ଚାମଚ)ରୁ କମ୍ ଲୁଣ ଖାଇବା ଉଚିତ।,test
+Q_OR_16,or,Hypertension basics and lifestyle,ରକ୍ତଚାପ ଅତ୍ୟଧିକ ବଢ଼ିଗଲେ କି ଲକ୍ଷଣ ପ୍ରକାଶ ପାଏ?,SRC-05,"ମୁଣ୍ଡବିନ୍ଧା, ମୁଣ୍ଡ ବୁଲାଇବା, ଛାତିରେ ଅସ୍ୱସ୍ତି, ଆଖିକୁ ଝାପ୍ସା ଦେଖାଯିବା, ନାକରୁ ରକ୍ତ ପଡ଼ିବା।",val
+Q_OR_17,or,Hypertension basics and lifestyle,ରକ୍ତଚାପ କମାଇବା ପାଇଁ କେଉଁ ସବୁ ଖାଦ୍ୟ ଖାଇବା ଉଚିତ?,SRC-05,"ସବୁଜ ପନିପରିବା, ତାଜା ଫଳ, କମ୍ ଲହୁଣୀ ଥିବା କ୍ଷୀର ଏବଂ ଶସ୍ୟ।",test
+Q_OR_18,or,Hypertension basics and lifestyle,ଧୂମପାନ ଓ ମଦ୍ୟପାନ ବନ୍ଦ କଲେ ରକ୍ତଚାପ ଉପରେ କି ପ୍ରଭାବ ପଡ଼େ?,SRC-05,ରକ୍ତବାହୀ ନଳୀ ଉପରେ ଚାପ ହ୍ରାସ ପାଏ ଏବଂ ହୃଦଘାତ ଆଶଙ୍କା କମେ।,test
+Q_OR_19,or,Child immunization schedule,ଜନ୍ମ ସମୟରେ ନବଜାତ ଶିଶୁକୁ କେଉଁ କେଉଁ ଟିକା ଦିଆଯାଏ?,SRC-03,"ବିସିଜି (BCG), ପୋଲିଓ ଜିରୋ ଡୋଜ୍ (OPV-0) ଏବଂ ହେପାଟାଇଟିସ୍-ବି ଜନ୍ମ ଡୋଜ୍।",test
+Q_OR_20,or,Child immunization schedule,ଶିଶୁର ୬ ସପ୍ତାହ ବୟସରେ କେଉଁ ଟିକାଗୁଡ଼ିକ ଦିଆଯାଏ?,SRC-03,"ପେଣ୍ଟାଭାଲେଣ୍ଟ-୧, ପୋଲିଓ-୧, ରୋଟାଭାଇରସ୍-୧, fIPV-୧ ଏବଂ ପିସିଭି-୧।",test
+Q_OR_21,or,Child immunization schedule,ପେଣ୍ଟାଭାଲେଣ୍ଟ ଟିକା କେଉଁ ୫ଟି ରୋଗରୁ ସୁରକ୍ଷା ଦିଏ?,SRC-03,"ଡିଫଥେରିଆ, କାଲିଖାସି, ଧନୁଷ୍ଟଙ୍କାର, ହେପାଟାଇଟିସ୍-ବି ଏବଂ ହିବ୍।",val
+Q_OR_22,or,Child immunization schedule,ମିଜିଲ୍ସ-ରୁବେଲା (MR) ପ୍ରଥମ ଟିକା ଶିଶୁକୁ କେବେ ଦିଆଯାଏ?,SRC-03,୯ ରୁ ୧୨ ମାସ ବୟସ ମଧ୍ୟରେ।,test
+Q_OR_23,or,Child immunization schedule,ଡିପିଟି ବୁଷ୍ଟର ଟିକା କେଉଁ ବୟସରେ ଦିଆଯାଏ?,SRC-03,ପ୍ରଥମ ବୁଷ୍ଟର ୧୬-୨୪ ମାସରେ ଏବଂ ଦ୍ୱିତୀୟ ବୁଷ୍ଟର ୫-୬ ବର୍ଷ ବୟସରେ।,test
+Q_OR_24,or,Child immunization schedule,ଗାଁରେ ଶିଶୁ ଟୀକାକରଣ କେଉଁଠାରେ ମାଗଣାରେ କରାଯାଏ?,SRC-03,ନିକଟସ୍ଥ ଅଙ୍ଗନବାଡ଼ି କେନ୍ଦ୍ର ଏବଂ ପ୍ରାଥମିକ ସ୍ୱାସ୍ଥ୍ୟ କେନ୍ଦ୍ର (PHC) ରେ।,val
+Q_OR_25,or,Maternal health and pregnancy care basics,ଗର୍ଭାବସ୍ଥାରେ ଅତି କମରେ କେତେ ଥର ଡାକ୍ତରୀ ଯାଞ୍ଚ କରିବା ଆବଶ୍ୟକ?,SRC-06,"ଅତି କମରେ ୪ ଥର ଯାଞ୍ଚ କରନ୍ତୁ: ପ୍ରଥମ ୩ ମାସ, ୧୪-୨୬ ସପ୍ତାହ, ୨୮-୩୪ ସପ୍ତାହ, ଏବଂ ୩୬ ସପ୍ତାହ ପରେ।",test
+Q_OR_26,or,Maternal health and pregnancy care basics,ଗର୍ଭବତୀ ମହିଳା ଆଇରନ୍ (IFA) ବଟିକା କେତେ ଦିନ ଖାଇବା ଉଚିତ?,SRC-06,ଚତୁର୍ଥ ମାସରୁ ଆରମ୍ଭ କରି ପ୍ରତିଦିନ ଅତି କମରେ ୧୮୦ ଦିନ ପର୍ଯ୍ୟନ୍ତ ଗୋଟିଏ ଲାଲ ବଟିକା।,test
+Q_OR_27,or,Maternal health and pregnancy care basics,ଗର୍ଭାବସ୍ଥାରେ ଟିଡି (Td) ଟିକା କେତେ ଥର ନେବା ଉଚିତ୍?,SRC-06,୪ ସପ୍ତାହ ବ୍ୟବଧାନରେ ୨ଟି ଟିଡି ଟିକା ନେବା ଆବଶ୍ୟକ।,test
+Q_OR_28,or,Maternal health and pregnancy care basics,ଗର୍ଭାବସ୍ଥାର ବିପଦପୂର୍ଣ୍ଣ ଲକ୍ଷଣଗୁଡ଼ିକ କ'ଣ କ'ଣ?,SRC-06,"ଯୋନୀରୁ ରକ୍ତସ୍ରାବ, ପ୍ରବଳ ମୁଣ୍ଡବିନ୍ଧା, ହାତ-ମୁହଁ ଫୁଲିବା, ଅସହ୍ୟ ପେଟ ଯନ୍ତ୍ରଣା ଏବଂ ଶିଶୁର ଚଳପ୍ରଚଳ କମିବା।",val
+Q_OR_29,or,Maternal health and pregnancy care basics,ଆଇରନ୍ ଏବଂ କ୍ୟାଲସିୟମ୍ ବଟିକା ଏକାଠି ଖାଇବା ଉଚିତ୍ କି?,SRC-06,"ନାହିଁ, କ୍ୟାଲସିୟମ୍ ଆଇରନ୍ ଶୋଷଣକୁ ବାଧା ଦିଏ ତେଣୁ ଭିନ୍ନ ସମୟରେ ଖାଆନ୍ତୁ।",test
+Q_OR_30,or,Maternal health and pregnancy care basics,ପ୍ରଧାନମନ୍ତ୍ରୀ ସୁରକ୍ଷିତ ମାତୃତ୍ୱ ଅଭିଯାନ କେବେ ପାଳନ କରାଯାଏ?,SRC-06,ପ୍ରତି ମାସ ୯ ତାରିଖରେ ମାଗଣାରେ ଗର୍ଭବତୀ ମହିଳାଙ୍କ ଡାକ୍ତରୀ ଯାଞ୍ଚ ହୁଏ।,test
+Q_OR_31,or,Nutrition and anemia,ଆମ ରାଜ୍ୟରେ ଆନେମିଆ (ରକ୍ତହୀନତା) ର ମୁଖ୍ୟ କାରଣ କ'ଣ?,SRC-07,ଖାଦ୍ୟରେ ଲୌହସାର (ଆଇରନ୍) ର ଅଭାବ ଏବଂ ପେଟରେ କୃମି ରହିବା।,test
+Q_OR_32,or,Nutrition and anemia,ରକ୍ତରେ ହିମୋଗ୍ଲୋବିନ୍ କମିଗଲେ କି ଲକ୍ଷଣ ଜଣାପଡ଼େ?,SRC-07,"ଶୀଘ୍ର ଥକା ଲାଗିବା, ଦୁର୍ବଳତା, ଆଖି ଓ ନଖ ଧଳା ପଡ଼ିବା, ଶ୍ୱାସକ୍ରିୟାରେ କଷ୍ଟ ଏବଂ ମୁଣ୍ଡ ବୁଲାଇବା।",test
+Q_OR_33,or,Nutrition and anemia,ରକ୍ତହୀନତା ଦୂର କରିବା ପାଇଁ କେଉଁ ସବୁ ଶାଗ ଓ ପନିପରିବା ଖାଇବା ଉଚିତ?,SRC-07,"ସଜନା ଶାଗ, ପାଳଙ୍ଗ ଶାଗ, କଳା ରାଶି, ଡାଲି, କୋଳଥ, ଏବଂ ଗୁଡ଼।",test
+Q_OR_34,or,Nutrition and anemia,ଖାଦ୍ୟ ସହିତ ଅଁଳା ବା ଲେମ୍ବୁ ଖାଇଲେ କି ଲାଭ ହୁଏ?,SRC-07,ଏଥିରେ ଥିବା ଭିଟାମିନ୍-ସି ଶରୀରରେ ଲୌହସାର ଶୋଷଣକୁ ବୃଦ୍ଧି କରେ।,val
+Q_OR_35,or,Nutrition and anemia,ଭୋଜନ ପରେ ପରେ ଚାହା ପିଇଲେ କି କ୍ଷତି ହୁଏ?,SRC-07,ଚାହାରେ ଥିବା ଟାନିନ୍ ଖାଦ୍ୟରୁ ଆଇରନ୍ ଶୋଷଣ ହେବାକୁ ଦିଏ ନାହିଁ।,test
+Q_OR_36,or,Nutrition and anemia,ବର୍ଷକୁ କେତେ ଥର କୃମି ନାଶକ ବଟିକା (ଆଲବେଣ୍ଡାଜୋଲ୍) ଖାଇବା ଉଚିତ୍?,SRC-07,ବର୍ଷକୁ ୨ ଥର (ପ୍ରତି ୬ ମାସରେ) ଆଲବେଣ୍ଡାଜୋଲ୍ ଖାଇ ପେଟ କୃମିମୁକ୍ତ ରଖିବା।,test
+Q_OR_37,or,"Hygiene, water safety, diarrhea and ORS",ଓଆରଏସ୍ (ORS) ଦ୍ରବଣ ପ୍ରସ୍ତୁତ କରିବାର ସଠିକ୍ ନିୟମ କ'ଣ?,SRC-08,ହାତ ଧୋଇ ୧ ଲିଟର ଫୁଟା ଥଣ୍ଡା ପିଇବା ପାଣିରେ ଗୋଟିଏ ପୁରା ପ୍ୟାକେଟ୍ ଓଆରଏସ୍ ଭଲଭାବେ ଗୋଳାନ୍ତୁ।,test
+Q_OR_38,or,"Hygiene, water safety, diarrhea and ORS",ପ୍ରସ୍ତୁତ ଓଆରଏସ୍ ପାଣିକୁ କେତେ ସମୟ ପର୍ଯ୍ୟନ୍ତ ବ୍ୟବହାର କରିହେବ?,SRC-08,"ଘୋଡ଼ାଇ ରଖି କେବଳ ୨୪ ଘଣ୍ଟା ମଧ୍ୟରେ ବ୍ୟବହାର କରନ୍ତୁ, ତା'ପରେ ବଳକା ପାଣି ଫିଙ୍ଗି ନୂଆ କରନ୍ତୁ।",test
+Q_OR_39,or,"Hygiene, water safety, diarrhea and ORS",ଓଆରଏସ୍ ଗୁଣ୍ଡକୁ କ୍ଷୀର କିମ୍ବା ଡାଲିରେ ମିଶାଇ ପିଇବା ଉଚିତ କି?,SRC-08,"ନାହିଁ, କେବଳ ପରିଷ୍କାର ପିଇବା ପାଣିରେ ହିଁ ମିଶାଇବା ନିୟମ।",val
+Q_OR_40,or,"Hygiene, water safety, diarrhea and ORS",ଝାଡ଼ା ହେଲେ ପିଲାଙ୍କୁ ଜିଙ୍କ୍ ବଟିକା କେତେ ଦିନ ଦିଆଯାଏ?,SRC-08,ଲଗାତାର ୧୪ ଦିନ ପର୍ଯ୍ୟନ୍ତ ଜିଙ୍କ୍ ବଟିକା ଦେବା ଜରୁରୀ।,test
+Q_OR_41,or,"Hygiene, water safety, diarrhea and ORS",ତରଳ ଝାଡ଼ାରେ ଶରୀରରେ ଜଳକ୍ଷୟ (ଡିହାଇଡ୍ରେସନ୍) ର ବିପଦ ଲକ୍ଷଣ କ'ଣ?,SRC-08,"ଆଖି ଗାତରେ ପଶିଯିବା, ପ୍ରବଳ ଶୋଷ ହେବା, ପିଲା ନିସ୍ତେଜ ବା ଅଚେତ ହୋଇଯିବା।",test
+Q_OR_42,or,"Hygiene, water safety, diarrhea and ORS",ଘରେ ପିଇବା ପାଣିକୁ କିପରି ସୁରକ୍ଷିତ ଓ ଜୀବାଣୁମୁକ୍ତ କରିବେ?,SRC-08,ପାଣିକୁ ଅତି କମରେ ୧ ମିନିଟ୍ ଫୁଟାଇବା କିମ୍ବା କ୍ଲୋରିନ୍ ବଟିକା ପ୍ରୟୋଗ କରିବା।,val
+Q_OR_43,or,"Seasonal illnesses (flu, fever when to seek care)",ଋତୁକାଳୀନ ଫ୍ଲୁ ର ମୁଖ୍ୟ ଲକ୍ଷଣଗୁଡ଼ିକ କ'ଣ?,SRC-09,"ହଠାତ୍ ପ୍ରବଳ ଜ୍ୱର, ଶୁଖିଲା କାଶ, ଗଳା ଦରଜ, ମୁଣ୍ଡବିନ୍ଧା, ଦେହହାତ ବିନ୍ଧା ଏବଂ ନାକରୁ ପାଣି ବୋହିବା।",test
+Q_OR_44,or,"Seasonal illnesses (flu, fever when to seek care)",ଭୂତାଣୁ ଜନିତ ଜ୍ୱରରେ ଘରେ କିପରି ପ୍ରାଥମିକ ଯତ୍ନ ନେବା ଉଚିତ?,SRC-09,"ସମ୍ପୂର୍ଣ୍ଣ ବିଶ୍ରାମ ନିଅନ୍ତୁ ଏବଂ ପ୍ରଚୁର ପରିମାଣରେ ଉଷୁମ ପାଣି, ସୁପ୍ ବା ତରଳ ପାନୀୟ ପିଅନ୍ତୁ।",test
+Q_OR_45,or,"Seasonal illnesses (flu, fever when to seek care)",ଭାଇରାଲ୍ ଜ୍ୱରରେ ଡାକ୍ତରଙ୍କ ବିନା ପରାମର୍ଶରେ ଆଣ୍ଟିବାୟୋଟିକ୍ କାହିଁକି ଖାଇବା ନାହିଁ?,SRC-09,କାରଣ ଫ୍ଲୁ ଭୂତାଣୁ ଯୋଗୁଁ ହୁଏ ଏବଂ ଆଣ୍ଟିବାୟୋଟିକ୍ କେବଳ ଜୀବାଣୁ ଉପରେ କାମ କରେ।,val
+Q_OR_46,or,"Seasonal illnesses (flu, fever when to seek care)",ଫ୍ଲୁ ହେଲେ କେଉଁ ସବୁ ବିପଦ ସଙ୍କେତ ଦେଖାଦେଲେ ଡାକ୍ତରଙ୍କୁ ଦେଖାଇବା ଆବଶ୍ୟକ?,SRC-09,"ନିଶ୍ୱାସ ନେବାରେ କଷ୍ଟ, ଛାତି ଯନ୍ତ୍ରଣା, ୩ ଦିନରୁ ଅଧିକ ଜ୍ୱର ରହିବା, ଓଠ ନୀଳ ପଡ଼ିବା।",test
+Q_OR_47,or,"Seasonal illnesses (flu, fever when to seek care)",କାଶ-ଥଣ୍ଡା ଅନ୍ୟମାନଙ୍କୁ ନ ବ୍ୟାପିବା ପାଇଁ କି ସତର୍କତା ନେବେ?,SRC-09,କାଶିବା ବା ଛିଙ୍କିବା ସମୟରେ ରୁମାଲ୍ ବ୍ୟବହାର କରିବା ଏବଂ ସାବୁନରେ ହାତ ଧୋଇବା।,test
+Q_OR_48,or,"Seasonal illnesses (flu, fever when to seek care)",ଫ୍ଲୁ ରୋଗ କେଉଁ ବ୍ୟକ୍ତିମାନଙ୍କ ପାଇଁ ଅଧିକ ବିପଦଜନକ?,SRC-09,"ବୟସ୍କ ବ୍ୟକ୍ତି, ଗର୍ଭବତୀ ମହିଳା, ଛୋଟ ପିଲା ଏବଂ ହୃଦରୋଗୀଙ୍କ ପାଇଁ।",val
+Q_OR_49,or,"Seasonal illnesses (flu, fever when to seek care)",ଜ୍ୱର ସମୟରେ ପ୍ରଚୁର ପାଣି ଓ ତରଳ ପାନୀୟ ପିଇବା କାହିଁକି ଆବଶ୍ୟକ?,SRC-09,"ଝାଳ ବୋହିବା ଯୋଗୁଁ ଶରୀରରୁ ପାଣି କମିଯାଏ, ପାଣି ପିଇଲେ ଜଳକ୍ଷୟ ଓ ଦୁର୍ବଳତା ଦୂର ହୁଏ।",test
+Q_OR_50,or,"Seasonal illnesses (flu, fever when to seek care)",ଜ୍ୱର ବେଳେ ଶରୀରକୁ ବିଶ୍ରାମ ଦେବା କାହିଁକି ଜରୁରୀ?,SRC-09,ବିଶ୍ରାମ ଦ୍ୱାରା ଶରୀରର ରୋଗ ପ୍ରତିରୋଧକ ଶକ୍ତି ବୃଦ୍ଧି ପାଏ ଏବଂ ରୋଗୀ ଶୀଘ୍ର ସୁସ୍ଥ ହୁଏ।,test
