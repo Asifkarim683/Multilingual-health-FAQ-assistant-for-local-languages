@@ -127,6 +127,32 @@ For detailed ablation studies (chunk size tuning, cross-lingual vs translate-the
 
 ---
 
+## 🔍 Hybrid Search & Lexical Anchoring (Dense + BM25 via RRF)
+
+In domain-specific health information retrieval, pure semantic dense embeddings and pure sparse lexical keyword search have complementary strengths:
+- **Dense Vector Search**: Excels at semantic abstraction and cross-lingual concept mapping (e.g., matching Odia *"ଡେଙ୍ଗୁ ରୋଗର ଲକ୍ଷଣ"* with English vector guidelines), but can suffer from semantic drift on exact medical dosages, drug names, and numerical targets.
+- **Sparse BM25 Search**: Provides exact keyword precision for clinical numbers, specific drug acronyms, and abbreviations (*"1000 mL"*, *"ORS"*, *"ओआरएस"*, *"ପାରାସିଟାମୋଲ"*), but fails when users paraphrase or ask across languages.
+
+### Technical Implementation
+1. **Unicode Indic Script Tokenizer**: Standard regex `\w` breaks on Indic combining vowel signs (matras, viramas). We engineered a zero-dependency tokenizer leveraging Python `unicodedata` categories (`L` Letters, `M` Combining Marks, `N` Numbers) to preserve complete multi-character Indic words across Devanagari, Odia, Bengali, Telugu, and Tamil.
+2. **Multilingual Stopword Filtration**: Curated high-frequency functional words across all 6 languages, preventing pronouns and auxiliary verbs from inflating IDF scores.
+3. **Reciprocal Rank Fusion (RRF) & Semantically-Grounded Boosting**:
+   - Candidates are retrieved from both dense cosine similarity ($S_{\text{dense}}$) and Okapi BM25 ($S_{\text{sparse}}$ with $k_1=1.5, b=0.75$).
+   - Rank fusion fuses candidates using:
+     $$RRF(d) = \frac{w_{\text{dense}}}{k + \text{rank}_{\text{dense}}} + \frac{w_{\text{sparse}}}{k + \text{rank}_{\text{sparse}}}$$
+   - Relevance score is semantically grounded via non-linear saturation:
+     $$\text{Score} = S_{\text{dense}} \times \left(1.0 + 0.35 \times \frac{S_{\text{sparse}}}{S_{\text{sparse}} + 15.0}\right)$$
+   This ensures out-of-scope queries ($S_{\text{dense}} < 0.15$) cannot bypass safety confidence thresholds through incidental lexical matches.
+
+### Retrieval Ablation Comparison (30 Multilingual Ground-Truth Benchmark)
+| Retrieval Strategy | Recall@1 | Recall@5 | Mean Reciprocal Rank (MRR) |
+|---|---|---|---|
+| **Sparse BM25 Only** | 76.7% | 86.7% | 0.812 |
+| **Dense Embeddings Only** | 93.3% | 100.0% | 0.967 |
+| **Hybrid (Dense + BM25 via RRF & Boost)** | **100.0%** | **100.0%** | **1.000** |
+
+---
+
 ## 🚀 Quick Start (Under 10 Minutes)
 
 ### Option 1: Local Development

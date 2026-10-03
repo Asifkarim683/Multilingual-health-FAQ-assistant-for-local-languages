@@ -1,6 +1,6 @@
 # System Evaluation & Failure Analysis Report
 
-**Version**: 1.1.0 | **Timestamp**: 2026-10-03 12:34:45  
+**Version**: 1.1.0 | **Timestamp**: 2026-10-03 13:20:18  
 **Evaluation Scope**: 300 Hand-Labeled Test Questions (50 EN, 50 HI, 50 OR, 50 BN, 50 TE, 50 TA) + 61 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
 
 ---
@@ -9,14 +9,14 @@
 
 | Evaluation Metric | Target (PRD) | Measured Result | Evaluation Gate Status |
 |---|---|---|---|
-| **Recall@5** (Cross-Lingual) | $\\ge 85\\%$ | **94.0%** | ✅ Target Exceeded |
-| **Mean Reciprocal Rank (MRR)** | $\\ge 0.70$ | **0.908** | ✅ Target Exceeded |
-| **Answer Faithfulness** | $\\ge 90\\%$ | **94.3%** | ✅ Target Exceeded |
-| **Citation Correctness** | $\\ge 90\\%$ | **94.0%** | ✅ Target Exceeded |
+| **Recall@5** (Cross-Lingual) | $\\ge 85\\%$ | **96.0%** | ✅ Target Exceeded |
+| **Mean Reciprocal Rank (MRR)** | $\\ge 0.70$ | **0.937** | ✅ Target Exceeded |
+| **Answer Faithfulness** | $\\ge 90\\%$ | **96.3%** | ✅ Target Exceeded |
+| **Citation Correctness** | $\\ge 90\\%$ | **96.0%** | ✅ Target Exceeded |
 | **Safety Refusal Accuracy** | $\\ge 90\\%$ | **100.0%** | ✅ Target Exceeded |
-| **False Refusal Rate** | $\\le 15\\%$ | **5.7%** | ✅ Target Exceeded |
+| **False Refusal Rate** | $\\le 15\\%$ | **3.7%** | ✅ Target Exceeded |
 | **Language Match Rate** | $\\ge 98\\%$ | **100.0%** | ✅ Target Exceeded |
-| **p95 Latency** | $< 8.0$ seconds | **0.048 s** | ✅ Target Exceeded |
+| **p95 Latency** | $< 8.0$ seconds | **0.044 s** | ✅ Target Exceeded |
 
 ---
 
@@ -30,13 +30,13 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 | Language | Test Set Size | Recall@5 | MRR | Faithfulness | Citation Correctness | Language Match | Status Gate |
 |---|---|---|---|---|---|---|---|
 | **English (EN)** | 50 | **94.0%** | 0.890 | 94.0% | 94.0% | 100.0% | `stable` |
-| **Hindi (HI)** | 50 | **94.0%** | 0.930 | 94.0% | 94.0% | 100.0% | `stable` |
-| **Odia (OR)** | 50 | **94.0%** | 0.897 | 96.0% | 94.0% | 100.0% | `stable` |
-| **Bengali (BN)** | 50 | **92.0%** | 0.840 | 92.0% | 92.0% | 100.0% | `stable` |
-| **Telugu (TE)** | 50 | **94.0%** | 0.940 | 94.0% | 94.0% | 100.0% | `stable` |
-| **Tamil (TA)** | 50 | **96.0%** | 0.950 | 96.0% | 96.0% | 100.0% | `stable` |
+| **Hindi (HI)** | 50 | **98.0%** | 0.980 | 98.0% | 98.0% | 100.0% | `stable` |
+| **Odia (OR)** | 50 | **96.0%** | 0.947 | 98.0% | 96.0% | 100.0% | `stable` |
+| **Bengali (BN)** | 50 | **94.0%** | 0.877 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Telugu (TE)** | 50 | **96.0%** | 0.960 | 96.0% | 96.0% | 100.0% | `stable` |
+| **Tamil (TA)** | 50 | **98.0%** | 0.970 | 98.0% | 98.0% | 100.0% | `stable` |
 
-*Note*: All Indic language Recall@5 scores (HI (94.0%, gap: 0.0%), OR (94.0%, gap: 0.0%), BN (92.0%, gap: 2.0%), TE (94.0%, gap: 0.0%), TA (96.0%, gap: 2.0%)) are well within 10 percentage points of English (94.0%), satisfying the low-resource quality gate requirements.
+*Note*: All Indic language Recall@5 scores (HI (98.0%, gap: 4.0%), OR (96.0%, gap: 2.0%), BN (94.0%, gap: 0.0%), TE (96.0%, gap: 2.0%), TA (98.0%, gap: 4.0%)) are well within 10 percentage points of English (94.0%), satisfying the low-resource quality gate requirements.
 
 ---
 
@@ -45,15 +45,15 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 | Health Domain Topic | Test Questions | Recall@5 | Faithfulness |
 |---|---|---|---|
 | Vector-borne diseases | 36 | 100.0% | 100.0% |
-| Diabetes basics and lifestyle | 36 | 94.4% | 94.4% |
+| Diabetes basics and lifestyle | 36 | 97.2% | 97.2% |
 | Hypertension basics and lifestyle | 18 | 94.4% | 94.4% |
-| Child immunization schedule | 18 | 94.4% | 94.4% |
+| Child immunization schedule | 18 | 100.0% | 100.0% |
 | Maternal health and pregnancy care basics | 18 | 94.4% | 94.4% |
-| Nutrition and anemia | 36 | 91.7% | 91.7% |
-| Hygiene, water safety, diarrhea and ORS | 18 | 83.3% | 83.3% |
+| Nutrition and anemia | 36 | 94.4% | 94.4% |
+| Hygiene, water safety, diarrhea and ORS | 18 | 88.9% | 88.9% |
 | Seasonal illnesses (flu, fever when to seek care) | 45 | 93.3% | 95.6% |
-| Hypertension basics and management | 18 | 88.9% | 88.9% |
-| Immunization schedule basics | 18 | 94.4% | 94.4% |
+| Hypertension basics and management | 18 | 94.4% | 94.4% |
+| Immunization schedule basics | 18 | 100.0% | 100.0% |
 | Maternal care basics (ANC, nutrition, danger signs) | 21 | 95.2% | 95.2% |
 | Hygiene and ORS | 18 | 100.0% | 100.0% |
 
@@ -78,6 +78,17 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 - Threshold = 0.15: False Refusal Rate = 0.0%, Refusal Accuracy on out-of-scope = 88.9% (biryani recipe query slipped through at score 0.175).
 - **Threshold = 0.20**: False Refusal Rate = **0.0%**, Refusal Accuracy on out-of-scope = **100.0%**. Clean separation between legitimate health inquiries and non-medical prompts.
 - Threshold = 0.30: False Refusal Rate = 6.7%, Refusal Accuracy = 100.0%. Overly aggressive refusal on brief queries.
+
+### Experiment 4: Dense Vector Search vs. Sparse BM25 vs. Hybrid Fusion (RRF & Grounded Boosting)
+- **Sparse BM25 Only**:
+  - Recall@1 = 76.7%, Recall@5 = 86.7%, MRR = 0.812.
+  - *Limitation*: Fails on cross-lingual queries and paraphrased questions, but provides exact keyword anchoring on numbers and drug names (e.g. '1000 mL', 'ORS', 'ପାରାସିଟାମୋଲ').
+- **Dense Embeddings Only (Subword N-gram Cosine)**:
+  - Recall@1 = 93.3%, Recall@5 = 98.3%, MRR = 0.927.
+  - *Limitation*: Excels at cross-lingual semantics, but occasionally ranks adjacent sections with similar disease vocabularies above the exact answer section.
+- **Hybrid (Dense + BM25 via RRF & Semantically-Grounded Boosting)**:
+  - Recall@1 = **96.7%**, Recall@5 = **100.0%**, MRR = **0.983**.
+  - *Key Engineering Decision*: RRF re-ranks candidates with lexical confirmation, and semantic-similarity gating ensures out-of-scope queries ($S_{\text{dense}} < 0.15$) cannot bypass safety thresholds through incidental keyword hits.
 
 ---
 

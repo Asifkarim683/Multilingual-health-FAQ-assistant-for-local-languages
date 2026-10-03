@@ -1,17 +1,17 @@
 {
-  "evaluation_time": "2026-10-03 12:34:45",
+  "evaluation_time": "2026-10-03 13:20:18",
   "total_test_questions": 300,
   "total_refusal_cases": 61,
   "overall_metrics": {
-    "recall_at_5": 0.94,
-    "recall_at_1": 0.8767,
-    "mrr": 0.9078,
-    "faithfulness": 0.9433,
-    "citation_correctness": 0.94,
+    "recall_at_5": 0.96,
+    "recall_at_1": 0.9167,
+    "mrr": 0.9372,
+    "faithfulness": 0.9633,
+    "citation_correctness": 0.96,
     "refusal_accuracy": 1.0,
-    "false_refusal_rate": 0.0567,
+    "false_refusal_rate": 0.0367,
     "language_match_rate": 1.0,
-    "p95_latency_seconds": 0.048
+    "p95_latency_seconds": 0.044
   },
   "per_language": {
     "en": {
@@ -25,46 +25,46 @@
     },
     "hi": {
       "questions": 50,
-      "recall_at_5": 0.94,
-      "mrr": 0.93,
-      "faithfulness": 0.94,
-      "citation_correctness": 0.94,
+      "recall_at_5": 0.98,
+      "mrr": 0.98,
+      "faithfulness": 0.98,
+      "citation_correctness": 0.98,
       "language_match": 1.0,
       "status": "stable"
     },
     "or": {
       "questions": 50,
-      "recall_at_5": 0.94,
-      "mrr": 0.8967,
-      "faithfulness": 0.96,
-      "citation_correctness": 0.94,
+      "recall_at_5": 0.96,
+      "mrr": 0.9467,
+      "faithfulness": 0.98,
+      "citation_correctness": 0.96,
       "language_match": 1.0,
       "status": "stable"
     },
     "bn": {
       "questions": 50,
-      "recall_at_5": 0.92,
-      "mrr": 0.84,
-      "faithfulness": 0.92,
-      "citation_correctness": 0.92,
-      "language_match": 1.0,
-      "status": "stable"
-    },
-    "te": {
-      "questions": 50,
       "recall_at_5": 0.94,
-      "mrr": 0.94,
+      "mrr": 0.8767,
       "faithfulness": 0.94,
       "citation_correctness": 0.94,
       "language_match": 1.0,
       "status": "stable"
     },
-    "ta": {
+    "te": {
       "questions": 50,
       "recall_at_5": 0.96,
-      "mrr": 0.95,
+      "mrr": 0.96,
       "faithfulness": 0.96,
       "citation_correctness": 0.96,
+      "language_match": 1.0,
+      "status": "stable"
+    },
+    "ta": {
+      "questions": 50,
+      "recall_at_5": 0.98,
+      "mrr": 0.97,
+      "faithfulness": 0.98,
+      "citation_correctness": 0.98,
       "language_match": 1.0,
       "status": "stable"
     }
@@ -77,8 +77,8 @@
     },
     "Diabetes basics and lifestyle": {
       "questions": 36,
-      "recall_at_5": 0.9444,
-      "faithfulness": 0.9444
+      "recall_at_5": 0.9722,
+      "faithfulness": 0.9722
     },
     "Hypertension basics and lifestyle": {
       "questions": 18,
@@ -87,8 +87,8 @@
     },
     "Child immunization schedule": {
       "questions": 18,
-      "recall_at_5": 0.9444,
-      "faithfulness": 0.9444
+      "recall_at_5": 1.0,
+      "faithfulness": 1.0
     },
     "Maternal health and pregnancy care basics": {
       "questions": 18,
@@ -97,13 +97,13 @@
     },
     "Nutrition and anemia": {
       "questions": 36,
-      "recall_at_5": 0.9167,
-      "faithfulness": 0.9167
+      "recall_at_5": 0.9444,
+      "faithfulness": 0.9444
     },
     "Hygiene, water safety, diarrhea and ORS": {
       "questions": 18,
-      "recall_at_5": 0.8333,
-      "faithfulness": 0.8333
+      "recall_at_5": 0.8889,
+      "faithfulness": 0.8889
     },
     "Seasonal illnesses (flu, fever when to seek care)": {
       "questions": 45,
@@ -112,13 +112,13 @@
     },
     "Hypertension basics and management": {
       "questions": 18,
-      "recall_at_5": 0.8889,
-      "faithfulness": 0.8889
+      "recall_at_5": 0.9444,
+      "faithfulness": 0.9444
     },
     "Immunization schedule basics": {
       "questions": 18,
-      "recall_at_5": 0.9444,
-      "faithfulness": 0.9444
+      "recall_at_5": 1.0,
+      "faithfulness": 1.0
     },
     "Maternal care basics (ANC, nutrition, danger signs)": {
       "questions": 21,
