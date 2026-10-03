@@ -65,7 +65,7 @@ class VectorStore:
     ) -> List[SearchResult]:
         """
         Search for top_k relevant chunks using cosine similarity.
-        Optionally filter by target language.
+        Prioritizes chunks matching lang_filter, falling back to cross-lingual chunks.
         """
         if self.embeddings is None or not self.chunks:
             raise ValueError("Vector store is empty or unindexed. Call build_index() first.")
@@ -77,33 +77,38 @@ class VectorStore:
         # Sort indices by score descending
         sorted_indices = np.argsort(scores)[::-1]
 
-        results: List[SearchResult] = []
-        rank = 1
+        matching_results: List[SearchResult] = []
+        fallback_results: List[SearchResult] = []
+
         for idx in sorted_indices:
             chunk = self.chunks[idx]
-            if lang_filter and chunk.get("language") != lang_filter:
-                continue
-
             score = float(scores[idx])
-            results.append(
-                SearchResult(
-                    chunk_id=chunk["chunk_id"],
-                    source_id=chunk["source_id"],
-                    title=chunk["title"],
-                    language=chunk["language"],
-                    topic=chunk["topic"],
-                    url=chunk["url"],
-                    section=chunk["section"],
-                    text=chunk["text"],
-                    score=score,
-                    rank=rank,
-                )
+            res = SearchResult(
+                chunk_id=chunk["chunk_id"],
+                source_id=chunk["source_id"],
+                title=chunk["title"],
+                language=chunk["language"],
+                topic=chunk["topic"],
+                url=chunk["url"],
+                section=chunk["section"],
+                text=chunk["text"],
+                score=score,
+                rank=0,
             )
-            rank += 1
-            if len(results) >= top_k:
-                break
+            if lang_filter:
+                if chunk.get("language") == lang_filter:
+                    matching_results.append(res)
+                else:
+                    fallback_results.append(res)
+            else:
+                matching_results.append(res)
 
-        return results
+        combined = (matching_results[:top_k] + fallback_results)[:top_k]
+        for rank, r in enumerate(combined, 1):
+            r.rank = rank
+
+        return combined
+
 
     def save(self, directory: Union[str, Path]):
         """Persist index, chunks, and embedder to directory."""

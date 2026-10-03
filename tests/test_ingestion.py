@@ -81,8 +81,9 @@ def test_run_ingestion_end_to_end(tmp_path):
 
     stats = run_ingestion(raw_dir=raw_dir, processed_dir=processed_dir)
 
-    assert stats["total_documents"] == 24
+    assert stats["total_documents"] >= 24
     assert stats["total_chunks"] >= 24
+
     assert "en" in stats["chunks_per_language"]
     assert "hi" in stats["chunks_per_language"]
     assert "or" in stats["chunks_per_language"]

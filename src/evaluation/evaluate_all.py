@@ -83,7 +83,8 @@ def run_full_evaluation(
             per_topic_stats[topic]["count"] += 1
             continue
 
-        results = store.search(q_text, top_k=5)
+        results = store.search(q_text, top_k=5, lang_filter=lang)
+
         post_check = guardrail.run_post_retrieval_check(results, language=lang, threshold=threshold)
         if post_check.action == "refused":
             false_refusal_count += 1

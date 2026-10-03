@@ -162,7 +162,8 @@ def ask_question(req: AskRequest, request: Request):
         )
 
     # 3. Vector Retrieval
-    results = store.search(req.question, top_k=5)
+    results = store.search(req.question, top_k=5, lang_filter=resolved_lang)
+
 
     # 4. Safety Post-Check (Confidence Filtering for Out-of-Scope)
     post_check = guardrail.run_post_retrieval_check(results, language=resolved_lang, threshold=0.20)
