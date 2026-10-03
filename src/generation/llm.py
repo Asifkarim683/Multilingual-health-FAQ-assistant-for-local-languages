@@ -110,6 +110,18 @@ class MockLLMProvider(LLMProvider):
                     target_sentences.append(line)
                     if p_idx not in cited_passages:
                         cited_passages.append(p_idx)
+                elif target_lang == "bn" and re.search(r"[\u0980-\u09FF]", line):
+                    target_sentences.append(line)
+                    if p_idx not in cited_passages:
+                        cited_passages.append(p_idx)
+                elif target_lang == "te" and re.search(r"[\u0C00-\u0C7F]", line):
+                    target_sentences.append(line)
+                    if p_idx not in cited_passages:
+                        cited_passages.append(p_idx)
+                elif target_lang == "ta" and re.search(r"[\u0B80-\u0BFF]", line):
+                    target_sentences.append(line)
+                    if p_idx not in cited_passages:
+                        cited_passages.append(p_idx)
                 elif target_lang == "en" and not re.search(r"[\u0900-\u0D7F]", line):
                     target_sentences.append(line)
                     if p_idx not in cited_passages:
@@ -126,6 +138,12 @@ class MockLLMProvider(LLMProvider):
                 target_sentences = ["सत्यापित सार्वजनिक स्वास्थ्य दिशा-निर्देशों के अनुसार उपयुक्त सावधानी और उपचार नियमों का पालन करें।"]
             elif target_lang == "or":
                 target_sentences = ["ସତ୍ୟାପିତ ସାର୍ବଜନୀନ ସ୍ୱାସ୍ଥ୍ୟ ନିୟମ ଅନୁସାରେ ଉପଯୁକ୍ତ ସତର୍କତା ଓ ଡାକ୍ତରୀ ପରାମର୍ଶ ପାଳନ କରନ୍ତୁ।"]
+            elif target_lang == "bn":
+                target_sentences = ["যাচাইকৃত জনস্বাস্থ্য নির্দেশিকা অনুযায়ী সঠিক সতর্কতা এবং চিকিৎসা পরামর্শ অনুসরণ করুন।"]
+            elif target_lang == "te":
+                target_sentences = ["ధృవీకరించబడిన ప్రజారోగ్య మార్గదర్శకాల ప్రకారం సరైన జాగ్రత్తలు మరియు వైద్య సలహాలను పాటించండి।"]
+            elif target_lang == "ta":
+                target_sentences = ["சரிபார்க்கப்பட்ட பொது சுகாதார வழிகாட்டுதல்களின்படி சரியான முன்னெச்சரிக்கைகள் மற்றும் மருத்துவ ஆலோசனைகளைப் பின்பற்றவும்."]
             else:
                 target_sentences = [l.strip() for l in first_p[4].strip().split("\n") if l.strip()][:2]
 

@@ -65,8 +65,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Multilingual Health FAQ Assistant API",
-    description="Grounded health question answering in Indian languages (Hindi, Odia, English) with verifiable citations and strict safety guardrails.",
-    version="1.0.0",
+    description="Grounded health question answering in Indian languages (Hindi, Odia, Bengali, Telugu, Tamil, English) with verifiable citations and strict safety guardrails.",
+    version="1.1.0",
     lifespan=lifespan,
 )
 
@@ -86,7 +86,7 @@ def health_check():
     store, _, _, registry = get_services()
     return HealthResponse(
         status="healthy",
-        version="1.0.0",
+        version="1.1.0",
         knowledge_base_version="1.1",
         total_chunks=len(store.chunks),
         supported_languages=list(registry.keys()),
