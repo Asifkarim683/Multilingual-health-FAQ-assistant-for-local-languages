@@ -48,9 +48,13 @@ class GroundedGenerator:
 
     def _load_languages(self, config_path: Path) -> Dict[str, Any]:
         if config_path.exists():
-            with open(config_path, "r", encoding="utf-8") as f:
-                data = yaml.safe_load(f)
-                return {lang["code"]: lang for lang in data.get("languages", [])}
+            try:
+                from src.registry import load_languages_registry
+                return load_languages_registry(config_path, validate=False)
+            except Exception:
+                with open(config_path, "r", encoding="utf-8") as f:
+                    data = yaml.safe_load(f)
+                    return {lang["code"]: lang for lang in data.get("languages", [])}
         return {}
 
     def get_disclaimer(self, lang_code: str) -> str:
@@ -87,14 +91,12 @@ class GroundedGenerator:
 
         # 2. Check if chunks are provided
         if not retrieved_chunks:
-            refusal_text = (
-                "I could not find verified information on this topic in my public health database. "
-                "Please consult a doctor or healthcare worker for personal medical guidance."
+            lang_entry = self.languages_config.get(resolved_lang, {})
+            ui_strings = lang_entry.get("ui_strings", {})
+            refusal_text = ui_strings.get(
+                "refusal_out_of_scope",
+                "I could not find verified information on this topic in my public health database. Please consult a doctor or healthcare worker for personal medical guidance."
             )
-            if resolved_lang == "hi":
-                refusal_text = "मुझे अपने सत्यापित स्वास्थ्य स्रोतों में इस विषय पर जानकारी नहीं मिली। कृपया किसी योग्य चिकित्सक से संपर्क करें।"
-            elif resolved_lang == "or":
-                refusal_text = "ମୋର ସତ୍ୟାପିତ ସ୍ୱାସ୍ଥ୍ୟ ତଥ୍ୟରେ ଏହି ପ୍ରଶ୍ନର ଉତ୍ତର ମିଳିଲା ନାହିଁ। ଦୟାକରି ଜଣେ ବିଶେଷଜ୍ଞ ଡାକ୍ତରଙ୍କ ସହ ପରାମର୍ଶ କରନ୍ତୁ।"
 
             return GenerationResult(
                 answer=refusal_text,

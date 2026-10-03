@@ -37,7 +37,7 @@ class SafetyGuardrail:
             )
 
         # 2. Dosage & Diagnosis Refusal
-        dd_res = check_dosage_or_diagnosis(query=query, language=language)
+        dd_res = check_dosage_or_diagnosis(query=query, language=language, config_path=self.config_path)
         if dd_res.is_refusal:
             return SafetyCheckResult(
                 action="refused",
@@ -65,7 +65,9 @@ class SafetyGuardrail:
             search_results=search_results,
             language=language,
             threshold=threshold,
+            config_path=self.config_path,
         )
+
         if not conf_res.is_sufficient:
             return SafetyCheckResult(
                 action="refused",

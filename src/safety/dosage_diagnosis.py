@@ -1,7 +1,8 @@
 """Detection and refusal for medication dosage, prescription, and clinical diagnosis requests."""
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import Optional, List, Any
 import re
+
 
 
 @dataclass
@@ -48,29 +49,42 @@ DIAGNOSIS_PATTERNS = [
 def check_dosage_or_diagnosis(
     query: str,
     language: str = "en",
+    config_path: Optional[Any] = None,
 ) -> DosageRefusalResult:
     """Check if query requests medication dosing, prescription, or clinical diagnosis."""
     query_lower = query.lower()
 
+    def get_msg():
+        if config_path:
+            try:
+                from src.registry import load_languages_registry
+                reg = load_languages_registry(config_path, validate=False)
+                if language in reg and "ui_strings" in reg[language]:
+                    m = reg[language]["ui_strings"].get("refusal_dosage")
+                    if m:
+                        return m
+            except Exception:
+                pass
+        return DOSAGE_REFUSAL_MESSAGES.get(language, DOSAGE_REFUSAL_MESSAGES["en"])
+
     # Check dosage patterns
     for pat in DOSAGE_PATTERNS:
         if re.search(pat, query_lower):
-            msg = DOSAGE_REFUSAL_MESSAGES.get(language, DOSAGE_REFUSAL_MESSAGES["en"])
             return DosageRefusalResult(
                 is_refusal=True,
                 reason="dosage",
-                refusal_message=msg,
+                refusal_message=get_msg(),
             )
 
     # Check diagnosis patterns
     for pat in DIAGNOSIS_PATTERNS:
         if re.search(pat, query_lower):
-            msg = DOSAGE_REFUSAL_MESSAGES.get(language, DOSAGE_REFUSAL_MESSAGES["en"])
             return DosageRefusalResult(
                 is_refusal=True,
                 reason="diagnosis",
-                refusal_message=msg,
+                refusal_message=get_msg(),
             )
+
 
     return DosageRefusalResult(
         is_refusal=False,

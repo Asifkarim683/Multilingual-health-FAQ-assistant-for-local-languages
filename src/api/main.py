@@ -48,11 +48,11 @@ def get_services():
     if not _LANGUAGES_REGISTRY:
         config_path = Path("config/languages.yaml")
         if config_path.exists():
-            with open(config_path, "r", encoding="utf-8") as f:
-                data = yaml.safe_load(f)
-                _LANGUAGES_REGISTRY = {l["code"]: l for l in data.get("languages", [])}
+            from src.registry import load_languages_registry
+            _LANGUAGES_REGISTRY = load_languages_registry(config_path, validate=True)
 
     return _VECTOR_STORE, _GUARDRAIL, _GENERATOR, _LANGUAGES_REGISTRY
+
 
 
 from contextlib import asynccontextmanager

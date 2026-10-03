@@ -39,25 +39,25 @@ DEFAULT_KEYWORDS = {
 
 
 def load_emergency_config(config_path: Path = Path("config/languages.yaml")) -> Dict[str, Dict[str, Any]]:
-    """Load emergency keywords and alerts per language from languages.yaml."""
+    """Load emergency keywords and alerts per language from languages.yaml via registry."""
     if not config_path.exists():
         return {}
     try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-            result = {}
-            for lang in data.get("languages", []):
-                code = lang["code"]
-                keywords = lang.get("emergency_keywords", [])
-                ui_strings = lang.get("ui_strings", {})
-                alert = ui_strings.get("emergency_message", DEFAULT_EMERGENCY_MESSAGES.get(code, DEFAULT_EMERGENCY_MESSAGES["en"]))
-                result[code] = {
-                    "keywords": keywords,
-                    "message": alert,
-                }
-            return result
+        from src.registry import load_languages_registry
+        data = load_languages_registry(config_path, validate=False)
+        result = {}
+        for code, lang in data.items():
+            keywords = lang.get("emergency_keywords", [])
+            ui_strings = lang.get("ui_strings", {})
+            alert = ui_strings.get("emergency_message", DEFAULT_EMERGENCY_MESSAGES.get(code, DEFAULT_EMERGENCY_MESSAGES["en"]))
+            result[code] = {
+                "keywords": keywords,
+                "message": alert,
+            }
+        return result
     except Exception:
         return {}
+
 
 
 def is_keyword_in_query(keyword: str, query: str) -> bool:

@@ -37,8 +37,9 @@ languages:
       emergency_badge: "EMERGENCY DETECTED"
       emergency_message: "Your question indicates a potential medical emergency. Please seek immediate medical attention or call emergency services (112 or 108 in India)."
       refusal_out_of_scope: "I could not find verified information on this question in my public health database. Please consult a doctor or healthcare worker for personal medical guidance."
-      refusal_dosage: "I cannot prescribe medicines, suggest medication dosages, or diagnose illnesses. Please consult a registered medical professional."
+      refusal_dosage: "I cannot provide medication dosage, prescription, or clinical diagnosis. Please consult a registered medical professional."
       status_stable: "Verified"
+
       status_experimental: "Experimental"
 
   - code: hi

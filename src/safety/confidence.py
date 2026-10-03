@@ -23,6 +23,7 @@ def check_retrieval_confidence(
     search_results: List[Any],
     language: str = "en",
     threshold: Optional[float] = None,
+    config_path: Optional[Any] = None,
 ) -> ConfidenceResult:
     """
     Check if the top retrieved chunk meets the minimum confidence threshold.
@@ -34,13 +35,25 @@ def check_retrieval_confidence(
         except ValueError:
             conf_threshold = 0.20
 
+    def get_msg():
+        if config_path:
+            try:
+                from src.registry import load_languages_registry
+                reg = load_languages_registry(config_path, validate=False)
+                if language in reg and "ui_strings" in reg[language]:
+                    m = reg[language]["ui_strings"].get("refusal_out_of_scope")
+                    if m:
+                        return m
+            except Exception:
+                pass
+        return OUT_OF_SCOPE_MESSAGES.get(language, OUT_OF_SCOPE_MESSAGES["en"])
+
     if not search_results:
-        msg = OUT_OF_SCOPE_MESSAGES.get(language, OUT_OF_SCOPE_MESSAGES["en"])
         return ConfidenceResult(
             is_sufficient=False,
             top_score=0.0,
             threshold=conf_threshold,
-            refusal_message=msg,
+            refusal_message=get_msg(),
         )
 
     # Get top score
@@ -51,7 +64,7 @@ def check_retrieval_confidence(
     score = float(score or 0.0)
 
     is_sufficient = score >= conf_threshold
-    msg = "" if is_sufficient else OUT_OF_SCOPE_MESSAGES.get(language, OUT_OF_SCOPE_MESSAGES["en"])
+    msg = "" if is_sufficient else get_msg()
 
     return ConfidenceResult(
         is_sufficient=is_sufficient,
@@ -59,3 +72,4 @@ def check_retrieval_confidence(
         threshold=conf_threshold,
         refusal_message=msg,
     )
+
