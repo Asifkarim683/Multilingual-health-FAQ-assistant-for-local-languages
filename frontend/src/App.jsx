@@ -223,8 +223,9 @@ export default function App() {
             </div>
 
             {activeLangConfig.status === 'experimental' && (
-              <span className="hidden md:inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
-                Experimental
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-300 shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5 animate-pulse"></span>
+                {ui.status_experimental || 'Experimental'}
               </span>
             )}
           </div>
@@ -233,6 +234,17 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-4xl w-full mx-auto p-4 flex flex-col justify-between">
+        {/* Experimental Language Notice Banner */}
+        {activeLangConfig.status === 'experimental' && (
+          <div className="mb-4 p-3 bg-amber-50/90 border border-amber-200 rounded-xl flex items-start gap-2.5 text-xs text-amber-800 shadow-xs">
+            <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+            <div>
+              <span className="font-semibold">{activeLangConfig.native_name} ({activeLangConfig.name}) - {ui.status_experimental || 'Experimental Support'}:</span>{' '}
+              <span>This language is in active development and experimental benchmark validation. Source coverage and translations may be limited.</span>
+            </div>
+          </div>
+        )}
+
         {/* Messages Container */}
         <div className="space-y-4 mb-6">
           {messages.length === 0 && (
