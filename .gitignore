@@ -40,6 +40,7 @@ chroma_db/
 vector_store/
 *.sqlite
 *.sqlite3
+*.db
 
 # Node / Frontend
 frontend/node_modules/
