@@ -1,0 +1,51 @@
+{
+  "total_documents": 24,
+  "total_chunks": 57,
+  "chunks_per_language": {
+    "en": 10,
+    "hi": 24,
+    "or": 23
+  },
+  "chunks_per_topic": {
+    "Vector-borne diseases": 7,
+    "Diabetes basics and lifestyle": 6,
+    "Hypertension basics and lifestyle": 7,
+    "Child immunization schedule": 8,
+    "Maternal health and pregnancy care basics": 7,
+    "Nutrition and anemia": 7,
+    "Hygiene, water safety, diarrhea and ORS": 8,
+    "Seasonal illnesses (flu, fever when to seek care)": 7
+  },
+  "coverage_by_language_and_topic": {
+    "en": {
+      "Vector-borne diseases": 1,
+      "Diabetes basics and lifestyle": 1,
+      "Hypertension basics and lifestyle": 1,
+      "Child immunization schedule": 2,
+      "Maternal health and pregnancy care basics": 1,
+      "Nutrition and anemia": 1,
+      "Hygiene, water safety, diarrhea and ORS": 2,
+      "Seasonal illnesses (flu, fever when to seek care)": 1
+    },
+    "hi": {
+      "Vector-borne diseases": 3,
+      "Diabetes basics and lifestyle": 3,
+      "Hypertension basics and lifestyle": 3,
+      "Child immunization schedule": 3,
+      "Maternal health and pregnancy care basics": 3,
+      "Nutrition and anemia": 3,
+      "Hygiene, water safety, diarrhea and ORS": 3,
+      "Seasonal illnesses (flu, fever when to seek care)": 3
+    },
+    "or": {
+      "Vector-borne diseases": 3,
+      "Diabetes basics and lifestyle": 2,
+      "Hypertension basics and lifestyle": 3,
+      "Child immunization schedule": 3,
+      "Maternal health and pregnancy care basics": 3,
+      "Nutrition and anemia": 3,
+      "Hygiene, water safety, diarrhea and ORS": 3,
+      "Seasonal illnesses (flu, fever when to seek care)": 3
+    }
+  }
+}

@@ -1,0 +1,13 @@
+The Universal Immunization Programme (UIP) in India protects children against 12 life-threatening vaccine-preventable diseases.
+
+Vaccination Schedule for Infants and Children:
+- At Birth: BCG (Tuberculosis), Oral Polio Vaccine (OPV birth dose), and Hepatitis B (birth dose within 24 hours of birth).
+- At 6 Weeks: OPV-1, Pentavalent-1 (Diphtheria, Pertussis, Tetanus, Hepatitis B, Hib), Rotavirus Vaccine-1 (RVV), Fractional Inactivated Poliovirus Vaccine-1 (fIPV-1), and Pneumococcal Conjugate Vaccine-1 (PCV-1).
+- At 10 Weeks: OPV-2, Pentavalent-2, and RVV-2.
+- At 14 Weeks: OPV-3, Pentavalent-3, RVV-3, fIPV-2, and PCV-2.
+- At 9 to 12 Months: Measles-Rubella-1 (MR-1), PCV Booster, Japanese Encephalitis-1 (in endemic districts), and Vitamin A 1st dose (1 lakh IU).
+- At 16 to 24 Months: MR-2, DPT Booster-1, OPV Booster, JE-2, and Vitamin A 2nd dose (2 lakh IU).
+- At 5 to 6 Years: DPT Booster-2.
+- At 10 and 16 Years: Td (Tetanus and adult Diphtheria) vaccine.
+
+All government health sub-centers, Primary Health Centers (PHCs), and Anganwadi centers administer these vaccines free of cost on designated Village Health and Nutrition Days (VHND).
