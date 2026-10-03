@@ -11,8 +11,10 @@ import {
   ExternalLink,
   Sparkles,
   Info,
-  RefreshCw
+  RefreshCw,
+  Volume2
 } from 'lucide-react';
+import AudioPlayer from './components/AudioPlayer';
 
 const FALLBACK_LANGUAGES = [
   {
@@ -482,9 +484,12 @@ export default function App() {
                   {/* Emergency State */}
                   {msg.status === 'emergency' && (
                     <div className="bg-red-50 border-2 border-red-500 rounded-2xl p-4 sm:p-5 shadow-sm text-red-950">
-                      <div className="flex items-center gap-2.5 text-red-700 font-bold text-base mb-2">
-                        <ShieldAlert className="w-6 h-6 flex-shrink-0 text-red-600 animate-pulse" />
-                        <span>EMERGENCY ALERT / ଆପାତକାଳୀନ ଚେତାବନୀ</span>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2.5 text-red-700 font-bold text-base">
+                          <ShieldAlert className="w-6 h-6 flex-shrink-0 text-red-600 animate-pulse" />
+                          <span>EMERGENCY ALERT / ଆପାତକାଳୀନ ଚେତାବନୀ</span>
+                        </div>
+                        <AudioPlayer text={msg.text} language={msg.language || currentLang} className="bg-red-100/70 border-red-200" />
                       </div>
                       <p className="text-sm sm:text-base font-semibold text-red-900 mb-4 leading-relaxed">
                         {msg.text}
@@ -509,9 +514,12 @@ export default function App() {
                   {/* Refused State (Dosage / Diagnosis / Out-of-Scope) */}
                   {msg.status === 'refused' && (
                     <div className="bg-amber-50 border border-amber-300 rounded-2xl p-4 sm:p-5 shadow-sm text-amber-950">
-                      <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm mb-1.5">
-                        <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-600" />
-                        <span>Safety Notice / ସତର୍କତା ସୂଚନା</span>
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm">
+                          <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-600" />
+                          <span>Safety Notice / ସତର୍କତା ସୂଚନା</span>
+                        </div>
+                        <AudioPlayer text={msg.text} language={msg.language || currentLang} className="bg-amber-100/70 border-amber-200" />
                       </div>
                       <p className="text-sm sm:text-base text-amber-900 leading-relaxed mb-3">
                         {msg.text}
@@ -525,11 +533,14 @@ export default function App() {
                   {/* Answered State (Grounded Answer + Citations) */}
                   {msg.status === 'answered' && (
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm">
-                      {msg.is_experimental && (
-                        <div className="mb-2 inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800">
-                          ⚠️ Experimental Language Support
-                        </div>
-                      )}
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
+                        <AudioPlayer text={msg.text} language={msg.language || currentLang} />
+                        {msg.is_experimental && (
+                          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800 shrink-0">
+                            ⚠️ Experimental
+                          </div>
+                        )}
+                      </div>
 
                       <div className="text-sm sm:text-base text-slate-800 whitespace-pre-wrap leading-relaxed mb-4">
                         {msg.text}

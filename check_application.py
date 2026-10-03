@@ -406,6 +406,19 @@ class ApplicationAuditor:
         except Exception as e:
             self.record("API", "POST /api/feedback", False, str(e))
 
+        # 7. Text-to-Speech audio streaming
+        try:
+            r_tts = requests.get(f"{base_url}/api/tts?text=Drink%20plenty%20of%20clean%20water&language=en", timeout=10)
+            passed = r_tts.status_code == 200 and r_tts.headers.get("content-type") == "audio/mpeg" and len(r_tts.content) > 1000
+            self.record(
+                "API",
+                "GET /api/tts [Audio Streaming]",
+                passed,
+                f"HTTP {r_tts.status_code}, Content-Type={r_tts.headers.get('content-type')}, Bytes={len(r_tts.content)}"
+            )
+        except Exception as e:
+            self.record("API", "GET /api/tts [Audio Streaming]", False, str(e))
+
     def audit_frontend_build_and_server(self):
         print("\n[7/8] AUDITING FRONTEND (BUILD & LIVE DEV SERVER)")
         dist_html = Path("frontend/dist/index.html")

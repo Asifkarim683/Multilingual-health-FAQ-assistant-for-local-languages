@@ -33,6 +33,7 @@ The **Multilingual Health FAQ Assistant** solves this through a strictly grounde
   - **Dosage & Prescription Refusal**: Blocks requests for drug dosages, medicine prescriptions, and clinical diagnoses across all 6 languages.
   - **Confidence-Based Out-of-Scope Filtering**: Calibrated threshold cleanly rejects non-medical queries.
 - **📚 Verifiable Citations**: Returns document titles, sections, and clickable URLs for every answered query.
+- **🔊 Multilingual Text-to-Speech (TTS)**: One-click native audio speech synthesis for answers, emergency alerts, and safety notices across Hindi, Odia, Bengali, Telugu, Tamil, and English. Powered by browser-native Web Speech API with zero network latency, playback speed adjustment (0.85x for elderly/rural clarity), visual equalizer sound waves, and `/api/tts` backend streaming MP3 fallback.
 - **⚙️ Declarative Language Registry**: Onboard new Indian languages via `config/languages.yaml` without changing application code.
 - **📱 Responsive Mobile Experience**: Optimized touch interface with native font rendering for Devanagari, Odia, Bengali, Telugu, and Tamil scripts down to 360px viewport width.
 - **📊 Measurable Benchmark Suite**: Automated evaluation over 300 hand-labeled questions and 61 refusal cases across 6 languages.

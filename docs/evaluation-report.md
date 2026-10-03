@@ -1,6 +1,6 @@
 # System Evaluation & Failure Analysis Report
 
-**Version**: 1.1.0 | **Timestamp**: 2026-10-03 13:20:18  
+**Version**: 1.1.0 | **Timestamp**: 2026-10-03 13:28:28  
 **Evaluation Scope**: 300 Hand-Labeled Test Questions (50 EN, 50 HI, 50 OR, 50 BN, 50 TE, 50 TA) + 61 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
 
 ---
@@ -16,7 +16,7 @@
 | **Safety Refusal Accuracy** | $\\ge 90\\%$ | **100.0%** | ✅ Target Exceeded |
 | **False Refusal Rate** | $\\le 15\\%$ | **3.7%** | ✅ Target Exceeded |
 | **Language Match Rate** | $\\ge 98\\%$ | **100.0%** | ✅ Target Exceeded |
-| **p95 Latency** | $< 8.0$ seconds | **0.044 s** | ✅ Target Exceeded |
+| **p95 Latency** | $< 8.0$ seconds | **0.048 s** | ✅ Target Exceeded |
 
 ---
 
@@ -78,17 +78,6 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 - Threshold = 0.15: False Refusal Rate = 0.0%, Refusal Accuracy on out-of-scope = 88.9% (biryani recipe query slipped through at score 0.175).
 - **Threshold = 0.20**: False Refusal Rate = **0.0%**, Refusal Accuracy on out-of-scope = **100.0%**. Clean separation between legitimate health inquiries and non-medical prompts.
 - Threshold = 0.30: False Refusal Rate = 6.7%, Refusal Accuracy = 100.0%. Overly aggressive refusal on brief queries.
-
-### Experiment 4: Dense Vector Search vs. Sparse BM25 vs. Hybrid Fusion (RRF & Grounded Boosting)
-- **Sparse BM25 Only**:
-  - Recall@1 = 76.7%, Recall@5 = 86.7%, MRR = 0.812.
-  - *Limitation*: Fails on cross-lingual queries and paraphrased questions, but provides exact keyword anchoring on numbers and drug names (e.g. '1000 mL', 'ORS', 'ପାରାସିଟାମୋଲ').
-- **Dense Embeddings Only (Subword N-gram Cosine)**:
-  - Recall@1 = 93.3%, Recall@5 = 98.3%, MRR = 0.927.
-  - *Limitation*: Excels at cross-lingual semantics, but occasionally ranks adjacent sections with similar disease vocabularies above the exact answer section.
-- **Hybrid (Dense + BM25 via RRF & Semantically-Grounded Boosting)**:
-  - Recall@1 = **96.7%**, Recall@5 = **100.0%**, MRR = **0.983**.
-  - *Key Engineering Decision*: RRF re-ranks candidates with lexical confirmation, and semantic-similarity gating ensures out-of-scope queries ($S_{\text{dense}} < 0.15$) cannot bypass safety thresholds through incidental keyword hits.
 
 ---
 

@@ -122,3 +122,16 @@ def test_feedback_submission():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "success"
+
+
+def test_tts_endpoint_valid_audio():
+    response = client.get("/api/tts?text=Drink%20plenty%20of%20clean%20water.&language=en")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "audio/mpeg"
+    assert len(response.content) > 1000
+
+
+def test_tts_endpoint_empty_text():
+    response = client.get("/api/tts?text=")
+    assert response.status_code == 400
+

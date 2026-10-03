@@ -1,6 +1,7 @@
 """FastAPI Application for Multilingual Health FAQ Assistant."""
 from fastapi import FastAPI, HTTPException, Request, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pathlib import Path
 import uuid
 import yaml
@@ -217,3 +218,48 @@ def submit_feedback(req: FeedbackRequest):
         status="success",
         message="Feedback successfully recorded.",
     )
+
+
+@app.get("/api/tts")
+def text_to_speech(text: str, language: str = "en"):
+    """
+    Generate Text-to-Speech audio stream (MP3) for health answers.
+    Supports English (en), Hindi (hi), Bengali (bn), Telugu (te), Tamil (ta), and Odia (or via fallback).
+    """
+    if not text or not text.strip():
+        raise HTTPException(status_code=400, detail="Text cannot be empty for TTS synthesis.")
+
+    import re
+    # Clean markdown formatting, bold/italics, and URLs for clean acoustic synthesis
+    cleaned = re.sub(r"\[.*?\]\(.*?\)", "", text)
+    cleaned = re.sub(r"[\*\#\_\`\>\[\]]", "", cleaned)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()[:600]
+
+    if not cleaned:
+        raise HTTPException(status_code=400, detail="No readable text after cleanup.")
+
+    supported_gtts = {"en", "hi", "bn", "te", "ta"}
+    tts_lang = language if language in supported_gtts else "hi"
+
+    try:
+        from gtts import gTTS
+        import io
+        tts = gTTS(text=cleaned, lang=tts_lang)
+        fp = io.BytesIO()
+        tts.write_to_fp(fp)
+        fp.seek(0)
+        return StreamingResponse(
+            fp,
+            media_type="audio/mpeg",
+            headers={
+                "Content-Disposition": f"inline; filename=health_speech_{tts_lang}.mp3",
+                "X-TTS-Language": tts_lang,
+                "Cache-Control": "public, max-age=3600",
+            },
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"TTS synthesis temporarily unavailable: {str(e)}",
+        )
+
