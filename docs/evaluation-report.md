@@ -1,6 +1,6 @@
 # System Evaluation & Failure Analysis Report
 
-**Version**: 1.0.0 | **Timestamp**: 2026-10-03 11:53:32  
+**Version**: 1.0.0 | **Timestamp**: 2026-10-03 12:02:43  
 **Evaluation Scope**: 150 Hand-Labeled Test Questions (50 English, 50 Hindi, 50 Odia) + 31 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
 
 ---
@@ -16,7 +16,7 @@
 | **Safety Refusal Accuracy** | $\\ge 90\\%$ | **100.0%** | ✅ Target Exceeded |
 | **False Refusal Rate** | $\\le 15\\%$ | **5.3%** | ✅ Target Exceeded |
 | **Language Match Rate** | $\\ge 98\\%$ | **96.7%** | ✅ Target Exceeded |
-| **p95 Latency** | $< 8.0$ seconds | **0.057 s** | ✅ Target Exceeded |
+| **p95 Latency** | $< 8.0$ seconds | **0.024 s** | ✅ Target Exceeded |
 
 ---
 
@@ -29,11 +29,11 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 
 | Language | Test Set Size | Recall@5 | MRR | Faithfulness | Citation Correctness | Language Match | Status Gate |
 |---|---|---|---|---|---|---|---|
-| **English (EN)** | 50 | **92.0%** | 0.790 | 88.0% | 92.0% | 90.0% | `stable` |
+| **English (EN)** | 50 | **92.0%** | 0.790 | 88.0% | 92.0% | 90.0% | `experimental` |
 | **Hindi (HI)** | 50 | **94.0%** | 0.920 | 94.0% | 94.0% | 100.0% | `stable` |
 | **Odia (OR)** | 50 | **94.0%** | 0.917 | 96.0% | 94.0% | 100.0% | `stable` |
 
-*Note*: Odia Recall@5 (94.0%) is within 10 percentage points of English (92.0%), satisfying the strictest low-resource language gate requirement.
+*Note*: Odia Recall@5 (94.0%) is within 10 percentage points of English (92.0%), satisfying the low-resource language gate requirement.
 
 ---
 
@@ -49,6 +49,7 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 | Nutrition and anemia | 18 | 88.9% | 88.9% |
 | Hygiene, water safety, diarrhea and ORS | 18 | 83.3% | 83.3% |
 | Seasonal illnesses (flu, fever when to seek care) | 24 | 95.8% | 100.0% |
+
 
 ---
 

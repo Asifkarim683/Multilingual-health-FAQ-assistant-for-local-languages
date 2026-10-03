@@ -304,8 +304,6 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 {gap_msg}
 
 ---
-"""
-
 
 ## 3. Per-Topic Coverage & Retrieval Fidelity
 
@@ -316,6 +314,7 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
         content += f"| {top} | {st['questions']} | {st['recall_at_5'] * 100:.1f}% | {st['faithfulness'] * 100:.1f}% |\n"
 
     content += """
+
 ---
 
 ## 4. Architectural Experiments & Ablation Studies
