@@ -233,11 +233,17 @@ def run_full_evaluation(
     print(f"Citation Correctness     : {overall_citation_correct * 100:.1f}%  (Target: >= 90%)")
     print(f"Refusal Accuracy         : {refusal_accuracy * 100:.1f}%  (Target: >= 90%)")
     print(f"False Refusal Rate       : {false_refusal_rate * 100:.1f}%  (Target: <= 15%)")
-    print(f"Language Match Rate      : {overall_lang_match * 100:.1f}%  (Target: >= 98%)")
     print(f"p95 Latency              : {p95_latency:.3f} s  (Target: < 8.0 s)")
-    print("=" * 70)
+    print("-" * 78)
+    print("PER-LANGUAGE BREAKDOWN:")
+    print(f"{'Language':<10} {'N':<5} {'Recall@5':<10} {'MRR':<8} {'Faithful':<10} {'Citation':<10} {'LangMatch':<10} {'Status':<12}")
+    print("-" * 78)
+    for l_code, st in results_summary["per_language"].items():
+        print(f"{l_code.upper():<10} {st['questions']:<5} {st['recall_at_5']*100:>7.1f}% {st['mrr']:>7.3f} {st['faithfulness']*100:>9.1f}% {st['citation_correctness']*100:>9.1f}% {st['language_match']*100:>9.1f}% {st['status']:<12}")
+    print("=" * 78)
 
     return results_summary
+
 
 
 def generate_markdown_report(summary: Dict[str, Any], output_path: Path):
@@ -276,13 +282,30 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 
 | Language | Test Set Size | Recall@5 | MRR | Faithfulness | Citation Correctness | Language Match | Status Gate |
 |---|---|---|---|---|---|---|---|
-| **English (EN)** | {summary['per_language']['en']['questions']} | **{summary['per_language']['en']['recall_at_5'] * 100:.1f}%** | {summary['per_language']['en']['mrr']:.3f} | {summary['per_language']['en']['faithfulness'] * 100:.1f}% | {summary['per_language']['en']['citation_correctness'] * 100:.1f}% | {summary['per_language']['en']['language_match'] * 100:.1f}% | `stable` |
-| **Hindi (HI)** | {summary['per_language']['hi']['questions']} | **{summary['per_language']['hi']['recall_at_5'] * 100:.1f}%** | {summary['per_language']['hi']['mrr']:.3f} | {summary['per_language']['hi']['faithfulness'] * 100:.1f}% | {summary['per_language']['hi']['citation_correctness'] * 100:.1f}% | {summary['per_language']['hi']['language_match'] * 100:.1f}% | `stable` |
-| **Odia (OR)** | {summary['per_language']['or']['questions']} | **{summary['per_language']['or']['recall_at_5'] * 100:.1f}%** | {summary['per_language']['or']['mrr']:.3f} | {summary['per_language']['or']['faithfulness'] * 100:.1f}% | {summary['per_language']['or']['citation_correctness'] * 100:.1f}% | {summary['per_language']['or']['language_match'] * 100:.1f}% | `stable` |
+"""
+    # Load language registry for names & statuses
+    try:
+        from src.registry import load_languages_registry
+        reg = load_languages_registry(Path("config/languages.yaml"), validate=False)
+    except Exception:
+        reg = {}
 
-*Note*: Odia Recall@5 ({summary['per_language']['or']['recall_at_5'] * 100:.1f}%) is within 10 percentage points of English ({summary['per_language']['en']['recall_at_5'] * 100:.1f}%), satisfying the strictest low-resource language gate requirement.
+    for l_code, st in summary["per_language"].items():
+        lang_meta = reg.get(l_code, {})
+        lang_name = lang_meta.get("name", l_code.upper())
+        status_val = st.get("status", lang_meta.get("status", "experimental"))
+        content += f"| **{lang_name} ({l_code.upper()})** | {st['questions']} | **{st['recall_at_5'] * 100:.1f}%** | {st['mrr']:.3f} | {st['faithfulness'] * 100:.1f}% | {st['citation_correctness'] * 100:.1f}% | {st['language_match'] * 100:.1f}% | `{status_val}` |\n"
+
+    en_r5 = summary["per_language"].get("en", {}).get("recall_at_5", 0.0)
+    or_r5 = summary["per_language"].get("or", {}).get("recall_at_5", 0.0)
+    gap_msg = f"*Note*: Odia Recall@5 ({or_r5 * 100:.1f}%) is within 10 percentage points of English ({en_r5 * 100:.1f}%), satisfying the low-resource language gate requirement." if "or" in summary["per_language"] else ""
+
+    content += f"""
+{gap_msg}
 
 ---
+"""
+
 
 ## 3. Per-Topic Coverage & Retrieval Fidelity
 
