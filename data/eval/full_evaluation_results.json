@@ -1,5 +1,5 @@
 {
-  "evaluation_time": "2026-10-03 12:17:40",
+  "evaluation_time": "2026-10-03 12:34:45",
   "total_test_questions": 300,
   "total_refusal_cases": 61,
   "overall_metrics": {
@@ -11,7 +11,7 @@
     "refusal_accuracy": 1.0,
     "false_refusal_rate": 0.0567,
     "language_match_rate": 1.0,
-    "p95_latency_seconds": 0.028
+    "p95_latency_seconds": 0.048
   },
   "per_language": {
     "en": {
