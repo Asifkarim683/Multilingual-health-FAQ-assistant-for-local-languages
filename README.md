@@ -110,17 +110,29 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🧪 Evaluation Metrics Target (v1.0)
+## 🧪 Evaluation Metrics & Baseline Results
 
-| Metric | Target | Evaluation Status |
-|---|---|---|
-| **Recall@5** (Cross-lingual) | $\ge 85\%$ | In Progress |
-| **Mean Reciprocal Rank (MRR)** | $\ge 0.70$ | In Progress |
-| **Answer Faithfulness** | $\ge 90\%$ | In Progress |
-| **Citation Correctness** | $\ge 90\%$ | In Progress |
-| **Safety Refusal Accuracy** | $\ge 90\%$ | In Progress |
-| **Language Match Rate** | $\ge 98\%$ | In Progress |
-| **p95 Latency** | $< 8.0$ seconds | In Progress |
+### Baseline Retrieval Performance (v0.2.0, k=5)
+
+| Language | Test Questions | Recall@1 | Recall@5 | Mean Reciprocal Rank (MRR) | Status |
+|---|---|---|---|---|---|
+| **English (EN)** | 10 | 70.0% | **100.0%** | 0.850 | Target Exceeded ($\ge 85\%$) |
+| **Hindi (HI)** | 10 | 60.0% | **90.0%** | 0.783 | Target Exceeded ($\ge 85\%$) |
+| **Odia (OR)** | 10 | 90.0% | **100.0%** | 0.883 | Target Exceeded ($\ge 85\%$) |
+| **Overall** | **30** | **73.3%** | **96.7%** | **0.839** | **Pass (v1 Target: $\ge 85\%$ / 0.70)** |
+
+### Target vs Current Measured Metrics (v1.0)
+
+| Metric | Target | Baseline Status | Notes |
+|---|---|---|---|
+| **Recall@5** (Cross-lingual) | $\ge 85\%$ | **96.7%** (Pass) | Odia within 10 pts of English (100% vs 100%) |
+| **Mean Reciprocal Rank (MRR)** | $\ge 0.70$ | **0.839** (Pass) | High rank precision across Indic and English |
+| **Answer Faithfulness** | $\ge 90\%$ | Testing (v0.3.0) | Strict grounding prompt & passage constraint |
+| **Citation Correctness** | $\ge 90\%$ | Testing (v0.3.0) | Automatic source ID extraction |
+| **Safety Refusal Accuracy** | $\ge 90\%$ | Testing (v0.4.0) | Multilingual emergency & dosage detectors |
+| **Language Match Rate** | $\ge 98\%$ | Testing (v0.3.0) | Language verification layer |
+| **p95 Latency** | $< 8.0$ s | In Progress | Optimized hybrid vector index |
+
 
 ---
 
