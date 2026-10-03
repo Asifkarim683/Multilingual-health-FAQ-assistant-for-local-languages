@@ -32,12 +32,15 @@ def test_full_evaluation_gates():
     # G6: p95 latency under 8 seconds
     assert metrics["p95_latency_seconds"] < 8.0, f"Latency ({metrics['p95_latency_seconds']}s) exceeds 8s"
 
-    # G8: Check Odia within 10 percentage points of English
+    # G8: Check low-resource language gaps are within 10 percentage points of English
     en_r5 = summary["per_language"]["en"]["recall_at_5"]
-    or_r5 = summary["per_language"]["or"]["recall_at_5"]
-    gap = abs(en_r5 - or_r5) * 100
-    assert gap <= 10.0, f"Odia Recall@5 gap ({gap:.1f}%) exceeds 10 percentage points from English"
+    for lang in ["or", "bn", "te", "ta"]:
+        assert lang in summary["per_language"], f"Language {lang} missing in evaluation results"
+        lang_r5 = summary["per_language"][lang]["recall_at_5"]
+        gap = abs(en_r5 - lang_r5) * 100
+        assert gap <= 10.0, f"{lang.upper()} Recall@5 gap ({gap:.1f}%) exceeds 10 percentage points from English"
 
     # Report file exists and is populated
     assert report_file.exists()
     assert report_file.stat().st_size > 500
+

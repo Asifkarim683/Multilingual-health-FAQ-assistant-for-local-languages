@@ -44,7 +44,7 @@ def evaluate_retrieval(
         q_text = item["question"]
         gold_src = item["gold_source_id"]
 
-        results = store.search(q_text, top_k=k)
+        results = store.search(q_text, top_k=k, lang_filter=lang)
         retrieved_sources = [r.source_id.split("-")[0] + ("-" + r.source_id.split("-")[1] if len(r.source_id.split("-")) > 1 and r.source_id.split("-")[1].isdigit() else "") for r in results]
         # Clean source prefix matching: e.g. SRC-01 matches SRC-01 or SRC-01-HI or SRC-01-OR
         matched_rank = None

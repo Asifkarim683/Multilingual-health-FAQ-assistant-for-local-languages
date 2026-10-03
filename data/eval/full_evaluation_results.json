@@ -1,32 +1,32 @@
 {
-  "evaluation_time": "2026-10-03 12:02:43",
-  "total_test_questions": 150,
-  "total_refusal_cases": 31,
+  "evaluation_time": "2026-10-03 12:14:39",
+  "total_test_questions": 300,
+  "total_refusal_cases": 61,
   "overall_metrics": {
-    "recall_at_5": 0.9333,
-    "recall_at_1": 0.82,
-    "mrr": 0.8756,
-    "faithfulness": 0.9267,
-    "citation_correctness": 0.9333,
+    "recall_at_5": 0.94,
+    "recall_at_1": 0.8767,
+    "mrr": 0.9078,
+    "faithfulness": 0.9433,
+    "citation_correctness": 0.94,
     "refusal_accuracy": 1.0,
-    "false_refusal_rate": 0.0533,
-    "language_match_rate": 0.9667,
-    "p95_latency_seconds": 0.024
+    "false_refusal_rate": 0.0567,
+    "language_match_rate": 1.0,
+    "p95_latency_seconds": 0.027
   },
   "per_language": {
     "en": {
       "questions": 50,
-      "recall_at_5": 0.92,
-      "mrr": 0.79,
-      "faithfulness": 0.88,
-      "citation_correctness": 0.92,
-      "language_match": 0.9,
-      "status": "experimental"
+      "recall_at_5": 0.94,
+      "mrr": 0.89,
+      "faithfulness": 0.94,
+      "citation_correctness": 0.94,
+      "language_match": 1.0,
+      "status": "stable"
     },
     "hi": {
       "questions": 50,
       "recall_at_5": 0.94,
-      "mrr": 0.92,
+      "mrr": 0.93,
       "faithfulness": 0.94,
       "citation_correctness": 0.94,
       "language_match": 1.0,
@@ -35,28 +35,55 @@
     "or": {
       "questions": 50,
       "recall_at_5": 0.94,
-      "mrr": 0.9167,
+      "mrr": 0.8967,
       "faithfulness": 0.96,
       "citation_correctness": 0.94,
+      "language_match": 1.0,
+      "status": "stable"
+    },
+    "bn": {
+      "questions": 50,
+      "recall_at_5": 0.92,
+      "mrr": 0.84,
+      "faithfulness": 0.92,
+      "citation_correctness": 0.92,
+      "language_match": 1.0,
+      "status": "stable"
+    },
+    "te": {
+      "questions": 50,
+      "recall_at_5": 0.94,
+      "mrr": 0.94,
+      "faithfulness": 0.94,
+      "citation_correctness": 0.94,
+      "language_match": 1.0,
+      "status": "stable"
+    },
+    "ta": {
+      "questions": 50,
+      "recall_at_5": 0.96,
+      "mrr": 0.95,
+      "faithfulness": 0.96,
+      "citation_correctness": 0.96,
       "language_match": 1.0,
       "status": "stable"
     }
   },
   "per_topic": {
     "Vector-borne diseases": {
-      "questions": 18,
+      "questions": 36,
       "recall_at_5": 1.0,
       "faithfulness": 1.0
     },
     "Diabetes basics and lifestyle": {
-      "questions": 18,
-      "recall_at_5": 1.0,
-      "faithfulness": 1.0
+      "questions": 36,
+      "recall_at_5": 0.9444,
+      "faithfulness": 0.9444
     },
     "Hypertension basics and lifestyle": {
       "questions": 18,
       "recall_at_5": 0.9444,
-      "faithfulness": 0.7778
+      "faithfulness": 0.9444
     },
     "Child immunization schedule": {
       "questions": 18,
@@ -65,13 +92,13 @@
     },
     "Maternal health and pregnancy care basics": {
       "questions": 18,
-      "recall_at_5": 0.8889,
+      "recall_at_5": 0.9444,
       "faithfulness": 0.9444
     },
     "Nutrition and anemia": {
-      "questions": 18,
-      "recall_at_5": 0.8889,
-      "faithfulness": 0.8889
+      "questions": 36,
+      "recall_at_5": 0.9167,
+      "faithfulness": 0.9167
     },
     "Hygiene, water safety, diarrhea and ORS": {
       "questions": 18,
@@ -79,8 +106,28 @@
       "faithfulness": 0.8333
     },
     "Seasonal illnesses (flu, fever when to seek care)": {
-      "questions": 24,
-      "recall_at_5": 0.9583,
+      "questions": 45,
+      "recall_at_5": 0.9333,
+      "faithfulness": 0.9556
+    },
+    "Hypertension basics and management": {
+      "questions": 18,
+      "recall_at_5": 0.8889,
+      "faithfulness": 0.8889
+    },
+    "Immunization schedule basics": {
+      "questions": 18,
+      "recall_at_5": 0.9444,
+      "faithfulness": 0.9444
+    },
+    "Maternal care basics (ANC, nutrition, danger signs)": {
+      "questions": 21,
+      "recall_at_5": 0.9524,
+      "faithfulness": 0.9524
+    },
+    "Hygiene and ORS": {
+      "questions": 18,
+      "recall_at_5": 1.0,
       "faithfulness": 1.0
     }
   }

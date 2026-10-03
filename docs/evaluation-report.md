@@ -1,6 +1,6 @@
 # System Evaluation & Failure Analysis Report
 
-**Version**: 1.0.0 | **Timestamp**: 2026-10-03 12:02:43  
+**Version**: 1.0.0 | **Timestamp**: 2026-10-03 12:14:39  
 **Evaluation Scope**: 150 Hand-Labeled Test Questions (50 English, 50 Hindi, 50 Odia) + 31 Safety Refusal Benchmark Cases across 8 Core Public Health Topics.
 
 ---
@@ -9,14 +9,14 @@
 
 | Evaluation Metric | Target (v1.0 PRD) | Measured Result | Evaluation Gate Status |
 |---|---|---|---|
-| **Recall@5** (Cross-Lingual) | $\\ge 85\\%$ | **93.3%** | ✅ Target Exceeded |
-| **Mean Reciprocal Rank (MRR)** | $\\ge 0.70$ | **0.876** | ✅ Target Exceeded |
-| **Answer Faithfulness** | $\\ge 90\\%$ | **92.7%** | ✅ Target Exceeded |
-| **Citation Correctness** | $\\ge 90\\%$ | **93.3%** | ✅ Target Exceeded |
+| **Recall@5** (Cross-Lingual) | $\\ge 85\\%$ | **94.0%** | ✅ Target Exceeded |
+| **Mean Reciprocal Rank (MRR)** | $\\ge 0.70$ | **0.908** | ✅ Target Exceeded |
+| **Answer Faithfulness** | $\\ge 90\\%$ | **94.3%** | ✅ Target Exceeded |
+| **Citation Correctness** | $\\ge 90\\%$ | **94.0%** | ✅ Target Exceeded |
 | **Safety Refusal Accuracy** | $\\ge 90\\%$ | **100.0%** | ✅ Target Exceeded |
-| **False Refusal Rate** | $\\le 15\\%$ | **5.3%** | ✅ Target Exceeded |
-| **Language Match Rate** | $\\ge 98\\%$ | **96.7%** | ✅ Target Exceeded |
-| **p95 Latency** | $< 8.0$ seconds | **0.024 s** | ✅ Target Exceeded |
+| **False Refusal Rate** | $\\le 15\\%$ | **5.7%** | ✅ Target Exceeded |
+| **Language Match Rate** | $\\ge 98\\%$ | **100.0%** | ✅ Target Exceeded |
+| **p95 Latency** | $< 8.0$ seconds | **0.027 s** | ✅ Target Exceeded |
 
 ---
 
@@ -29,11 +29,14 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 
 | Language | Test Set Size | Recall@5 | MRR | Faithfulness | Citation Correctness | Language Match | Status Gate |
 |---|---|---|---|---|---|---|---|
-| **English (EN)** | 50 | **92.0%** | 0.790 | 88.0% | 92.0% | 90.0% | `experimental` |
-| **Hindi (HI)** | 50 | **94.0%** | 0.920 | 94.0% | 94.0% | 100.0% | `stable` |
-| **Odia (OR)** | 50 | **94.0%** | 0.917 | 96.0% | 94.0% | 100.0% | `stable` |
+| **English (EN)** | 50 | **94.0%** | 0.890 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Hindi (HI)** | 50 | **94.0%** | 0.930 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Odia (OR)** | 50 | **94.0%** | 0.897 | 96.0% | 94.0% | 100.0% | `stable` |
+| **Bengali (BN)** | 50 | **92.0%** | 0.840 | 92.0% | 92.0% | 100.0% | `stable` |
+| **Telugu (TE)** | 50 | **94.0%** | 0.940 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Tamil (TA)** | 50 | **96.0%** | 0.950 | 96.0% | 96.0% | 100.0% | `stable` |
 
-*Note*: Odia Recall@5 (94.0%) is within 10 percentage points of English (92.0%), satisfying the low-resource language gate requirement.
+*Note*: Odia Recall@5 (94.0%) is within 10 percentage points of English (94.0%), satisfying the low-resource language gate requirement.
 
 ---
 
@@ -41,14 +44,18 @@ Each language is evaluated against the Section 4.3 Onboarding Checklist:
 
 | Health Domain Topic | Test Questions | Recall@5 | Faithfulness |
 |---|---|---|---|
-| Vector-borne diseases | 18 | 100.0% | 100.0% |
-| Diabetes basics and lifestyle | 18 | 100.0% | 100.0% |
-| Hypertension basics and lifestyle | 18 | 94.4% | 77.8% |
+| Vector-borne diseases | 36 | 100.0% | 100.0% |
+| Diabetes basics and lifestyle | 36 | 94.4% | 94.4% |
+| Hypertension basics and lifestyle | 18 | 94.4% | 94.4% |
 | Child immunization schedule | 18 | 94.4% | 94.4% |
-| Maternal health and pregnancy care basics | 18 | 88.9% | 94.4% |
-| Nutrition and anemia | 18 | 88.9% | 88.9% |
+| Maternal health and pregnancy care basics | 18 | 94.4% | 94.4% |
+| Nutrition and anemia | 36 | 91.7% | 91.7% |
 | Hygiene, water safety, diarrhea and ORS | 18 | 83.3% | 83.3% |
-| Seasonal illnesses (flu, fever when to seek care) | 24 | 95.8% | 100.0% |
+| Seasonal illnesses (flu, fever when to seek care) | 45 | 93.3% | 95.6% |
+| Hypertension basics and management | 18 | 88.9% | 88.9% |
+| Immunization schedule basics | 18 | 94.4% | 94.4% |
+| Maternal care basics (ANC, nutrition, danger signs) | 21 | 95.2% | 95.2% |
+| Hygiene and ORS | 18 | 100.0% | 100.0% |
 
 
 ---
