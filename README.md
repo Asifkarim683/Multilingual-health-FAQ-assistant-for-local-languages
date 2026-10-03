@@ -1,6 +1,6 @@
 # Multilingual Health FAQ Assistant for Indian Local Languages
 
-> **A safety-first, source-grounded Retrieval-Augmented Generation (RAG) assistant answering community health questions in Hindi, Odia, and English with verifiable citations and strict medical guardrails.**
+> **A safety-first, source-grounded Retrieval-Augmented Generation (RAG) assistant answering community health questions in Hindi, Odia, Bengali, Telugu, Tamil, and English with verifiable citations and strict medical guardrails.**
 
 [![CI Pipeline](https://github.com/Asifkarim683/Multilingual-health-FAQ-assistant-for-local-languages/actions/workflows/ci.yml/badge.svg)](https://github.com/Asifkarim683/Multilingual-health-FAQ-assistant-for-local-languages/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -13,13 +13,13 @@
 
 ## 📌 Problem & Motivation
 
-Most authoritative health guidelines in India are published primarily in English. Over 80% of the population, particularly in Tier-2/Tier-3 cities and rural areas, is far more comfortable seeking health awareness in **Hindi (हिन्दी)**, **Odia (ଓଡ଼ିଆ)**, or other regional languages. 
+Most authoritative health guidelines in India are published primarily in English. Over 80% of the population, particularly in Tier-2/Tier-3 cities and rural areas, is far more comfortable seeking health awareness in **Hindi (हिन्दी)**, **Odia (ଓଡ଼ିଆ)**, **Bengali (বাংলা)**, **Telugu (తెలుగు)**, **Tamil (தமிழ்)**, or other regional languages. 
 
 General generative chatbots frequently hallucinate medical treatments, fail to cite sources, and provide unsafe advice. 
 
 The **Multilingual Health FAQ Assistant** solves this through a strictly grounded, cross-lingual Retrieval-Augmented Generation (RAG) pipeline:
-- **Grounding**: Answers are derived strictly from curated public health guidelines (WHO, MoHFW India, ICMR, Odisha NHM).
-- **Cross-Lingual Retrieval**: A user asking an Odia or Hindi question retrieves matching English or regional source passages.
+- **Grounding**: Answers are derived strictly from curated public health guidelines (WHO, MoHFW India, ICMR, Odisha NHM, WB Health, AP Health, TN NHM).
+- **Cross-Lingual Retrieval**: A user asking an Odia, Hindi, Bengali, Telugu, or Tamil question retrieves matching English or regional source passages.
 - **Attribution**: Every claim is accompanied by a transparent citation linking to official documents.
 - **Safety**: Hard refusal for medication dosage, prescription, or clinical diagnosis, with instant emergency routing to **112 / 108**.
 
@@ -27,15 +27,15 @@ The **Multilingual Health FAQ Assistant** solves this through a strictly grounde
 
 ## 🎯 Key Features
 
-- **🌐 Cross-Lingual Semantic Retrieval**: Queries in Hindi or Odia match authoritative English and Indic knowledge bases with high recall.
+- **🌐 Cross-Lingual Semantic Retrieval**: Queries in Hindi, Odia, Bengali, Telugu, or Tamil match authoritative English and Indic knowledge bases with high recall.
 - **🛡️ Multi-Tier Medical Safety Guardrails**:
   - **Emergency Keyword Detection**: Detects acute warning signs (chest pain, stroke, unconsciousness) in native scripts and displays emergency helpline numbers without calling the LLM.
-  - **Dosage & Prescription Refusal**: Blocks requests for drug dosages, medicine prescriptions, and clinical diagnoses.
+  - **Dosage & Prescription Refusal**: Blocks requests for drug dosages, medicine prescriptions, and clinical diagnoses across all 6 languages.
   - **Confidence-Based Out-of-Scope Filtering**: Calibrated threshold cleanly rejects non-medical queries.
 - **📚 Verifiable Citations**: Returns document titles, sections, and clickable URLs for every answered query.
 - **⚙️ Declarative Language Registry**: Onboard new Indian languages via `config/languages.yaml` without changing application code.
-- **📱 Responsive Mobile Experience**: Optimized touch interface with native font rendering for Devanagari and Odia scripts down to 360px viewport width.
-- **📊 Measurable Benchmark Suite**: Automated evaluation over 150 hand-labeled questions and 31 refusal cases.
+- **📱 Responsive Mobile Experience**: Optimized touch interface with native font rendering for Devanagari, Odia, Bengali, Telugu, and Tamil scripts down to 360px viewport width.
+- **📊 Measurable Benchmark Suite**: Automated evaluation over 300 hand-labeled questions and 61 refusal cases across 6 languages.
 
 ---
 
@@ -95,30 +95,33 @@ User Query (Hindi / Odia / English)
 
 ---
 
-## 🧪 Benchmark Results & Quality Gates (v1.0)
+## 🧪 Benchmark Results & Quality Gates (v1.1.0)
 
-Evaluated against the hand-labeled benchmark of **150 test questions** (50 English, 50 Hindi, 50 Odia) and **31 refusal cases** across all 8 core health topics:
+Evaluated against the hand-labeled benchmark of **300 test questions** (50 English, 50 Hindi, 50 Odia, 50 Bengali, 50 Telugu, 50 Tamil) and **61 refusal cases** across all 8 core health topics:
 
 | Evaluation Metric | Target (PRD) | Measured Result | Status Gate |
 |---|---|---|---|
-| **Recall@5** (Cross-Lingual) | $\ge 85\%$ | **93.3%** | ✅ Pass |
-| **Mean Reciprocal Rank (MRR)** | $\ge 0.70$ | **0.876** | ✅ Pass |
-| **Answer Faithfulness** | $\ge 90\%$ | **92.7%** | ✅ Pass |
-| **Citation Correctness** | $\ge 90\%$ | **93.3%** | ✅ Pass |
-| **Safety Refusal Accuracy** | $\ge 90\%$ | **100.0%** | ✅ Pass |
-| **False Refusal Rate** | $\le 15\%$ | **5.3%** | ✅ Pass |
-| **Language Match Rate** | $\ge 98\%$ | **96.7%** | ✅ Pass |
-| **p95 Latency** | $< 8.0$ s | **0.103 s** | ✅ Pass |
+| **Recall@5** (Cross-Lingual) | $\ge 85\%$ | **94.0%** | ✅ Pass (Exceeded) |
+| **Mean Reciprocal Rank (MRR)** | $\ge 0.70$ | **0.908** | ✅ Pass (Exceeded) |
+| **Answer Faithfulness** | $\ge 90\%$ | **94.3%** | ✅ Pass (Exceeded) |
+| **Citation Correctness** | $\ge 90\%$ | **94.0%** | ✅ Pass (Exceeded) |
+| **Safety Refusal Accuracy** | $\ge 90\%$ | **98.4%** | ✅ Pass (Exceeded) |
+| **False Refusal Rate** | $\le 15\%$ | **5.7%** | ✅ Pass (Exceeded) |
+| **Language Match Rate** | $\ge 98\%$ | **100.0%** | ✅ Pass (Exceeded) |
+| **p95 Latency** | $< 8.0$ s | **0.058 s** | ✅ Pass (Exceeded) |
 
 ### Per-Language Performance Gates
 
-| Language | Test Questions | Recall@5 | MRR | Faithfulness | Status Gate |
-|---|---|---|---|---|---|
-| **English (EN)** | 50 | **94.0%** | 0.880 | 94.0% | `stable` |
-| **Hindi (HI)** | 50 | **94.0%** | 0.880 | 92.0% | `stable` |
-| **Odia (OR)** | 50 | **92.0%** | 0.868 | 92.0% | `stable` |
+| Language | Test Questions | Recall@5 | MRR | Faithfulness | Citation Match | Script Match | Status Gate |
+|---|---|---|---|---|---|---|---|
+| **English (EN)** | 50 | **94.0%** | 0.890 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Hindi (HI)** | 50 | **94.0%** | 0.930 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Odia (OR)** | 50 | **94.0%** | 0.897 | 96.0% | 94.0% | 100.0% | `stable` |
+| **Bengali (BN)** | 50 | **92.0%** | 0.840 | 92.0% | 92.0% | 100.0% | `stable` |
+| **Telugu (TE)** | 50 | **94.0%** | 0.940 | 94.0% | 94.0% | 100.0% | `stable` |
+| **Tamil (TA)** | 50 | **96.0%** | 0.950 | 96.0% | 96.0% | 100.0% | `stable` |
 
-*Odia Low-Resource Gate*: Odia Recall@5 (92.0%) is within 2.0% of English (94.0%), comfortably satisfying the PRD's 10-point gate requirement.
+*Indic Low-Resource Gate*: All Indic language Recall@5 scores (Odia 94.0%, Bengali 92.0%, Telugu 94.0%, Tamil 96.0%) are within 2.0% of English (94.0%), comfortably satisfying the PRD's 10-point gate requirement.
 
 For detailed ablation studies (chunk size tuning, cross-lingual vs translate-then-retrieve) and real failure analysis, see [docs/evaluation-report.md](file:///d:/SELF/Multilingual%20health%20FAQ%20assistant%20for%20local%20languages/docs/evaluation-report.md).
 
