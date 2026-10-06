@@ -12,9 +12,29 @@ import {
   Sparkles,
   Info,
   RefreshCw,
-  Volume2
+  Volume2,
+  Mic,
+  MicOff
 } from 'lucide-react';
 import AudioPlayer from './components/AudioPlayer';
+
+const STT_LANG_MAP = {
+  en: 'en-IN',
+  hi: 'hi-IN',
+  bn: 'bn-IN',
+  te: 'te-IN',
+  ta: 'ta-IN',
+  or: 'or-IN',
+};
+
+const STT_PROMPTS = {
+  en: { listening: 'Listening in English... Speak your question', button: 'Speak Question (Mic)', stop: 'Stop' },
+  hi: { listening: 'हिन्दी में सुन रहे हैं... अपना प्रश्न बोलें', button: 'बोलकर पूछें', stop: 'रोकें' },
+  or: { listening: 'ଓଡ଼ିଆରେ ଶୁଣୁଛି... ଆପଣଙ୍କ ପ୍ରଶ୍ନ କୁହନ୍ତୁ', button: 'କୁହନ୍ତୁ (ମାଇକ୍)', stop: 'ବନ୍ଦ କରନ୍ତୁ' },
+  bn: { listening: 'বাংলায় শুনছি... আপনার প্রশ্ন বলুন', button: 'কথা বলুন (মাইক)', stop: 'থামান' },
+  te: { listening: 'తెలుగులో వింటున్నాను... మీ ప్రశ్న మాట్లాడండి', button: 'మాట్లాడండి', stop: 'ఆపండి' },
+  ta: { listening: 'தமிழில் கேட்கிறது... உங்கள் கேள்வியைக் கூறுங்கள்', button: 'பேசுங்கள்', stop: 'நிறுத்து' },
+};
 
 const FALLBACK_LANGUAGES = [
   {
@@ -159,7 +179,69 @@ export default function App() {
   const [switchingLang, setSwitchingLang] = useState(false);
   const [messages, setMessages] = useState([]);
   const [feedbackSent, setFeedbackSent] = useState({});
+  const [isListening, setIsListening] = useState(false);
+  const [sttSupported, setSttSupported] = useState(false);
   const messagesEndRef = useRef(null);
+  const recognitionRef = useRef(null);
+
+  // Check Web Speech Recognition support on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        setSttSupported(true);
+      }
+    }
+  }, []);
+
+  const handleToggleVoiceInput = () => {
+    if (isListening) {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+      setIsListening(false);
+      return;
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Speech-to-Text is supported in Google Chrome, Microsoft Edge, Safari, and Android browsers.');
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognitionRef.current = recognition;
+      recognition.lang = STT_LANG_MAP[currentLang] || 'en-IN';
+      recognition.interimResults = true;
+      recognition.continuous = false;
+
+      recognition.onstart = () => {
+        setIsListening(true);
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0].transcript)
+          .join('');
+        setQuery(transcript);
+      };
+
+      recognition.onerror = (event) => {
+        console.warn('Speech recognition error:', event.error);
+        setIsListening(false);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.start();
+    } catch (err) {
+      console.error('Failed to start speech recognition:', err);
+      setIsListening(false);
+    }
+  };
 
   // Fetch live languages from API
   useEffect(() => {
@@ -662,12 +744,29 @@ export default function App() {
 
         {/* Input Form */}
         <div className="sticky bottom-2 z-10 pt-2 bg-gradient-to-t from-slate-50 via-slate-50 to-transparent">
+          {/* Active Voice Input Pill Indicator */}
+          {isListening && (
+            <div className="mb-2 px-3.5 py-2 rounded-xl bg-red-50 border border-red-300 text-red-900 text-xs font-semibold flex items-center justify-between shadow-sm animate-pulse">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
+                <span>{(STT_PROMPTS[currentLang] || STT_PROMPTS.en).listening}</span>
+              </div>
+              <button
+                type="button"
+                onClick={handleToggleVoiceInput}
+                className="text-[11px] underline font-bold text-red-700 hover:text-red-900 cursor-pointer ml-2"
+              >
+                {(STT_PROMPTS[currentLang] || STT_PROMPTS.en).stop}
+              </button>
+            </div>
+          )}
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
             }}
-            className="relative bg-white rounded-2xl border border-slate-300 shadow-md focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-200 transition-all p-1.5 flex items-end gap-2"
+            className="relative bg-white rounded-2xl border border-slate-300 shadow-md focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-200 transition-all p-1.5 flex items-end gap-1.5"
           >
             <textarea
               value={query}
@@ -682,6 +781,22 @@ export default function App() {
               rows={2}
               className="flex-1 resize-none bg-transparent px-3 py-2 text-sm sm:text-base outline-none text-slate-800 placeholder:text-slate-400 min-h-[44px]"
             />
+
+            {/* Voice Input (Microphone) Button */}
+            <button
+              type="button"
+              onClick={handleToggleVoiceInput}
+              className={`mb-1 p-2.5 rounded-xl border transition-all flex items-center justify-center cursor-pointer ${
+                isListening
+                  ? 'bg-red-600 text-white border-red-600 ring-4 ring-red-200 animate-pulse'
+                  : 'bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-teal-700 border-slate-200 hover:border-teal-300 shadow-2xs'
+              }`}
+              title={(STT_PROMPTS[currentLang] || STT_PROMPTS.en).button}
+            >
+              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            </button>
+
+            {/* Send Button */}
             <button
               type="submit"
               disabled={!query.trim() || loading}

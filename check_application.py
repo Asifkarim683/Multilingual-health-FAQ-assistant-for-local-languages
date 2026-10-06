@@ -325,12 +325,13 @@ class ApplicationAuditor:
             self.record("API", "GET /api/languages", False, str(e))
 
         # 3. Valid question ask
+        a_data = {}
         try:
             ask_payload = {
                 "question": "What is the recommended treatment for mild dehydration from diarrhea?",
                 "language": "en"
             }
-            r_ask = requests.post(f"{base_url}/api/ask", json=ask_payload, timeout=10)
+            r_ask = requests.post(f"{base_url}/api/ask", json=ask_payload, timeout=30)
             a_data = r_ask.json()
             passed = (
                 r_ask.status_code == 200

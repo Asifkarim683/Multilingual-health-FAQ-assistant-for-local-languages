@@ -4,6 +4,9 @@ from typing import List, Dict, Any, Optional
 import os
 import re
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class LLMProvider(ABC):
@@ -18,9 +21,9 @@ class LLMProvider(ABC):
 class GeminiProvider(LLMProvider):
     """Google Gemini API Provider."""
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-1.5-flash"):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
-        self.model = model
+        self.model = model or os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
     def generate(self, prompt: str, target_lang: str) -> str:
         if not self.api_key:
