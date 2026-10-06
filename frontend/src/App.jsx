@@ -14,10 +14,50 @@ import {
   RefreshCw,
   Volume2,
   Mic,
-  MicOff
+  MicOff,
+  X
 } from 'lucide-react';
 import AudioPlayer from './components/AudioPlayer';
 import FormattedAnswer from './components/FormattedAnswer';
+
+const QUICK_TOPICS = {
+  en: [
+    { label: '🦟 Dengue Signs', query: 'What are the early warning signs and symptoms of dengue?' },
+    { label: '💧 ORS for Diarrhea', query: 'How should Oral Rehydration Solution (ORS) be prepared for diarrhea?' },
+    { label: '👶 Infant Vaccines', query: 'What is the recommended immunization schedule for an infant\'s first 6 months?' },
+    { label: '❤️ High Blood Pressure', query: 'What dietary and lifestyle habits help control high blood pressure?' },
+  ],
+  hi: [
+    { label: '🦟 डेंगू के लक्षण', query: 'डेंगू बुखार के मुख्य लक्षण क्या हैं और इससे कैसे बचें?' },
+    { label: '💧 ओआरएस (ORS) घोल', query: 'दस्त और उल्टी होने पर ओआरएस (ORS) का घोल कैसे बनाएं?' },
+    { label: '👶 शिशु टीकाकरण', query: 'शिशु के जन्म के पहले 6 महीनों में कौन-से टीके लगवाने चाहिए?' },
+    { label: '❤️ हाई बीपी नियंत्रण', query: 'उच्च रक्तचाप (हाई बीपी) को नियंत्रित करने के लिए क्या खाना चाहिए?' },
+  ],
+  or: [
+    { label: '🦟 ଡେଙ୍ଗୁ ଲକ୍ଷଣ', query: 'ଡେଙ୍ଗୁ ଜ୍ୱରର ପ୍ରମୁଖ ଲକ୍ଷଣଗୁଡ଼ିକ କ\'ଣ ଏବଂ ଏଥିରୁ କିପରି ରକ୍ଷା ପାଇବା?' },
+    { label: '💧 ଓଆରଏସ୍ ଦ୍ରବଣ', query: 'ତରଳ ଝାଡ଼ା ହେଲେ ଓଆରଏସ୍ (ORS) ଦ୍ରବଣ କିପରି ପ୍ରସ୍ତୁତ କରାଯାଏ?' },
+    { label: '👶 ଶିଶୁ ଟୀକାକରଣ', query: 'ନବଜାତ ଶିଶୁ ପାଇଁ ପ୍ରଥମ ୬ ମାସ ମଧ୍ୟରେ କେଉଁ ଟିକା ଦିଆଯାଏ?' },
+    { label: '❤️ ଉଚ୍ଚ ରକ୍ତଚାପ', query: 'ଉଚ୍ଚ ରକ୍ତଚାପ ନିୟନ୍ତ୍ରଣ କରିବା ପାଇଁ କି ପ୍ରକାର ଖାଦ୍ୟ ଖାଇବା ଉଚିତ?' },
+  ],
+  bn: [
+    { label: '🦟 ডেঙ্গুর লক্ষণ', query: 'ডেঙ্গু জ্বরের প্রধান লক্ষণগুলি কি কি এবং কীভাবে প্রতিরোধ করবেন?' },
+    { label: '💧 ওআরএস তৈরি', query: 'ডায়রিয়া হলে ওআরএস (ORS) কীভাবে তৈরি করবেন?' },
+    { label: '👶 শিশু টিকাদান', query: 'শিশুর জন্মের সময় এবং প্রথম ৬ মাসে কোন টিকা দেওয়া হয়?' },
+    { label: '❤️ রক্তচাপ নিয়ন্ত্রণ', query: 'উচ্চ রক্তচাপ বা ডায়াবেটিস নিয়ন্ত্রণে কী ধরনের খাবার খাওয়া উচিত?' },
+  ],
+  te: [
+    { label: '🦟 డెంగ్యూ లక్షణాలు', query: 'డెంగ్యూ జ్వరం ముఖ్య లక్షణాలు ఏమిటి మరియు నివారణ చర్యలు?' },
+    { label: '💧 ORS తయారీ', query: 'అతిసార సమయంలో ఇంట్లోనే ORS ద్రావణం ఎలా తయారు చేయాలి?' },
+    { label: '👶 శిశువు టీకాలు', query: 'నవజాత శిశువుకు పుట్టినప్పుడు మరియు మొదటి 6 నెలల్లో ఏ టీకాలు వేయాలి?' },
+    { label: '❤️ బీపీ నియంత్రణ', query: 'అధిక రక్తపోటు మరియు మధుమేహం నియంత్రణకు ఎటువంటి ఆహారం తీసుకోవాలి?' },
+  ],
+  ta: [
+    { label: '🦟 டெங்கு அறிகுறிகள்', query: 'டெங்கு காய்ச்சலின் முக்கிய அறிகுறிகள் என்ன மற்றும் தடுப்பு முறைகள்?' },
+    { label: '💧 ORS தயாரிப்பு', query: 'வயிற்றுப்போக்கின் போது வீட்டிலேயே ORS கரைசலை எவ்வாறு தயாரிப்பது?' },
+    { label: '👶 குழந்தை தடுப்பூசி', query: 'குழந்தை பிறந்தவுடன் மற்றும் முதல் 6 மாதங்களில் போட வேண்டிய தடுப்பூசிகள் எவை?' },
+    { label: '❤️ இரத்த அழுத்தம்', query: 'உயர் இரத்த அழுத்தம் மற்றும் சர்க்கரை நோயைக் கட்டுப்படுத்த என்ன சாப்பிட வேண்டும்?' },
+  ]
+};
 
 const STT_LANG_MAP = {
   en: 'en-IN',
@@ -392,6 +432,7 @@ export default function App() {
         disclaimer: data.disclaimer,
         language: data.language,
         is_experimental: data.is_experimental,
+        corrected_query: data.corrected_query,
       };
 
       qaCacheRef.current.set(cacheKey, botMessage);
@@ -452,6 +493,7 @@ export default function App() {
         disclaimer: data.disclaimer,
         language: data.language,
         is_experimental: data.is_experimental,
+        corrected_query: data.corrected_query,
       };
 
       const canonicalKey = getCanonicalKey(textToSend);
@@ -556,7 +598,7 @@ export default function App() {
         )}
 
         {/* Messages Container */}
-        <div className="space-y-4 mb-6">
+        <div className="space-y-5 pb-44">
           {messages.length === 0 && (
             <div className="py-8 text-center max-w-lg mx-auto">
               <div className="w-14 h-14 bg-teal-50 border border-teal-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-teal-600 shadow-sm">
@@ -683,6 +725,18 @@ export default function App() {
                             )}
                           </div>
 
+                          {msg.corrected_query && (
+                            <div className="mb-3 px-3 py-1.5 rounded-xl bg-teal-50/90 border border-teal-200 text-xs text-teal-900 flex items-center gap-2 shadow-2xs">
+                              <Sparkles className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                              <span>
+                                Interpreted medical topic:{' '}
+                                <strong className="font-semibold text-teal-950">
+                                  "{msg.corrected_query}"
+                                </strong>
+                              </span>
+                            </div>
+                          )}
+
                           <div className="mb-4">
                             <FormattedAnswer text={msg.text} />
                           </div>
@@ -798,11 +852,29 @@ export default function App() {
               </span>
             </div>
           )}
-          <div ref={messagesEndRef} />
+          <div ref={messagesEndRef} className="h-6" />
         </div>
 
-        {/* Input Form */}
-        <div className="sticky bottom-2 z-10 pt-2 bg-gradient-to-t from-slate-50 via-slate-50 to-transparent">
+        {/* Optimized Sticky Bottom Input Bar */}
+        <div className="sticky bottom-0 z-20 pt-2 pb-2 bg-slate-50/95 backdrop-blur-md border-t border-slate-200/80 -mx-4 px-4 shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
+          {/* Quick Access Medical Topic Chips */}
+          {messages.length > 0 && (
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-1 text-xs">
+              <span className="text-[10.5px] font-bold text-slate-400 shrink-0 uppercase tracking-wider">Quick:</span>
+              {(QUICK_TOPICS[currentLang] || QUICK_TOPICS.en).map((chip, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  disabled={loading || switchingLang}
+                  onClick={() => handleSend(chip.query)}
+                  className="shrink-0 px-2.5 py-1 rounded-full bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-800 border border-slate-200 hover:border-teal-300 transition-all font-medium shadow-2xs text-xs cursor-pointer active:scale-95 disabled:opacity-50"
+                >
+                  {chip.label}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Active Voice Input Pill Indicator */}
           {isListening && (
             <div className="mb-2 px-3.5 py-2 rounded-xl bg-red-50 border border-red-300 text-red-900 text-xs font-semibold flex items-center justify-between shadow-sm animate-pulse">
@@ -836,10 +908,22 @@ export default function App() {
                   handleSend();
                 }
               }}
-              placeholder={ui.placeholder || 'Ask a health question...'}
+              placeholder={ui.placeholder || 'Ask a health question (e.g. dengue symptoms, fever, ORS, vaccines)...'}
               rows={2}
               className="flex-1 resize-none bg-transparent px-3 py-2 text-sm sm:text-base outline-none text-slate-800 placeholder:text-slate-400 min-h-[44px]"
             />
+
+            {/* Clear Button */}
+            {query.trim() && (
+              <button
+                type="button"
+                onClick={() => setQuery('')}
+                className="mb-1.5 p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                title="Clear input"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
 
             {/* Voice Input (Microphone) Button */}
             <button

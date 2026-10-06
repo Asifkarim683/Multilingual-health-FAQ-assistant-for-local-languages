@@ -130,18 +130,28 @@ def ask_question(req: AskRequest, request: Request):
     store, guardrail, generator, registry = get_services()
     req_id = str(uuid.uuid4())
 
+    # Clean and validate question input
+    clean_question = (req.question or "").strip()
+    if not clean_question:
+        raise HTTPException(status_code=400, detail="Question cannot be empty or blank.")
+
     # 1. Resolve Language
     if not req.language or req.language == "auto":
-        resolved_lang = detect_script_language(req.question)
+        resolved_lang = detect_script_language(clean_question)
     else:
         resolved_lang = req.language
 
+    # Query normalization & typo correction
+    from src.retrieval.normalizer import normalize_medical_query_with_details
+    effective_q, corrected_display = normalize_medical_query_with_details(clean_question)
+    search_q = effective_q or clean_question
+
     # Check In-Memory Query & Translation Cache for instant response (< 5ms)
-    norm_q = req.question.strip().lower()
+    norm_q = clean_question.lower()
     cache_key = f"{norm_q}____{resolved_lang}"
     if cache_key in _ask_cache:
         cached_resp = _ask_cache[cache_key]
-        log_query(req_id, resolved_lang, cached_resp.status, len(req.question), len(cached_resp.citations))
+        log_query(req_id, resolved_lang, cached_resp.status, len(clean_question), len(cached_resp.citations))
         return AskResponse(
             answer=cached_resp.answer,
             language=cached_resp.language,
@@ -150,6 +160,7 @@ def ask_question(req: AskRequest, request: Request):
             disclaimer=cached_resp.disclaimer,
             request_id=req_id,
             is_experimental=cached_resp.is_experimental,
+            corrected_query=cached_resp.corrected_query,
         )
 
     lang_meta = registry.get(resolved_lang, {})
@@ -157,9 +168,12 @@ def ask_question(req: AskRequest, request: Request):
     disclaimer = generator.get_disclaimer(resolved_lang)
 
     # 2. Safety Pre-Check (Emergency & Dosage / Clinical Diagnosis)
-    pre_check = guardrail.run_pre_check(req.question, language=resolved_lang)
+    pre_check = guardrail.run_pre_check(clean_question, language=resolved_lang)
+    if pre_check.action == "proceed" and search_q != clean_question:
+        pre_check = guardrail.run_pre_check(search_q, language=resolved_lang)
+
     if pre_check.action == "emergency":
-        log_query(req_id, resolved_lang, "emergency", len(req.question), 0)
+        log_query(req_id, resolved_lang, "emergency", len(clean_question), 0)
         return AskResponse(
             answer=pre_check.message,
             language=resolved_lang,
@@ -168,10 +182,11 @@ def ask_question(req: AskRequest, request: Request):
             disclaimer=disclaimer,
             request_id=req_id,
             is_experimental=is_experimental,
+            corrected_query=corrected_display,
         )
 
     if pre_check.action == "refused":
-        log_query(req_id, resolved_lang, "refused", len(req.question), 0)
+        log_query(req_id, resolved_lang, "refused", len(clean_question), 0)
         return AskResponse(
             answer=pre_check.message,
             language=resolved_lang,
@@ -180,16 +195,16 @@ def ask_question(req: AskRequest, request: Request):
             disclaimer=disclaimer,
             request_id=req_id,
             is_experimental=is_experimental,
+            corrected_query=corrected_display,
         )
 
-    # 3. Vector Retrieval
-    results = store.search(req.question, top_k=5, lang_filter=resolved_lang)
-
+    # 3. Vector Retrieval using normalized and typo-corrected query
+    results = store.search(search_q, top_k=5, lang_filter=resolved_lang)
 
     # 4. Safety Post-Check (Confidence Filtering for Out-of-Scope)
     post_check = guardrail.run_post_retrieval_check(results, language=resolved_lang, threshold=0.20)
     if post_check.action == "refused":
-        log_query(req_id, resolved_lang, "refused", len(req.question), 0)
+        log_query(req_id, resolved_lang, "refused", len(clean_question), 0)
         return AskResponse(
             answer=post_check.message,
             language=resolved_lang,
@@ -198,12 +213,13 @@ def ask_question(req: AskRequest, request: Request):
             disclaimer=disclaimer,
             request_id=req_id,
             is_experimental=is_experimental,
+            corrected_query=corrected_display,
         )
 
     # 5. Grounded Generation
     top_chunks = [r.to_dict() for r in results]
     gen_result = generator.generate_response(
-        question=req.question,
+        question=clean_question,
         retrieved_chunks=top_chunks,
         target_language=resolved_lang,
         request_id=req_id,
@@ -213,7 +229,7 @@ def ask_question(req: AskRequest, request: Request):
         req_id,
         resolved_lang,
         gen_result.status,
-        len(req.question),
+        len(clean_question),
         len(gen_result.citations),
     )
 
@@ -227,6 +243,7 @@ def ask_question(req: AskRequest, request: Request):
         disclaimer=gen_result.disclaimer,
         request_id=gen_result.request_id,
         is_experimental=is_experimental,
+        corrected_query=corrected_display,
     )
 
     # Store in memory cache for subsequent instant queries / language switches

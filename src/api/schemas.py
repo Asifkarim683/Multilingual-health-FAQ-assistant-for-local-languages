@@ -36,6 +36,7 @@ class AskResponse(BaseModel):
     disclaimer: str
     request_id: str
     is_experimental: bool = False
+    corrected_query: Optional[str] = None
 
 
 class FeedbackRequest(BaseModel):
