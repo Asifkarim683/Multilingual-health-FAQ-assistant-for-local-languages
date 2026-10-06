@@ -19,33 +19,52 @@ class LLMProvider(ABC):
 
 
 class GeminiProvider(LLMProvider):
-    """Google Gemini API Provider."""
+    """Google Gemini API Provider with resilient multi-model fallback."""
 
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
-        self.model = model or os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+        self.model = model or os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+        self.models_pool = list(dict.fromkeys([
+            self.model,
+            "gemini-3.5-flash-lite",
+            "gemini-3.5-flash",
+            "gemini-3.1-flash-lite",
+            "gemini-3.8-flash",
+        ]))
 
     def generate(self, prompt: str, target_lang: str) -> str:
         if not self.api_key:
             raise ValueError("GEMINI_API_KEY is not configured.")
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
-        payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {
-                "temperature": 0.2,
-                "topP": 0.9,
-                "maxOutputTokens": 1024,
+        last_error = None
+        for candidate_model in self.models_pool:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{candidate_model}:generateContent?key={self.api_key}"
+            payload = {
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "temperature": 0.2,
+                    "topP": 0.9,
+                    "maxOutputTokens": 1024,
+                }
             }
-        }
-        res = requests.post(url, json=payload, timeout=20)
-        res.raise_for_status()
-        data = res.json()
-        candidates = data.get("candidates", [])
-        if not candidates:
-            return "Unable to generate answer."
-        text = candidates[0]["content"]["parts"][0]["text"]
-        return text.strip()
+            try:
+                res = requests.post(url, json=payload, timeout=20)
+                if res.status_code == 200:
+                    data = res.json()
+                    candidates = data.get("candidates", [])
+                    if candidates:
+                        text = candidates[0]["content"]["parts"][0]["text"]
+                        return text.strip()
+                elif res.status_code in (429, 404, 503):
+                    last_error = f"Model {candidate_model} returned HTTP {res.status_code}"
+                    continue
+                else:
+                    res.raise_for_status()
+            except Exception as e:
+                last_error = str(e)
+                continue
+
+        raise RuntimeError(f"All Gemini models in pool failed. Last error: {last_error}")
 
 
 class OpenAIProvider(LLMProvider):

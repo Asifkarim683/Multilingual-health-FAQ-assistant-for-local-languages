@@ -17,6 +17,7 @@ import {
   MicOff
 } from 'lucide-react';
 import AudioPlayer from './components/AudioPlayer';
+import FormattedAnswer from './components/FormattedAnswer';
 
 const STT_LANG_MAP = {
   en: 'en-IN',
@@ -682,8 +683,8 @@ export default function App() {
                             )}
                           </div>
 
-                          <div className="text-sm sm:text-base text-slate-800 whitespace-pre-wrap leading-relaxed mb-4">
-                            {msg.text}
+                          <div className="mb-4">
+                            <FormattedAnswer text={msg.text} />
                           </div>
 
                           {/* Citations List */}

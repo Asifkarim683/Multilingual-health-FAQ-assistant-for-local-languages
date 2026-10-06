@@ -1,23 +1,23 @@
 {
-  "evaluation_time": "2026-10-06 10:25:25",
+  "evaluation_time": "2026-10-06 11:10:39",
   "total_test_questions": 300,
   "total_refusal_cases": 61,
   "overall_metrics": {
     "recall_at_5": 0.96,
-    "recall_at_1": 0.9167,
-    "mrr": 0.9372,
+    "recall_at_1": 0.9233,
+    "mrr": 0.9406,
     "faithfulness": 0.9633,
     "citation_correctness": 0.96,
     "refusal_accuracy": 1.0,
     "false_refusal_rate": 0.0367,
     "language_match_rate": 1.0,
-    "p95_latency_seconds": 0.046
+    "p95_latency_seconds": 0.052
   },
   "per_language": {
     "en": {
       "questions": 50,
       "recall_at_5": 0.94,
-      "mrr": 0.89,
+      "mrr": 0.92,
       "faithfulness": 0.94,
       "citation_correctness": 0.94,
       "language_match": 1.0,
@@ -35,7 +35,7 @@
     "or": {
       "questions": 50,
       "recall_at_5": 0.96,
-      "mrr": 0.9467,
+      "mrr": 0.9367,
       "faithfulness": 0.98,
       "citation_correctness": 0.96,
       "language_match": 1.0,

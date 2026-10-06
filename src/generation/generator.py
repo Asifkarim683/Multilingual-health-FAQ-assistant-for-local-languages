@@ -109,10 +109,17 @@ class GroundedGenerator:
                 source_passages=[],
             )
 
-        # 3. Build Prompt & Generate
+        # 3. Filter high-relevance chunks to avoid context dilution
+        top_score = max([float(c.get("score", 0.0)) for c in retrieved_chunks] or [0.0])
+        score_cutoff = max(0.18, top_score * 0.65)
+        focused_chunks = [c for c in retrieved_chunks if float(c.get("score", 0.0)) >= score_cutoff][:3]
+        if not focused_chunks:
+            focused_chunks = retrieved_chunks[:2]
+
+        # 4. Build Prompt & Generate
         prompt = build_generation_prompt(
             question=question,
-            passages=retrieved_chunks,
+            passages=focused_chunks,
             target_language=resolved_lang,
         )
         try:
