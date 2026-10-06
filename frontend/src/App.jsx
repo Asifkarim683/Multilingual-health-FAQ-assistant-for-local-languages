@@ -183,6 +183,21 @@ export default function App() {
   const [sttSupported, setSttSupported] = useState(false);
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
+  const qaCacheRef = useRef(new Map());
+
+  // Helper: map a question to a language-agnostic canonical key for instant caching
+  const getCanonicalKey = (text) => {
+    const trimmed = (text || '').trim().toLowerCase();
+    for (const langObj of languages) {
+      const idx = (langObj.example_questions || []).findIndex(
+        (eq) => eq.trim().toLowerCase() === trimmed
+      );
+      if (idx !== -1) {
+        return `ex_${idx}`;
+      }
+    }
+    return `custom_${trimmed}`;
+  };
 
   // Check Web Speech Recognition support on mount
   useEffect(() => {
@@ -292,26 +307,37 @@ export default function App() {
     if (userMessages.length === 0) return;
 
     const lastUserMsg = userMessages[userMessages.length - 1];
-    let questionToSend = lastUserMsg.text;
+    const canonicalKey = getCanonicalKey(lastUserMsg.text);
 
-    // Check if this user question was one of the curated example questions in ANY language
-    let matchedExampleIdx = -1;
-    for (const langObj of languages) {
-      const idx = (langObj.example_questions || []).findIndex(
-        (eq) => eq.trim().toLowerCase() === lastUserMsg.text.trim().toLowerCase()
-      );
-      if (idx !== -1) {
-        matchedExampleIdx = idx;
-        break;
+    let questionToSend = lastUserMsg.text;
+    if (canonicalKey.startsWith('ex_')) {
+      const idx = parseInt(canonicalKey.replace('ex_', ''), 10);
+      if (targetLangConfig.example_questions && targetLangConfig.example_questions[idx]) {
+        questionToSend = targetLangConfig.example_questions[idx];
       }
     }
 
-    if (
-      matchedExampleIdx !== -1 &&
-      targetLangConfig.example_questions &&
-      targetLangConfig.example_questions[matchedExampleIdx]
-    ) {
-      questionToSend = targetLangConfig.example_questions[matchedExampleIdx];
+    // Check if response is already cached for this target language (instant switch 0ms)
+    const cacheKey = `${canonicalKey}_${newLang}`;
+    if (qaCacheRef.current.has(cacheKey)) {
+      const cachedBotMsg = qaCacheRef.current.get(cacheKey);
+      setMessages((prev) => {
+        const next = [...prev];
+        for (let i = next.length - 1; i >= 0; i--) {
+          if (next[i].sender === 'user') {
+            next[i] = { ...next[i], text: questionToSend, language: newLang };
+            break;
+          }
+        }
+        for (let i = next.length - 1; i >= 0; i--) {
+          if (next[i].sender === 'assistant') {
+            next[i] = { ...cachedBotMsg, id: Date.now().toString() };
+            break;
+          }
+        }
+        return next;
+      });
+      return;
     }
 
     // Update the user question bubble in chat to the target language
@@ -347,20 +373,24 @@ export default function App() {
       }
 
       const data = await response.json();
+      const botMessage = {
+        id: data.request_id || Date.now().toString(),
+        sender: 'assistant',
+        text: data.answer,
+        status: data.status,
+        citations: data.citations || [],
+        disclaimer: data.disclaimer,
+        language: data.language,
+        is_experimental: data.is_experimental,
+      };
+
+      qaCacheRef.current.set(cacheKey, botMessage);
+
       setMessages((prev) => {
         const next = [...prev];
         for (let i = next.length - 1; i >= 0; i--) {
           if (next[i].sender === 'assistant') {
-            next[i] = {
-              id: data.request_id || Date.now().toString(),
-              sender: 'assistant',
-              text: data.answer,
-              status: data.status,
-              citations: data.citations || [],
-              disclaimer: data.disclaimer,
-              language: data.language,
-              is_experimental: data.is_experimental,
-            };
+            next[i] = botMessage;
             break;
           }
         }
@@ -413,6 +443,9 @@ export default function App() {
         language: data.language,
         is_experimental: data.is_experimental,
       };
+
+      const canonicalKey = getCanonicalKey(textToSend);
+      qaCacheRef.current.set(`${canonicalKey}_${currentLang}`, botMessage);
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
@@ -615,105 +648,123 @@ export default function App() {
                   {/* Answered State (Grounded Answer + Citations) */}
                   {msg.status === 'answered' && (
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm">
-                      <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
-                        <AudioPlayer text={msg.text} language={msg.language || currentLang} />
-                        {msg.is_experimental && (
-                          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800 shrink-0">
-                            ⚠️ Experimental
+                      {switchingLang ? (
+                        <div className="py-7 px-4 flex flex-col items-center justify-center text-center gap-2.5">
+                          <div className="w-9 h-9 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-600">
+                            <RefreshCw className="w-5 h-5 animate-spin" />
                           </div>
-                        )}
-                      </div>
-
-                      <div className="text-sm sm:text-base text-slate-800 whitespace-pre-wrap leading-relaxed mb-4">
-                        {msg.text}
-                      </div>
-
-                      {/* Citations List */}
-                      {msg.citations && msg.citations.length > 0 && (
-                        <div className="border-t border-slate-100 pt-3 mt-3">
-                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <BookOpen className="w-3.5 h-3.5 text-teal-600" />
-                            {ui.sources_heading || 'Verified Sources & Citations'}:
-                          </span>
-                          <div className="flex flex-wrap gap-2">
-                            {msg.citations.map((c) => (
-                              <a
-                                key={c.id}
-                                href={c.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200 text-xs font-medium transition-colors shadow-2xs"
-                              >
-                                <span>[{c.id}] {c.title}</span>
-                                <ExternalLink className="w-3 h-3 text-teal-600" />
-                              </a>
-                            ))}
+                          <div>
+                            <p className="text-sm font-semibold text-slate-800">
+                              {activeLangConfig.native_name} ({activeLangConfig.name}) - Generating guidance...
+                            </p>
+                            <p className="text-xs text-slate-500 mt-0.5">
+                              Translating answer and retrieving verified health sources
+                            </p>
                           </div>
                         </div>
-                      )}
-
-                      {/* Quick Language Switcher Bar on Answer */}
-                      <div className="mt-3.5 pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
-                        <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
-                          <Globe className="w-3.5 h-3.5 text-teal-600 shrink-0" />
-                          <span className="text-[11px] font-medium text-slate-500">Read in:</span>
-                          <div className="flex flex-wrap gap-1">
-                            {languages.map((l) => (
-                              <button
-                                key={l.code}
-                                type="button"
-                                disabled={switchingLang || loading}
-                                onClick={() => handleLanguageChange(l.code)}
-                                className={`px-2 py-0.5 rounded-md text-xs transition-all cursor-pointer ${
-                                  currentLang === l.code
-                                    ? 'bg-teal-600 text-white font-semibold shadow-xs'
-                                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'
-                                }`}
-                              >
-                                {l.native_name}
-                              </button>
-                            ))}
+                      ) : (
+                        <>
+                          <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
+                            <AudioPlayer text={msg.text} language={msg.language || currentLang} />
+                            {msg.is_experimental && (
+                              <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800 shrink-0">
+                                ⚠️ Experimental
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      </div>
 
-                      {/* Medical Disclaimer */}
-                      {msg.disclaimer && (
-                        <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-start gap-1.5 text-[11px] text-slate-500 leading-normal">
-                          <Info className="w-3.5 h-3.5 text-slate-400 mt-0.5 flex-shrink-0" />
-                          <span>{msg.disclaimer}</span>
-                        </div>
-                      )}
+                          <div className="text-sm sm:text-base text-slate-800 whitespace-pre-wrap leading-relaxed mb-4">
+                            {msg.text}
+                          </div>
 
-                      {/* Feedback buttons */}
-                      <div className="mt-3 flex items-center justify-between text-xs text-slate-400">
-                        <span className="text-[11px]">Was this answer helpful?</span>
-                        <div className="flex items-center gap-1">
-                          <button
-                            onClick={() => handleFeedback(msg.id, 'up')}
-                            className={`p-1.5 rounded-md hover:bg-slate-100 transition-colors ${
-                              feedbackSent[msg.id] === 'up' ? 'text-teal-600 bg-teal-50' : 'text-slate-400'
-                            }`}
-                            title="Helpful"
-                          >
-                            <ThumbsUp className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleFeedback(msg.id, 'down')}
-                            className={`p-1.5 rounded-md hover:bg-slate-100 transition-colors ${
-                              feedbackSent[msg.id] === 'down' ? 'text-rose-600 bg-rose-50' : 'text-slate-400'
-                            }`}
-                            title="Not helpful"
-                          >
-                            <ThumbsDown className="w-4 h-4" />
-                          </button>
-                          {feedbackSent[msg.id] && (
-                            <span className="text-[11px] text-teal-600 font-medium ml-1">
-                              Thanks for feedback!
-                            </span>
+                          {/* Citations List */}
+                          {msg.citations && msg.citations.length > 0 && (
+                            <div className="border-t border-slate-100 pt-3 mt-3">
+                              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                <BookOpen className="w-3.5 h-3.5 text-teal-600" />
+                                {ui.sources_heading || 'Verified Sources & Citations'}:
+                              </span>
+                              <div className="flex flex-wrap gap-2">
+                                {msg.citations.map((c) => (
+                                  <a
+                                    key={c.id}
+                                    href={c.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200 text-xs font-medium transition-colors shadow-2xs"
+                                  >
+                                    <span>[{c.id}] {c.title}</span>
+                                    <ExternalLink className="w-3 h-3 text-teal-600" />
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
                           )}
-                        </div>
-                      </div>
+
+                          {/* Quick Language Switcher Bar on Answer */}
+                          <div className="mt-3.5 pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+                            <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
+                              <Globe className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                              <span className="text-[11px] font-medium text-slate-500">Read in:</span>
+                              <div className="flex flex-wrap gap-1">
+                                {languages.map((l) => (
+                                  <button
+                                    key={l.code}
+                                    type="button"
+                                    disabled={switchingLang || loading}
+                                    onClick={() => handleLanguageChange(l.code)}
+                                    className={`px-2 py-0.5 rounded-md text-xs transition-all cursor-pointer ${
+                                      currentLang === l.code
+                                        ? 'bg-teal-600 text-white font-semibold shadow-xs'
+                                        : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'
+                                    }`}
+                                  >
+                                    {l.native_name}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Medical Disclaimer */}
+                          {msg.disclaimer && (
+                            <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-start gap-1.5 text-[11px] text-slate-500 leading-normal">
+                              <Info className="w-3.5 h-3.5 text-slate-400 mt-0.5 flex-shrink-0" />
+                              <span>{msg.disclaimer}</span>
+                            </div>
+                          )}
+
+                          {/* Feedback buttons */}
+                          <div className="mt-3 flex items-center justify-between text-xs text-slate-400">
+                            <span className="text-[11px]">Was this answer helpful?</span>
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => handleFeedback(msg.id, 'up')}
+                                className={`p-1.5 rounded-md hover:bg-slate-100 transition-colors ${
+                                  feedbackSent[msg.id] === 'up' ? 'text-teal-600 bg-teal-50' : 'text-slate-400'
+                                }`}
+                                title="Helpful"
+                              >
+                                <ThumbsUp className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleFeedback(msg.id, 'down')}
+                                className={`p-1.5 rounded-md hover:bg-slate-100 transition-colors ${
+                                  feedbackSent[msg.id] === 'down' ? 'text-rose-600 bg-rose-50' : 'text-slate-400'
+                                }`}
+                                title="Not helpful"
+                              >
+                                <ThumbsDown className="w-4 h-4" />
+                              </button>
+                              {feedbackSent[msg.id] && (
+                                <span className="text-[11px] text-teal-600 font-medium ml-1">
+                                  Thanks for feedback!
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
                     </div>
                   )}
 
@@ -728,14 +779,12 @@ export default function App() {
             </div>
           ))}
 
-          {/* Loading indicator */}
-          {(loading || switchingLang) && (
+          {/* Loading indicator for new question submission */}
+          {loading && !switchingLang && (
             <div className="flex items-center gap-2 p-4 bg-white border border-slate-200 rounded-2xl max-w-xs shadow-sm">
               <RefreshCw className="w-4 h-4 text-teal-600 animate-spin" />
               <span className="text-xs text-slate-600 font-medium">
-                {switchingLang
-                  ? `Switching to ${activeLangConfig.native_name || activeLangConfig.name}...`
-                  : 'Searching verified health sources...'}
+                Searching verified health sources...
               </span>
             </div>
           )}

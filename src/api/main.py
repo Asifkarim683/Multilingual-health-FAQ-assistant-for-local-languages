@@ -115,6 +115,10 @@ def get_languages():
     return results
 
 
+_ask_cache: dict[str, AskResponse] = {}
+_tts_audio_cache: dict[str, bytes] = {}
+
+
 @app.post("/api/ask", response_model=AskResponse)
 def ask_question(req: AskRequest, request: Request):
     """
@@ -131,6 +135,22 @@ def ask_question(req: AskRequest, request: Request):
         resolved_lang = detect_script_language(req.question)
     else:
         resolved_lang = req.language
+
+    # Check In-Memory Query & Translation Cache for instant response (< 5ms)
+    norm_q = req.question.strip().lower()
+    cache_key = f"{norm_q}____{resolved_lang}"
+    if cache_key in _ask_cache:
+        cached_resp = _ask_cache[cache_key]
+        log_query(req_id, resolved_lang, cached_resp.status, len(req.question), len(cached_resp.citations))
+        return AskResponse(
+            answer=cached_resp.answer,
+            language=cached_resp.language,
+            status=cached_resp.status,
+            citations=cached_resp.citations,
+            disclaimer=cached_resp.disclaimer,
+            request_id=req_id,
+            is_experimental=cached_resp.is_experimental,
+        )
 
     lang_meta = registry.get(resolved_lang, {})
     is_experimental = lang_meta.get("status", "stable") == "experimental"
@@ -199,7 +219,7 @@ def ask_question(req: AskRequest, request: Request):
 
     citation_items = [CitationItem(**c) for c in gen_result.citations]
 
-    return AskResponse(
+    response = AskResponse(
         answer=gen_result.answer,
         language=gen_result.language,
         status=gen_result.status,  # type: ignore
@@ -208,6 +228,13 @@ def ask_question(req: AskRequest, request: Request):
         request_id=gen_result.request_id,
         is_experimental=is_experimental,
     )
+
+    # Store in memory cache for subsequent instant queries / language switches
+    if len(_ask_cache) > 500:
+        _ask_cache.pop(next(iter(_ask_cache)))
+    _ask_cache[cache_key] = response
+
+    return response
 
 
 @app.post("/api/feedback", response_model=FeedbackResponse)
@@ -220,41 +247,96 @@ def submit_feedback(req: FeedbackRequest):
     )
 
 
+def odia_to_phonetic_devanagari(text: str) -> str:
+    """
+    Phonetically maps Odia Unicode script (U+0B00-U+0B7F) to Devanagari (U+0900-U+097F)
+    so Google Indic TTS voices synthesize natural, fluent Odia speech.
+    """
+    custom_map = {
+        0x0B5F: '\u092F',  # ୟ (Odia ya) -> य
+        0x0B71: '\u0935',  # ୱ (Odia wa) -> व
+        0x0B33: '\u0933',  # ଳ (Odia lla) -> ळ
+        0x0B5C: '\u095C',  # ଡ଼ (Odia rra) -> ड़
+        0x0B5D: '\u095D',  # ଢ଼ (Odia rha) -> ढ़
+        0x0B02: '\u0902',  # ଂ (Anusvara) -> ं
+        0x0B03: '\u0903',  # ଃ (Visarga) -> ः
+        0x0B01: '\u0901',  # ଁ (Candrabindu) -> ँ
+    }
+    out = []
+    for ch in text:
+        cp = ord(ch)
+        if cp in custom_map:
+            out.append(custom_map[cp])
+        elif 0x0B05 <= cp <= 0x0B70:
+            out.append(chr(cp - 0x0200))
+        else:
+            out.append(ch)
+    return ''.join(out)
+
+
 @app.get("/api/tts")
 def text_to_speech(text: str, language: str = "en"):
     """
     Generate Text-to-Speech audio stream (MP3) for health answers.
-    Supports English (en), Hindi (hi), Bengali (bn), Telugu (te), Tamil (ta), and Odia (or via fallback).
+    Fully supports English (en), Hindi (hi), Odia (or), Bengali (bn), Telugu (te), and Tamil (ta).
     """
     if not text or not text.strip():
         raise HTTPException(status_code=400, detail="Text cannot be empty for TTS synthesis.")
 
     import re
+    import hashlib
+    import io
     # Clean markdown formatting, bold/italics, and URLs for clean acoustic synthesis
     cleaned = re.sub(r"\[.*?\]\(.*?\)", "", text)
     cleaned = re.sub(r"[\*\#\_\`\>\[\]]", "", cleaned)
-    cleaned = re.sub(r"\s+", " ", cleaned).strip()[:600]
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()[:800]
 
     if not cleaned:
         raise HTTPException(status_code=400, detail="No readable text after cleanup.")
 
-    supported_gtts = {"en", "hi", "bn", "te", "ta"}
-    tts_lang = language if language in supported_gtts else "hi"
+    cache_key = f"{language}_{hashlib.md5(cleaned.encode('utf-8')).hexdigest()}"
+    if cache_key in _tts_audio_cache:
+        return StreamingResponse(
+            io.BytesIO(_tts_audio_cache[cache_key]),
+            media_type="audio/mpeg",
+            headers={
+                "Content-Disposition": f"inline; filename=health_speech_{language}.mp3",
+                "X-TTS-Language": language,
+                "Cache-Control": "public, max-age=86400",
+            },
+        )
 
     try:
         from gtts import gTTS
-        import io
-        tts = gTTS(text=cleaned, lang=tts_lang)
+
+        if language == "or":
+            phonetic_text = odia_to_phonetic_devanagari(cleaned)
+            tts = gTTS(text=phonetic_text, lang="hi")
+            tts_lang = "or"
+        elif language in {"hi", "bn", "te", "ta"}:
+            tts = gTTS(text=cleaned, lang=language)
+            tts_lang = language
+        else:
+            tts = gTTS(text=cleaned, lang="en")
+            tts_lang = "en"
+
         fp = io.BytesIO()
         tts.write_to_fp(fp)
+        audio_bytes = fp.getvalue()
         fp.seek(0)
+
+        # Store in LRU cache
+        if len(_tts_audio_cache) > 500:
+            _tts_audio_cache.pop(next(iter(_tts_audio_cache)))
+        _tts_audio_cache[cache_key] = audio_bytes
+
         return StreamingResponse(
             fp,
             media_type="audio/mpeg",
             headers={
                 "Content-Disposition": f"inline; filename=health_speech_{tts_lang}.mp3",
                 "X-TTS-Language": tts_lang,
-                "Cache-Control": "public, max-age=3600",
+                "Cache-Control": "public, max-age=86400",
             },
         )
     except Exception as e:
