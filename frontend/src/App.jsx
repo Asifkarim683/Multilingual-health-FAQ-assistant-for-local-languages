@@ -36,6 +36,15 @@ const STT_PROMPTS = {
   ta: { listening: 'தமிழில் கேட்கிறது... உங்கள் கேள்வியைக் கூறுங்கள்', button: 'பேசுங்கள்', stop: 'நிறுத்து' },
 };
 
+const STATUS_TITLES = {
+  en: { emergency: 'EMERGENCY ALERT', safety: 'Safety Notice' },
+  hi: { emergency: 'आपातकालीन चेतावनी (Emergency Alert)', safety: 'सुरक्षा सूचना (Safety Notice)' },
+  or: { emergency: 'ଆପାତକାଳୀନ ଚେତାବନୀ (Emergency Alert)', safety: 'ସତର୍କତା ସୂଚନା (Safety Notice)' },
+  bn: { emergency: 'জরুরি সতর্কতা (Emergency Alert)', safety: 'নিরাপত্তা বিজ্ঞপ্তি (Safety Notice)' },
+  te: { emergency: 'అత్యవసర హెచ్చరిక (Emergency Alert)', safety: 'భద్రతా నోటీసు (Safety Notice)' },
+  ta: { emergency: 'அவசர எச்சரிக்கை (Emergency Alert)', safety: 'பாதுகாப்பு அறிவிப்பு (Safety Notice)' },
+};
+
 const FALLBACK_LANGUAGES = [
   {
     code: 'en',
@@ -602,7 +611,7 @@ export default function App() {
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <div className="flex items-center gap-2.5 text-red-700 font-bold text-base">
                           <ShieldAlert className="w-6 h-6 flex-shrink-0 text-red-600 animate-pulse" />
-                          <span>EMERGENCY ALERT / ଆପାତକାଳୀନ ଚେତାବନୀ</span>
+                          <span>{(STATUS_TITLES[msg.language || currentLang] || STATUS_TITLES.en).emergency}</span>
                         </div>
                         <AudioPlayer text={msg.text} language={msg.language || currentLang} className="bg-red-100/70 border-red-200" />
                       </div>
@@ -632,7 +641,7 @@ export default function App() {
                       <div className="flex items-center justify-between gap-2 mb-1.5">
                         <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm">
                           <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-600" />
-                          <span>Safety Notice / ସତର୍କତା ସୂଚନା</span>
+                          <span>{(STATUS_TITLES[msg.language || currentLang] || STATUS_TITLES.en).safety}</span>
                         </div>
                         <AudioPlayer text={msg.text} language={msg.language || currentLang} className="bg-amber-100/70 border-amber-200" />
                       </div>

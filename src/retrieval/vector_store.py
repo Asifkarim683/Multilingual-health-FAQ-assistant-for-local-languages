@@ -88,7 +88,10 @@ class VectorStore:
         if self.embeddings is None or not self.chunks:
             raise ValueError("Vector store is empty or unindexed. Call build_index() first.")
 
-        query_vec = self.embedder.embed_query(query)
+        from .normalizer import normalize_medical_query
+        effective_query = normalize_medical_query(query) or query
+
+        query_vec = self.embedder.embed_query(effective_query)
         dense_scores = np.dot(self.embeddings, query_vec)
 
         # Lazy initialize BM25 if needed
@@ -100,10 +103,10 @@ class VectorStore:
             scores = dense_scores
             sorted_indices = np.argsort(scores)[::-1]
         elif mode == "sparse":
-            scores = self.bm25.get_scores(query)
+            scores = self.bm25.get_scores(effective_query)
             sorted_indices = np.argsort(scores)[::-1]
         elif mode == "rrf":
-            sparse_scores = self.bm25.get_scores(query)
+            sparse_scores = self.bm25.get_scores(effective_query)
             dense_ranks = np.argsort(dense_scores)[::-1].tolist()
             sparse_ranks = np.argsort(sparse_scores)[::-1].tolist()
             rrf_map = reciprocal_rank_fusion(
@@ -113,7 +116,7 @@ class VectorStore:
             boost = 1.0 + 0.35 * (sparse_scores / (sparse_scores + 15.0))
             scores = dense_scores * boost
         elif mode == "hybrid":
-            sparse_scores = self.bm25.get_scores(query)
+            sparse_scores = self.bm25.get_scores(effective_query)
             # Semantically grounded BM25 keyword boost:
             # Gated by semantic similarity so out-of-scope queries (dense < 0.15) cannot bypass refusal thresholds
             boost = 1.0 + 0.35 * (sparse_scores / (sparse_scores + 15.0))
